@@ -27,7 +27,26 @@ Como `scripts` de `package.json` pero con _magia_.
 
 ---
 
-# Table of content
+## Table of content
+* [TL;DR](#tl-dr)
+	+ [Features](#features)
+* [Concepts](#concepts)
+* [Extended version](#extended-version)
+	+ [Typical scenario](#typical-scenario)
+		- [Problem](#problem)
+		- [Solution](#solution)
+* [Instalation](#instalation)
+* [Executor](#executor)
+* [Configuration](#configuration)
+	+ [Json structure](#json-structure)
+		- [config](#config)
+		- [environments](#environments)
+		- [templates](#templates)
+		- [shortcuts](#shortcuts)
+		- [predefined](#predefined)
+* [Bonus track](#bonus-track)
+* [colaboration](#colaboration)
+* [coming soon](#coming-soon)
 
 ## Concepts
 
@@ -68,7 +87,7 @@ Para luego ejectuar: `npm run runDev` o `npm run runProd`
  
 Pero como vemos, hay "codigo" repetido, y si multiplicamos por variables, podrian ser muchas lineas con pequeñas diferencias y si cambiamos algo en alguna de ellas potencialmente tenes que replicarlo en el resto, y como buenos programadores que somos evitamos el duplicado (no?)
 
-### Solution
+#### Solution
 Necesitamos algo mas dinamico que permita escalar mejor. El _approach_ elegido para solucionar esto es el de "templetear", con una configuracion similar a esta:
 
 ```
@@ -272,7 +291,7 @@ De yapa, si por X causa no te gusta el nombre del archivo "executor.json" o lo q
 
 TO-DO
 
-## comming soon
+## coming soon
 
 * Video de 5' demostrando funcionalidad
 * Utilizacion de un `executor.json` **global**!
