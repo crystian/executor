@@ -6,240 +6,258 @@
 ---
 ## TL;DR
 
-Este software te va a permitir ahorrar gran cantidad de tiempo de escritura de comandos con atajos totalmente personalizados, con la finalidad de compartirlo con un proyecto, tanto para que lo usen personas como maquinas, manteniendose unificado y en un unico lugar. #agile #needForSpeed.  
+Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura de comandos con atajos totalmente personalizados, con la finalidad de compartirlo con un proyecto, tanto para que lo usen personas como máquinas, manteniéndose unificado y en un único lugar. #agile #needForSpeed. 
+ 
 Como `scripts` de `package.json` pero con _magia_.
+
+**Notes:** La idea no es dejar de usar la consola, es la de optimizarla.
   
 ### Features
 
-* Multiplataforma: Unico codigo, funciona en todas las plataformas. Powered by [nodejs](https://nodejs.org)
-* Multiconfiguracion, con multiples niveles de anidamiento.
+* Multiplataforma: Único código, funciona en todas las plataformas. Powered by [nodejs](https://nodejs.org)
+* Multi-configuracion, con múltiples niveles de anidamiento.
 * Templates para su facil reutilizacion.
-* No importa el tipo de proyecto, si escribis comandos esta herramienta te puede ser util.
-* Utilizacion de variables predefinidas, ambiente, template y de otros 'shortcuts'.
+* No importa el tipo de proyecto, si escribis comandos esta herramienta te puede ser útil.
+* Utilización de variables predefinidas, ambiente, template y de otros 'shortcuts' (atajos).
 * Devs y DevOps pueden ser amigos con esta tool, ya que comparten sus comandos.
 * Errores de tipeos en comandos largos, son problemas del pasado!
 * Pare de sufrir! Basta de mil scripts similares en tu `package.json`!  
 (`build`, `build-ci`, `build-prod`, `build-prod-ci`, `build-qa`, `build-qa-ci`, `build-ci-cache`, etc...)
 * Modificaste `scripts` del `package.json` y tenes que 'rebuilder' tu imagen de docker... nunca mas!
-* **Sin dependencias de otros modulos de node!**
+* **Sin dependencias de otros módulos de node!**
+
 
 ![](docs/img/jake.gif)
 
 ---
 
-## Table of content
-* [TL;DR](#tl-dr)
-	+ [Features](#features)
-* [Concepts](#concepts)
+# Table of content
+
 * [Extended version](#extended-version)
-	+ [Typical scenario](#typical-scenario)
-		- [Problem](#problem)
-		- [Solution](#solution)
-* [Instalation](#instalation)
-* [Executor](#executor)
+* [Concepts](#concepts)
+* [Typical scenario](#typical-scenario)
+* [Installation](#installation)
 * [Configuration](#configuration)
-	+ [Json structure](#json-structure)
-		- [config](#config)
-		- [environments](#environments)
-		- [templates](#templates)
-		- [shortcuts](#shortcuts)
-		- [predefined](#predefined)
+	* [config](#config)
+	* [environments](#environments)
+	* [templates](#templates)
+	* [shortcuts](#shortcuts)
+	* [predefined](#predefined)
 * [Bonus track](#bonus-track)
-* [colaboration](#colaboration)
-* [coming soon](#coming-soon)
+	+ [Config file](#config-file)
+	+ [Config file sample](#config-file-sample)
+* [collaboration](#collaboration)
+* [Changelog](#changelog)
+* [Coming soon](#coming-soon)
 
-## Concepts
-
-* **Tool:** Este software/herramienta, puntualmente el comando "`e`"
-* **CWD:** Current Working Directory = directorio actual
-* **Comando:** Programa ejecutable con posibilidad de enviarle multiples argumentos  
-* **Consola:** Ventana desde donde se puede ejecutar comandos
-* **CLI:** [Command line Interface](https://en.wikipedia.org/wiki/Command-line_interface) = Interfaz de linea de comando.  
 
 ## Extended version
 
-Esta tool cuenta con deliciosos features el cual nos deberia ahorra mucho tipeo (y errores de) que al final del dia cuenta, pero la gracia es que se pueda compartir con todo el equipo y en un unico lugar: "el repo".
+Esta tool cuenta con deliciosos features el cual nos debería ahorra mucho tipeo (y errores de) que al final del dia cuenta, pero la gracia es que se pueda compartir con todo el equipo y en un único lugar: "el repo".
 
+## Concepts
 
-### Typical scenario
+* **Tool:** Este software/herramienta, puntualmente el comando "`e`".
+* **CWD:** Current Working Directory (directorio actual).
+* **Comando:** Programa ejecutable con posibilidad de enviarle múltiples argumentos.  
+* **Consola:** "Ventana" desde donde se puede ejecutar comandos.
+* **CLI:** [Command line Interface](https://en.wikipedia.org/wiki/Command-line_interface) Ejecutable para trabajar en la consola, tipeando comandos con argumentos.
+* **Template** Generalmente un texto con partes estáticas y otras dinámicas que se reemplazaran en tiempo de ejecucion.
+* **Interpolar** Reemplazar por valores de variables  
 
-#### Problem
+## Typical scenario
+
+### Problem
 
 Vamos a los bifes con un **ejemplo** rapido asi se entiende mejor el concepto:
 
 Simulemos que tenemos dos comandos recurrentes:
 ```
-docker run --rm -it --name dev dev ash
-docker run --rm -it --name prod prod ash
+docker run --rm -it --name myProject-dev myProject-dev ash
+docker run --rm -it --name myProject-prod myProject-prod ash
 ```
-Constantemente tenes que escribir lo anterior, y se pone mas divertido con los mapeos:
+Constantemente tenes que escribir lo anterior, y se pone más divertido con los mapeos:
 ```
-docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name dev dev ash 
-docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name prod prod ash  
+docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-dev myProject-dev ash 
+docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-prod myProject-prod ash  
 ```
 
-Para esto llego `scripts` de npm en el `package.json`! Nos deberia quedar algo asi:
+Para esto llegó `scripts` de npm en el `package.json`! Nos debería quedar algo asi:
 ```
-"runDev": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name dev dev ash"
-"runProd": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name prod prod ash" 
+"runDev": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-dev myProject-dev ash"
+"runProd": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-prod myProject-prod ash" 
 ```
-Para luego ejectuar: `npm run runDev` o `npm run runProd`
+Para luego ejectuar: `npm run runDev` o `npm run runProd`.
  
-Pero como vemos, hay "codigo" repetido, y si multiplicamos por variables, podrian ser muchas lineas con pequeñas diferencias y si cambiamos algo en alguna de ellas potencialmente tenes que replicarlo en el resto, y como buenos programadores que somos evitamos el duplicado (no?)
+Pero como vemos, hay "código" repetido, y si multiplicamos por variables, podrían ser muchas líneas con pequeñas diferencias y si cambiamos algo en alguna de ellas potencialmente tenes que replicarlo en el resto, y como buenos programadores que somos evitamos el duplicado (no?).
 
-#### Solution
-Necesitamos algo mas dinamico que permita escalar mejor. El _approach_ elegido para solucionar esto es el de "templetear", con una configuracion similar a esta:
+### Solution
+Necesitamos algo más dinámico que permita escalar mejor. El _approach_ elegido para solucionar esto es el de "templetear", con una configuración similar a esta:
 
 ```
-"templateCommon"="docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name"
-"runDev"=${templateCommon} dev dev ash
-"runProd"=${templateCommon} prod prod ash
+"project"="myProject"
+"devName"="${project}-dev"
+"prodName"="${project}-prod"
+"dockerRun"="docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name"
+"runDev" =${dockerRun} ${devName} ${devName} ash
+"runProd"=${dockerRun} ${prodName} ${prodName} ash
 ```
-Y luego ejectuaria con: `e runDev` o `e runProd`
+Y luego ejectuaria con: `e runDev` o `e runProd`.
 
-Ahora, imaginemos que todo el equipo de trabajo tiene la misma configuracion, comandos rapidos y normalizados, hablariamos el mismo idioma y podriamos sentirnos como en "casa" frente a otra maquina!
-
-_Esto es solo una parte del potencial de este software._ 
+Ahora, imaginemos que todo el equipo de trabajo tiene la misma configuración, comandos rapidos y normalizados, hablariamos el mismo idioma y podríamos sentirnos como en "casa" frente a otra máquina!
 
   
-## Instalation
+# Installation
 
 ### Requirements
 
 * [Node/npm](https://nodejs.org)
-* `executor.json`: **archivo de configuracion** de atajos (ya veremos como se construye).
+* `executor.json`: **archivo de configuración** de atajos (ya veremos cómo se construye).
 
-### global
+### Global
 
-Lo ideal es instalarlo globalmente, de otra manera deberias ejecutar `node_modules\.bin\e`, lo cual dejaria de ser un atajo :P
+Lo ideal es instalarlo globalmente, de otra manera deberías ejecutar `node_modules\.bin\e`, lo cual claramente dejaría de ser un atajo.
+
+Instalemos global con npm o yarn:  
 
 * npm: `npm install -g executor`
 * yarn: `yarn add global executor` (de preferencia)
 
 El executable que deberia quedar en el [path](https://en.wikipedia.org/wiki/PATH_(variable)) es la simple vocal: `e`
 
-Para comprobar que fue instalado, ejecutemos en la consola: `e`, no importa donde, deberia devolverte un error como este:
+Para comprobar que fue instalado, ejecutamos en la consola: `e`, no importa donde, debería devolverte un error como este:
 ```
-[executor] [config] File not found: "executor.json"
+[executor] File not found: "executor.json"
 ```
 
-### Notes
-Este comando (`e`) es un CLI que se ejecuta en el contexto donde es ejecutado, o sea, que lee los archivos del directorio actual donde se ejecute, por ende pretendera encontrar el archivo de configuracion en el mismo directorio de ejecucion, por esto el "error" anterior.
+### Executable
 
-## Executor
-
-Simplemente el comando `e` mas los shortcuts configurados en el archivo de configuracion.  
+Como ya te habrás dado cuenta el comando es `e` más los shortcuts configurados en el archivo de configuración.  
 Ejemplo: `e shortcut1`
 
+### Notes
+Este comando (`e`) es un CLI que se ejecuta en el contexto donde es ejecutado, o sea, que lee los archivos del directorio actual donde se ejecute, por ende si no encuentra el archivo de configuración dará un error como el anterior anterior.
 
-## Configuration
+# Configuration
 
 A.k.a: `executor.json`
 
 Toda la magia se configura desde este archivo. Como mencione antes **no es necesario un proyecto "node"**, esta tool sirve para cualquier tipo de proyecto en el que quieras tener atajos de comandos.
 
-### Json structure
+## Json structure
 
 Ramas principales:
 ```
-+ config
-+ environments
-+ templates
-+ shortcuts
+{
+  config: {}
+  environments: []
+  templates: {}
+  shortcuts: {}
+}
 ```
 
-#### config
+### config
 
-Configuracion adicional para la ejecucion de los shortcuts
+Configuración adicional para la ejecución de los shortcuts.
 
-* `dry`: (_boolean_ = false) Permite ejecutar esta tool pero no ejecuta el comando, util para debuguear y armar nuevos comandos.
-* `showTime`: (_boolean_ = true) Muestra el tiempo total de ejecicion al final del mismo.
-* `showCommand`: (_boolean_ = true) Muestra el comando a ejecutar.  
-Nota: Si `dry` esta activo, se mostrara el comando.
-* `useColors`: (_boolean_ = true) La salida de la consola se mostrara con colores, si interfiere con los colores de tu consola, podes cancelarlo con `false`
-* `colors`: {`primary`, `secondary`, `alert`} Se pueden customizar estos colores, utilizar esta [tabla](https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color).
+* `dry`: _boolean_ = `false`  
+Permite ejecutar esta tool pero no ejecuta el comando, útil para debuguear y armar nuevos comandos.
+* `showTime`: _boolean_ = `true`  
+Muestra el tiempo total de ejecución al final del mismo.
+* `showCommand`: _boolean_ = `true`  
+Muestra el comando a ejecutar.    
+Nota: Si `dry` esta activo, se mostrará el comando sin importar el estado de `showCommand`.
+* `useColors`: _boolean_ = `true`  
+La salida de la consola se mostrará con colores, si interfiere con los colores de tu consola, podes cancelarlo con `false`
+* `colors`: {`primary`, `secondary`, `alert`}  
+Se pueden customizar estos colores, utilizar esta [tabla](https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color).
 
-#### environments
 
-Variables del ambiente que se quieran "importar", el formato aceptado es `string` u objeto key-value (`{key: value}`), donde luego podremos usar como variable a `${key}`
+### environments
+
+Variables del ambiente que se quieran "importar".  
+El formato aceptado es `string` u objeto key-value (`{key: value}`); Luego podremos usar como variable a `${key}`
 
 Ejemplos:
 ```
 environments: {
-	'path', // traeria todo el path de la maquina en ejecucion
-	{currentFolder: 'pwd'} // leera la variable pwd (CWD de linux) y la asignara a "currentFolder"
+  'path',                // traeria todo el path de la maquina en ejecucion
+  {currentFolder: 'pwd'} // leera la variable pwd (CWD de linux) y la asignara a "currentFolder"
 }
 ```
 
-Luego se expondran para que los templates/shortcuts puedan utilizar esta info utilizando el objeto environments.  
+Luego se expondrán para que los templates/shortcuts puedan utilizar esta info utilizando el objeto `environments`.  
 Ejemplo: `"PATH: ${environments.path} and ${environments.currentFolder}"`  
 
-#### templates
+### templates
 
-Son los `string`s que pueden servir para armar varios shortcuts, con la consiguiente reutilizacion y facil mantenimiento.
+Son los `string`s que pueden servir para armar varios shortcuts, con la consiguiente reutilización y fácil mantenimiento.
 
-##### Use  
-Se "interpola" con el delimitaror: '`${ }`', esto permite armar `string`s en formato de "template", donde habra "placeholders" que seran reemplazados por el valor de la variable dentro del delimitador.  
+#### Use  
+Se "interpola" con el delimitador: '`${ }`', esto permite armar `string`s en formato de template, donde habrá placeholders (marcas) que serán reemplazados por el valor de la variable dentro del delimitador.  
 
 Ejemplo:
 ```
 templates: {
-		"variable1": "foo",
-		"variable2": "${variable1} bar" 
+  "variable1": "foo",
+  "variable2": "${variable1} bar" 
 }
 ```
 El resultado sera: `foo bar`
 
 
-##### Features
+#### Features
  
 * Se pueden hacer templates con templates anidados.  
 Ejemplo: `templates: {templateUnion: "${template1} and ${template2}"}`
 * Se pueden usar variables de ambiente como comentaba el apartado anterior.  
 Ejemplo: `templates: {template1: "PATH: ${environments.path} and ${environments.currentFolder}"}` 
-* Se pueden crear sub-objetos para tenerlo mejor organizado  
+* Se pueden crear subobjetos para tenerlo mejor organizado  
 Ejemplo: `imageName` 
 ```
 templates: {
-		"project": "myProject",
-		"imageName": {
-			"base": "${project}-base",
-			"dev": "${project}-dev",
-			"prod": "${project}-prod"
-		}
+  "project": "myProject",
+  "imageName": {
+    "base": "${project}-base",
+    "dev": "${project}-dev",
+    "prod": "${project}-prod"
+  }
 }
 ```
 * Se puede acceder a sub-objetos utilizando el operador: '`.`'  
-Ejemplo: `Imagen: ${imageName.prod}`
-* Soporta infinito numero de sub-objetos
+Ejemplo: `Imagen: ${imageName.prod}`, resultado: `myProyect-prod`
+* Soporta infinito número de subobjetos
 
 
 **Notes:**  
 1) No se interpola utilizando el feature de ECMAScript, se realiza un replace.  
-2) El orden es importante, los templates deben definirse antes de utilizarse, incluyendo los anidados. 
+2) El orden es importante, los templates deben definirse antes de utilizarse. 
 
 
-#### shortcuts
+### shortcuts
 
 Llegamos a los famosos "shortcuts", se interpola de la misma manera que los templates, con lo cual hereda sus features, y agrega:
 
-* Cada sub-objeto no solo sirve como separador como en el caso de templates, si no que tambien es un separador de argumentos.  
-Ejemplo (disculpas por lo burdo, es para que se entienda): 
+* Podemos no tener la entidad `templates` y utilizar otros shortcuts como tales.
+* Cada sub-objeto no solo sirve como separador como en el caso de templates, sino que también es un separador de argumentos.  
+Ejemplo _(disculpas por lo burdo, es para que se entienda)_: 
 ```
 templates: {
-		"project": "myProject",
-		"imageName": {
-			"prod": "${project}-prod"
-		}
+  "project": "myProject",
+  "imageName": {
+    "prod": "${project}-prod"
+  }
 }
 shortcuts: {
-	changeDir: "cd ${imageName.prod}", // argumento 1
-	removeDir: "rm ${imageName.prod}", // argumento 1
-	dir: { // argumento 1
-		change: "cd ${imageName.prod}",  // argumento 2
-		remove: "rm ${imageName.prod}"   // argumento 2 
-	},
-	showCommandChangeDir: "echo ${dir.change}" // ejecutaria: "echo cd myProyect-prod" 
+  changeDir: "cd ${imageName.prod}", // unico argumento
+  removeDir: "rm ${imageName.prod}", // unico argumento
+  
+  dir: {                             // primer argumento
+    change: "cd ${imageName.prod}",  // segundo argumento
+    remove: "rm ${imageName.prod}"   // segundo argumento 
+  },
+  
+  showCommandChangeDir: "echo ${dir.change}" // unico argumento, y utilizaria el "." como un template 
 }
 ```
 Los shortcuts listos para ejecutar serian:
@@ -251,51 +269,134 @@ Los shortcuts listos para ejecutar serian:
 > e showCommandChangeDir
 ```
 
-En este ejemplo podemos ver tres casos:
-1) Ejecucion con 1 solo argumento
-2) Ejecucion con 2 argumentos
-3) Ejecucion con 1 solo argumento, pero intermanente lo armo con el operador de '`.`' como si fuese un template.
+En este ejemplo podemos ver tres casos:  
+1) Ejecución con 1 solo argumento  
+2) Ejecución con 2 argumentos  
+3) Ejecución con 1 solo argumento, pero internamente lo armo con el operador de '`.`' como si fuese un template.
   
-Como notamos aqui queda a nuestro exclusivo criterio como queremos formarlo, dando total flexibilidad.
+Como podemos ver queda a nuestro exclusivo criterio como queremos formarlo, la flexibilidad está dada.
 
-**Tip:** En mi caso particular, prefiero: "subject + verb" en 2 argumentos. Si bien no es gramaticalmente correcto, me es mas util para alternar comandos ya que lo que mas me cambia son los verbos entre comandos (generalizando obviamente). Como el caso de `e dir change`
+**Tip:** En mi caso particular, prefiero: "subject + verb" en 2 argumentos. Si bien no es gramaticalmente correcto, me es más útil para alternar comandos ya que muchas veces lo que más me cambia son los verbos entre comandos (generalizando obviamente). Como el caso de `e dir change`
 
-#### predefined
+### predefined
 
-Tambien tenemos algunos valores predefinidos (read-only) para poder usar en los templates, por el momento solo el `cwd`, luego la lista ira creciendo "on demand".  
-Ejemplo: `echo este es el folder actual: ${predefined.cwd}`
+También tenemos algunos valores predefinidos (read-only) para poder usar en los templates, por el momento solo el `cwd`, luego la lista irá creciendo "on demand".  
+Ejemplo: `'echo este es el folder actual: ${predefined.cwd}'`
 
+* `cwd`: directorio actual sin importar el sistema operativo.
 
-#### Summary
+### Summary
 
-Con lo cual, para conformar los shortcuts y sin repetir "codigo" tenes 4 fuentes en este orden:
+Con lo cual, para conformar los shortcuts y sin repetir "código" tenes 4 fuentes en este orden:
 
 1) `environments`
 2) `predefined`
-3) `tempaltes`
+3) `templates`
 4) `shortcuts`
 
-Los parametros siguientes al ultimo argumento se enviaran al shortcut tal cual fueron enviados.
-Ejemplo: `e shortcut1 -watch` 
+Los parámetros siguientes al último argumento se enviaran al shortcut tal cual fueron enviados.
+Ejemplo: `e mochaShortcut --watch` 
 
 
 ## Bonus track
-De yapa, si por X causa no te gusta el nombre del archivo "executor.json" o lo queres poner en otro directorio, podes hacerlo configurandolo desde el `package.json` (ahora si estamos hablando de un proyecto node), agregando este atributo:  
+
+### Config file
+De yapa, si por X causa no te gusta el nombre del archivo "executor.json" o lo queres ubicar en otro directorio, podes hacerlo configurandolo desde el `package.json` (ahora si estamos hablando de un proyecto node), agregando este atributo:  
 ```
 "executor": {
-	"configFile": "folder1/newConfig.json"
+  "configFile": "folder1/newConfig.json"
+}
+```
+### Config file sample
+
+Este es un caso completo y complejo:
+
+```
+{
+  "config": {
+    "dry": false
+  },
+  "environments": [
+    "pwd"
+  ],
+  "templates": {
+    "project": "myProyect",
+    "imageName": {
+      "base": "${project}-base",
+      "dev": "${project}-dev",
+      "prod": "${project}-prod"
+    },
+    "build": "docker build -t",
+    "run": "docker run --rm --init -d --name",
+    "stop": "docker stop",
+    "exec": "docker exec -it",
+    "logs": "docker logs",
+    "attach": "docker attach",
+    "config": {
+      "prod": "${run} ${imageName.prod} -it -p 80:80 -p 443:443",
+      "dev": "${run} ${imageName.dev} -it -p 4200:4200 -p 49153:49153 -v /usr/src/server/node_modules -v ${predefined.cwd}:/usr/src/server -v yarn-cache:/home/node/yarn-cache -v npm-cache:/home/node/npm-cache"
+    }
+  },
+  "shortcuts": {
+    "base": {
+      "build": "${build} ${imageName.base} -f Dockerfile-base",
+      "run": "${run} ${imageName.base} -it ${imageName.base}",
+      "exec": "${exec} ${imageName.base}",
+      "enter": "${exec} ${imageName.base} ash",
+      "stop": "${stop} ${imageName.base}"
+		},
+    "dev": {
+      "build": "${build} ${imageName.dev} .",
+      "run": "${config.dev} ${imageName.dev}",
+      "start": "${exec} ${imageName.dev} yarn start",
+      "serve": "${config.dev} ${imageName.dev} yarn start",
+      "attach": "${attach} ${imageName.dev}",
+      "exec": "${exec} ${imageName.dev}",
+      "enter": "${exec} ${imageName.dev} ash",
+      "stop": "${stop} ${imageName.dev}",
+      "logs": "${logs} ${imageName.dev}"
+    },
+    "prod": {
+      "build": "${build} ${imageName.prod} .",
+      "run": "${config.prod} ${imageName.prod} ash",
+      "start": "${exec} ${imageName.prod} node index",
+      "serve": "${config.prod} ${imageName.prod}",
+      "attach": "${attach} ${imageName.prod}",
+      "exec": "${exec} ${imageName.prod}",
+      "enter": "${exec} ${imageName.prod}",
+      "stop": "${stop} ${imageName.prod}",
+      "logs": "${logs} ${imageName.prod}"
+    }
+  }
 }
 ```
 
-## colaboration
+# collaboration
 
-TO-DO
+Si queres colaborar con este proyecto, podes hacerlo con feedback, reporte de issues o desarrollo de features, pull requests son bienvenidos!
 
-## coming soon
+Luego de bajar el repo, instalar "devDependecies" las unicas que tienen son de unit test :)
 
-* Video de 5' demostrando funcionalidad
-* Utilizacion de un `executor.json` **global**!
+`npm install` or `yarn`
+
+`yarn test`: Ejecuta los test con un hermoso "nyan cat"
+
+![](docs/img/nyancat.jpg) 
+
+`yarn coverage`: Debe ser 100% minimo aceptado 98%.
+
+![](docs/img/coverage.jpg)
+
+# Changelog
+
+ 
+# Coming soon
+
+* Feature: Utilización de un `executor.json` **global**!
+* Doc: Video de 5' demostrando funcionalidad
+* Doc: Mejorar el ejemplo completo
+* Internal: Agregar linter
 
 ---
 
-MIT © 2016 [Crystian](https://github.com/crystian), hecho con amor para vos <3!
+MIT © 2018 [Crystian](https://github.com/crystian), hecho con amor para vos <3!

@@ -1,6 +1,6 @@
 {
 	"name": "executor",
-	"version": "0.0.1-beta",
+	"version": "0.0.3-beta",
 	"license": "MIT",
 	"description": "A powerful shortcutter to your console for you and your team",
 	"scripts": {
