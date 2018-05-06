@@ -6,13 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/node:chakracore-8.11.1
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
 
     working_directory: ~/repo
 
@@ -34,19 +28,12 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: yarn test-ci
+      - run:
+          name: test
+          command: yarn test-ci
 
       # run coverage report
       - run:
-          name: code-coverage
+          name: coverage
           command: yarn coverage-ci
-      - store_artifacts: # special step to save test results as as artifact
-          path: test-results.xml
-          prefix: tests
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
-      - store_test_results: # special step to upload test results for display in Test Summary
-          path: test-results.xml
-
 

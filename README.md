@@ -3,6 +3,14 @@
 
 [English version (under construction)](README.md)
 
+[![https://nodei.co/npm/executor.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/executor.png?downloads=true&downloadRank=true)](https://www.npmjs.com/package/executor)
+
+[![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/crystian/executor/master/LICENSE) 
+[![CircleCI](https://circleci.com/gh/crystian/executor/tree/master.svg?style=shield)](https://circleci.com/gh/crystian/executor/tree/master) 
+[![Coverage Status](https://coveralls.io/repos/github/crystian/executor/badge.svg)](https://coveralls.io/github/crystian/executor)
+[![dependencies Status](https://david-dm.org/crystian/executor/status.svg)](https://david-dm.org/crystian/executor)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/crystian/executor/issues)
+
 ---
 ## TL;DR
 
@@ -46,7 +54,7 @@ Como `scripts` de `package.json` pero con _magia_.
 * [Bonus track](#bonus-track)
 	+ [Config file](#config-file)
 	+ [Config file sample](#config-file-sample)
-* [collaboration](#collaboration)
+* [contributing](#contributing)
 * [Changelog](#changelog)
 * [Coming soon](#coming-soon)
 
@@ -371,7 +379,7 @@ Este es un caso completo y complejo:
 }
 ```
 
-# collaboration
+# contributing
 
 Si queres colaborar con este proyecto, podes hacerlo con feedback, reporte de issues o desarrollo de features, pull requests son bienvenidos!
 
@@ -383,7 +391,7 @@ Luego de bajar el repo, instalar "devDependecies" las unicas que tienen son de u
 
 ![](docs/img/nyancat.jpg) 
 
-`yarn coverage`: Debe ser 100% minimo aceptado 98%.
+`yarn coverage`: Debe ser el 100%, minimo aceptado: 98%.
 
 ![](docs/img/coverage.jpg)
 
