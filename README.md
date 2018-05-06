@@ -8,8 +8,13 @@
 [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/crystian/executor/master/LICENSE) 
 [![CircleCI](https://circleci.com/gh/crystian/executor/tree/master.svg?style=shield)](https://circleci.com/gh/crystian/executor/tree/master) 
 [![Coverage Status](https://coveralls.io/repos/github/crystian/executor/badge.svg)](https://coveralls.io/github/crystian/executor)
-[![dependencies Status](https://david-dm.org/crystian/executor/status.svg)](https://david-dm.org/crystian/executor)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/crystian/executor/issues)
+
+
+[![bitHound Overall Score](https://www.bithound.io/github/crystian/executor/badges/score.svg)](https://www.bithound.io/github/crystian/executor)
+[![bitHound Dependencies](https://www.bithound.io/github/crystian/executor/badges/dependencies.svg)](https://www.bithound.io/github/crystian/executor/master/dependencies/npm)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/crystian/executor/badges/devDependencies.svg)](https://www.bithound.io/github/crystian/executor/master/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/crystian/executor/badges/code.svg)](https://www.bithound.io/github/crystian/executor)
 
 ---
 ## TL;DR

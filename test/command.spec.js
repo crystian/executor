@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const { buildCommand, buildCommandWithConfig } = require('../lib/builders');
+const { buildCommand, buildCommandWithConfig } = require('../lib/command');
 const path = require('path');
 
 // a little end to end, I know. For that I wrote some random tests
