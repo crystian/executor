@@ -185,13 +185,6 @@ describe('getConfigFileName() results: via cwd', function() {
 		assert.equal(r, 'executor.json');
 	});
 	it('should resolve the configuration file name: with package.json, with not configuration 1', function() {
-		process.chdir('test/fixture/01');
-
-		let r = getConfigFileName();
-
-		assert.equal(r, 'executor.json');
-	});
-	it('should resolve the configuration file name: with package.json, with not configuration 2', function() {
 		process.chdir('test/fixture/02');
 
 		let r = getConfigFileName();
@@ -225,7 +218,7 @@ describe('getContentJsonFile() throws', function() {
 	it('should not throw an error by it is a valid json', function() {
 		assert.doesNotThrow(() => {
 			let r = getContentJsonFile('package.json');
-			assert.equal(r['name'], 'executor');
+			assert.equal(r.name, 'executor');
 		});
 	});
 });

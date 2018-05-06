@@ -20,7 +20,13 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn
+      - run:
+          name: dependencies installing
+          command: yarn
+
+      - run:
+          name: dependencies for CI
+          command: yarn add bithound coveralls mocha-lcov-reporter
 
       - save_cache:
           paths:
@@ -36,4 +42,9 @@ jobs:
       - run:
           name: coverage
           command: yarn coverage-ci
+
+      # run quality code with bithound
+      - run:
+          name: bithound
+          command: yarn bithound
 
