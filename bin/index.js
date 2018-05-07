@@ -10,7 +10,7 @@
 
 const { spawn } = require('child_process');
 const { messages } = require('../lib/i18n');
-const { buildCommand } = require('../lib/builders');
+const { buildCommand } = require('../lib/command');
 
 process.title = messages.app.name;
 

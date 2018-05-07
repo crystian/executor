@@ -1,0 +1,15 @@
+# like gitignore, copied and pasted
+/node_modules
+/.idea
+/mochawesome-report
+/coverage
+/.nyc_output
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# just for npm
+/.circleci
+/test
+/wallaby.js
+/.gitignore

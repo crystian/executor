@@ -1,8 +1,8 @@
 {
 	"name": "executor",
-	"version": "0.0.3-beta",
+	"version": "0.0.6-beta",
 	"license": "MIT",
-	"description": "A powerful shortcutter to your console for you and your team",
+	"description": "A powerful short-cutter to your console for you and your team",
 	"scripts": {
 		"test": "mocha --watch -R nyan",
 		"test-ci": "mocha",
