@@ -144,7 +144,7 @@ describe('buildCommandWithConfig() results', function() {
 				short1: '${branchA} and ${predefined.cwd}'
 			}
 		});
-		let cwd = path.resolve(process.cwd(), 'lib');
+		let cwd = path.resolve(process.cwd());
 		assert.equal(r.command, `branchAs ${cwd} and ${cwd}`);
 	});
 	it('should interpolate environment variable: cwd', function() {
@@ -161,7 +161,7 @@ describe('buildCommandWithConfig() results', function() {
 				short1: '${branchA} and ${predefined.cwd}'
 			}
 		});
-		let cwd = path.resolve(process.cwd(), 'lib');
+		let cwd = path.resolve(process.cwd());
 		assert.equal(r.command, `branchAs ${cwd} and ${cwd}`);
 	});
 });
