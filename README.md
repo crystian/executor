@@ -149,6 +149,8 @@ Este comando (`e`) es un CLI que se ejecuta en el contexto donde es ejecutado, o
 
 A.k.a: `executor.json`
 
+![](docs/img/tool2.jpg)
+
 Toda la magia se configura desde este archivo. Como mencione antes **no es necesario un proyecto "node"**, esta tool sirve para cualquier tipo de proyecto en el que quieras tener atajos de comandos.
 
 ## Json structure
