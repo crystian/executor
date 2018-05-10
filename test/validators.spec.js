@@ -4,27 +4,25 @@ const { validateAndBuildEnvironments, validateConfig, validateTemplates, validat
 
 describe('validateShortcut() throws', function() {
 
-	// throws
-
-	it('should throw an error by empty arguments', function() {
-		assert.throw(() => {
-			validateShortcut();
-		});
-	});
-	it('should throw an error by invalid arguments', function() {
-		assert.throw(() => {
-			validateShortcut({});
-		});
-		assert.throw(() => {
-			validateShortcut('');
-		});
-		assert.throw(() => {
-			validateShortcut([]);
-		});
-	});
-
 	// does not throw
-
+	it('should return a false value by empty arguments', function() {
+		assert.doesNotThrow(() => {
+			let r = validateShortcut();
+			assert.equal(r, false);
+		});
+		assert.doesNotThrow(() => {
+			let r = validateShortcut({});
+			assert.equal(r, false);
+		});
+		assert.doesNotThrow(() => {
+			let r = validateShortcut('');
+			assert.equal(r, false);
+		});
+		assert.doesNotThrow(() => {
+			let r = validateShortcut([]);
+			assert.equal(r, false);
+		});
+	});
 	it('should not throw an error: 1 level', function() {
 		assert.doesNotThrow(() => {
 			validateShortcut('branchA');

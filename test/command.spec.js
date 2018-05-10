@@ -1,3 +1,4 @@
+const { expect } = require('chai');
 const { assert } = require('chai');
 const { buildCommand, buildCommandWithConfig } = require('../lib/command');
 const path = require('path');
@@ -14,6 +15,12 @@ describe('buildCommand() throws', function() {
 		});
 		assert.throw(() => {
 			buildCommand('');
+		});
+		assert.throw(() => {
+			buildCommand([]);
+		});
+		assert.throw(() => {
+			buildCommand({});
 		});
 	});
 });
@@ -38,6 +45,22 @@ describe('buildCommandWithConfig() throws', function() {
 		assert.throw(() => {
 			buildCommandWithConfig('short2', { shortcuts: { short1: 'short1s' } });
 		});
+	});
+
+	it('should throw an error by it does not have match: 0 level', function() {
+		assert.throw(() => {
+			buildCommandWithConfig('', { shortcuts: { short1: 'short1s' } });
+		});
+	});
+	it('should throw an error by it does not have match: 0 level and should show the valid option', function() {
+		assert.throw(() => {
+			buildCommandWithConfig('', { shortcuts: { short1: 'short1s' } });
+		}, /"short1"/)
+	});
+	it('should throw an error by it does not have match: 0 level and should show the valid options', function() {
+		assert.throw(() => {
+			buildCommandWithConfig('', { shortcuts: { short1: 'short1s', short2: 'short2s' } });
+		}, /(?=.*"short1")(?=.*"short2")/)
 	});
 });
 

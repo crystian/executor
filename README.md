@@ -1,15 +1,14 @@
 # executor
 ### **_A powerful "short-cutter" to your console for you and your team!_**
 
-[English version (under construction)](README.md)
-
-
 [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/crystian/executor/master/LICENSE) 
 [![CircleCI](https://circleci.com/gh/crystian/executor/tree/master.svg?style=shield)](https://circleci.com/gh/crystian/executor/tree/master) 
 [![Coverage Status](https://coveralls.io/repos/github/crystian/executor/badge.svg)](https://coveralls.io/github/crystian/executor)
 [![bitHound Overall Score](https://www.bithound.io/github/crystian/executor/badges/score.svg)](https://www.bithound.io/github/crystian/executor)
 [![bitHound Dependencies](https://www.bithound.io/github/crystian/executor/badges/dependencies.svg)](https://www.bithound.io/github/crystian/executor/master/dependencies/npm)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/crystian/executor/badges/devDependencies.svg)](https://www.bithound.io/github/crystian/executor/master/dependencies/npm)
+
+[English version (under construction)](README.md)
 
 ---
 ## TL;DR
@@ -144,7 +143,7 @@ Como ya te habrás dado cuenta el comando es `e` más los shortcuts configurados
 Ejemplo: `e shortcut1`
 
 ### Notes
-Este comando (`e`) es un CLI que se ejecuta en el contexto donde es ejecutado, o sea, que lee los archivos del directorio actual donde se ejecute, por ende si no encuentra el archivo de configuración dará un error como el anterior anterior.
+Este comando (`e`) es un CLI que se ejecuta en el contexto donde es ejecutado, o sea, que lee los archivos del directorio actual donde se ejecute, por ende si no encuentra el archivo de configuración dará un error como el anterior.
 
 # Configuration
 
