@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const { buildConfig, buildInterpolateVariables, buildShortcutCommand } = require('../lib/builders');
+const { buildConfig, buildInterpolateVariables, buildShortcutCommand, buildShortcutPossibilities } = require('../lib/builders');
 
 
 describe('buildConfig() results', function() {
@@ -406,5 +406,35 @@ describe('buildShortcutCommand() results', function() {
 		}, 'branchB branchBB branchBBA');
 		assert.lengthOf(r, 1);
 		assert.sameMembers(r, ['branchBBAs']);
+	});
+});
+
+
+describe('buildShortcutPosibilities() results', function() {
+	it('should return a string without possibilities', ()=>{
+		let r = buildShortcutPossibilities();
+		assert.equal(r, '');
+	});
+	it('should return a string without possibilities', ()=>{
+		let r = buildShortcutPossibilities({});
+		assert.equal(r, '');
+	});
+	it('should return a string without possibilities', ()=>{
+		let r = buildShortcutPossibilities(1);
+		assert.equal(r, '');
+	});
+	it('should return a string without possibilities', ()=>{
+		let r = buildShortcutPossibilities([]);
+		assert.equal(r, '');
+	});
+
+	it('should return a string with a possibility', ()=>{
+		let r = buildShortcutPossibilities({key1: 'key1'});
+		assert.include(r, '"key1"');
+	});
+	it('should return a string with two possibility', ()=>{
+		let r = buildShortcutPossibilities({key1: 'key1', key2: 'key2'});
+		assert.include(r, '"key1"');
+		assert.include(r, '"key2"');
 	});
 });
