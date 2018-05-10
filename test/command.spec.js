@@ -55,12 +55,12 @@ describe('buildCommandWithConfig() throws', function() {
 	it('should throw an error by it does not have match: 0 level and should show the valid option', function() {
 		assert.throw(() => {
 			buildCommandWithConfig('', { shortcuts: { short1: 'short1s' } });
-		}, /"short1"/)
+		}, /"short1"/);
 	});
 	it('should throw an error by it does not have match: 0 level and should show the valid options', function() {
 		assert.throw(() => {
 			buildCommandWithConfig('', { shortcuts: { short1: 'short1s', short2: 'short2s' } });
-		}, /(?=.*"short1")(?=.*"short2")/)
+		}, /(?=.*"short1")(?=.*"short2")/);
 	});
 });
 
