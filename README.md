@@ -127,7 +127,7 @@ Lo ideal es instalarlo globalmente, de otra manera deberías ejecutar `node_modu
 
 Instalemos global con npm o yarn:  
 
-* npm: `npm install -g executor`
+* npm: `npm i -g --engine-strict executor` (`i` === `install`)
 * yarn: `yarn add global executor` (de preferencia)
 
 El executable que deberia quedar en el [path](https://en.wikipedia.org/wiki/PATH_(variable)) es la simple vocal: `e`
