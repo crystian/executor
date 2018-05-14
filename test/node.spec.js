@@ -42,7 +42,7 @@ describe('getConfig() throws', function() {
 	afterEach('', () => {
 		process.chdir(cwd);
 	});
-	
+
 	it('should throw an error by does not exist the configuration file', function() {
 		process.chdir('test/fixture/01');
 

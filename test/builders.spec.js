@@ -185,29 +185,29 @@ describe('buildShortcutCommand() results', function() {
 
 
 describe('buildShortcutPosibilities() results', function() {
-	it('should return a string without possibilities', ()=>{
+	it('should return a string without possibilities', () => {
 		let r = buildShortcutPossibilities();
 		assert.equal(r, '');
 	});
-	it('should return a string without possibilities', ()=>{
+	it('should return a string without possibilities', () => {
 		let r = buildShortcutPossibilities({});
 		assert.equal(r, '');
 	});
-	it('should return a string without possibilities', ()=>{
+	it('should return a string without possibilities', () => {
 		let r = buildShortcutPossibilities(1);
 		assert.equal(r, '');
 	});
-	it('should return a string without possibilities', ()=>{
+	it('should return a string without possibilities', () => {
 		let r = buildShortcutPossibilities([]);
 		assert.equal(r, '');
 	});
 
-	it('should return a string with a possibility', ()=>{
-		let r = buildShortcutPossibilities({key1: 'key1'});
+	it('should return a string with a possibility', () => {
+		let r = buildShortcutPossibilities({ key1: 'key1' });
 		assert.include(r, '"key1"');
 	});
-	it('should return a string with two possibility', ()=>{
-		let r = buildShortcutPossibilities({key1: 'key1', key2: 'key2'});
+	it('should return a string with two possibility', () => {
+		let r = buildShortcutPossibilities({ key1: 'key1', key2: 'key2' });
 		assert.include(r, '"key1"');
 		assert.include(r, '"key2"');
 	});
