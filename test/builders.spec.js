@@ -90,16 +90,11 @@ describe('buildShortcutCommand() throws', function() {
 			}, 'branchA branchAA nonBranchAAA');
 		}, re);
 	});
-	it.only('should throw an error by it does not have match even if the match is in other level: 2 level', function() {
-		let re = new RegExp(messages.shortcut.notFound.toTemplate({ key: 'branchAA', subKey: 'nonBranchAAA' }));
-			buildShortcutCommand({ branchA: { branchAA: 'branchAAs' } }, 'branchA');
+	it('should throw an error by it does not have match even if the match is in other level: 2 level', function() {
+		let re = new RegExp(messages.shortcut.withoutNextArgument.toTemplate({ key: 'branchA'}));
 		assert.throw(() => {
+			buildShortcutCommand({ branchA: { branchAA: 'branchAAs' } }, 'branchA');
 		}, re);
-	});
-	it('should throw an error by it does not have match with 2 level, even if it do not send it', function() {
-		assert.throw(() => {
-			buildShortcutCommand({ branchA: { branchAA: 'branchAAs' } }, 'branchA');
-		});
 	});
 
 	// does not throw
