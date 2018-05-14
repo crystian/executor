@@ -53,14 +53,16 @@ describe('buildCommandWithConfig() throws', function() {
 		});
 	});
 	it('should throw an error by it does not have match: 0 level and should show the valid option', function() {
+		let re = new RegExp('"short1"','g');
 		assert.throw(() => {
 			buildCommandWithConfig('', { shortcuts: { short1: 'short1s' } });
-		}, /"short1"/);
+		}, re);
 	});
 	it('should throw an error by it does not have match: 0 level and should show the valid options', function() {
+		let re = new RegExp('(?=.*"short1")(?=.*"short2")','g');
 		assert.throw(() => {
 			buildCommandWithConfig('', { shortcuts: { short1: 'short1s', short2: 'short2s' } });
-		}, /(?=.*"short1")(?=.*"short2")/);
+		}, re);
 	});
 });
 
