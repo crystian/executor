@@ -1,13 +1,17 @@
 const { assert } = require('chai');
+const { messages } = require('../lib/i18n');
 const { getAbsoluteCWD, getContentJsonFile, getConfigFileName, getConfig, getConfigFromCWD } = require('../lib/node');
 const { setColor } = require('../lib/utils');
 const path = require('path');
+
+let isNotAString = new RegExp(messages.config.isNotAString);
+let notFound = new RegExp(messages.config.notFound.toTemplate({fileName: 'executor.json'}));
 
 describe('getConfigFromCWD() throws', function() {
 	it('should throw an error by file not found: executor.json', function() {
 		assert.throw(() => {
 			getConfigFromCWD();
-		});
+		}, notFound);
 	});
 });
 describe('getConfigFromCWD() result', function() {
@@ -42,34 +46,35 @@ describe('getConfig() throws', function() {
 	afterEach('', () => {
 		process.chdir(cwd);
 	});
-	
+
 	it('should throw an error by does not exist the configuration file', function() {
 		process.chdir('test/fixture/01');
 
 		assert.throw(() => {
 			getConfig();
-		});
+		}, notFound);
 	});
 	it('should throw an error by configuration on package.json is not a string: {}', function() {
 		process.chdir('test/fixture/03');
 
 		assert.throw(() => {
 			getConfig();
-		});
+		}, isNotAString);
 	});
 	it('should throw an error by configuration on package.json is not a string: 1', function() {
 		process.chdir('test/fixture/04');
 
 		assert.throw(() => {
 			getConfig();
-		});
+		}, isNotAString);
 	});
 	it('should throw an error by configuration on package.json is a string and point to a not exist file', function() {
 		process.chdir('test/fixture/08');
-
+		let re = new RegExp(messages.config.notFound.toTemplate({fileName:'newConfig.json'}));
+		
 		assert.throw(() => {
 			getConfig();
-		});
+		}, re);
 	});
 });
 
@@ -106,14 +111,15 @@ describe('getConfig() result', function() {
 
 describe('getConfigFileName() throws: via argument', function() {
 	it('should resolve the configuration file name: with package.json, with invalid configuration 1', function() {
+
 		assert.throw(() => {
 			getConfigFileName('test/fixture/03');
-		});
+		}, isNotAString);
 	});
 	it('should resolve the configuration file name: with package.json, with invalid configuration 2', function() {
 		assert.throw(() => {
 			getConfigFileName('test/fixture/04');
-		});
+		}, isNotAString);
 	});
 });
 
@@ -158,14 +164,14 @@ describe('getConfigFileName() throws: via cwd', function() {
 
 		assert.throw(() => {
 			getConfigFileName();
-		});
+		}, isNotAString);
 	});
 	it('should resolve the configuration file name: with package.json, with invalid configuration 2', function() {
 		process.chdir('test/fixture/04');
 
 		assert.throw(() => {
 			getConfigFileName();
-		});
+		}, isNotAString);
 	});
 });
 

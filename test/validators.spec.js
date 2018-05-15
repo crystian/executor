@@ -1,4 +1,5 @@
 const { assert } = require('chai');
+const { messages } = require('../lib/i18n');
 const { validateAndBuildEnvironments, validateConfig, validateTemplates, validateShortcuts, validateShortcut } = require('../lib/validators');
 
 
@@ -6,20 +7,23 @@ describe('validateShortcut() throws', function() {
 	// throws
 
 	it('should throw an error by empty arguments', function() {
+		let re = new RegExp(messages.shortcut.withoutArguments);
+
 		assert.throw(() => {
 			validateShortcut();
-		});
+		}, re);
 	});
 	it('should throw an error by invalid arguments', function() {
+		let re = new RegExp(messages.shortcut.withoutArguments);
 		assert.throw(() => {
 			validateShortcut({});
-		});
+		}, re);
 		assert.throw(() => {
 			validateShortcut('');
-		});
+		}, re);
 		assert.throw(() => {
 			validateShortcut([]);
-		});
+		}, re);
 	});
 
 	// does not throw
@@ -47,18 +51,20 @@ describe('validateConfig() throws', function() {
 	// throws
 
 	it('should throw an error by invalid arguments', function() {
+		let re = new RegExp(messages.config.invalidFormat);
+
 		assert.throw(() => {
 			validateConfig([]);
-		});
+		}, re);
 		assert.throw(() => {
 			validateConfig(1);
-		});
+		}, re);
 		assert.throw(() => {
 			validateConfig(null);
-		});
+		}, re);
 		assert.throw(() => {
 			validateConfig('');
-		});
+		}, re);
 	});
 
 	// does not throw
@@ -79,23 +85,26 @@ describe('validateConfig() throws', function() {
 describe('validateAndBuildEnvironments() throws', function() {
 
 	// throws
+	let re = new RegExp(messages.environments.invalidFormat
+		.replace('(', '\\(')
+		.replace(')','\\)'));
 
 	it('should throw an error by invalid arguments', function() {
 		assert.throw(() => {
 			validateAndBuildEnvironments({});
-		});
+		}, re);
 		assert.throw(() => {
 			validateAndBuildEnvironments(1);
-		});
+		}, re);
 		assert.throw(() => {
 			validateAndBuildEnvironments([1]);
-		});
+		}, re);
 	});
 
 	it('should throw an error by send an empty object', function() {
 		assert.throw(() => {
 			validateAndBuildEnvironments([{ key1: {} }]);
-		});
+		}, re);
 	});
 
 	// does not throw
@@ -169,27 +178,36 @@ describe('validateTemplates() throws', function() {
 	// throws
 
 	it('should throw an error by invalid arguments: 1 level', function() {
+		let re = new RegExp(messages.templates.invalidData);
+		let re2 = new RegExp(messages.templates.invalidFormat.toTemplate({key: 'key'})
+			.replace('(', '\\(')
+			.replace(')','\\)'));
+
 		assert.throw(() => {
 			validateTemplates([]);
-		});
+		}, re);
 		assert.throw(() => {
 			validateTemplates({ key: 1 });
-		});
+		}, re2);
 		assert.throw(() => {
 			validateTemplates({ key: null });
-		});
+		}, re2);
 	});
 
 	it('should throw an error by invalid arguments: 2 level', function() {
+		let re = new RegExp(messages.templates.invalidFormat.toTemplate({key: 'branchAA'})
+			.replace('(', '\\(')
+			.replace(')','\\)'));
+
 		assert.throw(() => {
 			validateTemplates({ branchA: { branchAA: [] } });
-		});
+		}, re);
 		assert.throw(() => {
 			validateTemplates({ branchA: { branchAA: 1 } });
-		});
+		}, re);
 		assert.throw(() => {
 			validateTemplates({ branchA: { branchAA: null } });
-		});
+		}, re);
 	});
 
 	// does not throw
@@ -244,64 +262,67 @@ describe('validateTemplates() throws', function() {
 describe('validateShortcuts() throws', function() {
 
 	// throws
+	let re = new RegExp(messages.shortcuts.notFound);
+	let re2 = new RegExp(messages.shortcuts.shouldBeAnObject);
 
 	it('should throw an error by empty arguments', function() {
 		assert.throw(() => {
 			validateShortcuts();
-		});
+		}, re);
 	});
+
 	it('should throw an error by invalid arguments', function() {
 		assert.throw(() => {
 			validateShortcuts('nonObject');
-		});
+		}, re);
 		assert.throw(() => {
 			validateShortcuts([]);
-		});
+		}, re);
 	});
 	it('should throw an error by send an empty object', function() {
 		assert.throw(() => {
 			validateShortcuts({});
-		});
+		}, re);
 	});
 	it('should throw an error by send an empty object: 1 level', function() {
 		assert.throw(() => {
 			validateShortcuts({ branchA: {} });
-		});
+		}, re2);
 	});
 	it('should throw an error by send an empty object: 2 level', function() {
 		assert.throw(() => {
 			validateShortcuts({ branchA: { branchAA: {} } });
-		});
+		}, re2);
 	});
 	it('should throw an error by send an empty object: 3 level', function() {
 		assert.throw(() => {
 			validateShortcuts({ branchA: { branchAA: { branchAAA: {} } } });
-		});
+		}, re2);
 	});
 	it('should throw an error by send an empty object on some branch: 1 level', function() {
 		assert.throw(() => {
 			validateShortcuts({ branchA: { branchAA: { branchAAA: 'string' } }, branchB: {} });
-		});
+		}, re2);
 	});
 	it('should throw an error by invalid arguments: 1 level', function() {
 		assert.throw(() => {
 			validateShortcuts({ branchA: [] });
-		});
+		}, re2);
 	});
 	it('should throw an error by invalid arguments: 2 level', function() {
 		assert.throw(() => {
 			validateShortcuts({ branchA: { branchAA: [] } });
-		});
+		}, re2);
 	});
 	it('should throw an error by invalid arguments: 3 level', function() {
 		assert.throw(() => {
 			validateShortcuts({ branchA: { branchAA: { branchAAA: [] } } });
-		});
+		}, re2);
 	});
 	it('should throw an error by invalid arguments on some branch: 1 level', function() {
 		assert.throw(() => {
 			validateShortcuts({ branchA: { branchAA: { branchAAA: 'string' } }, branchB: [] });
-		});
+		}, re2);
 	});
 
 	// does not throw:

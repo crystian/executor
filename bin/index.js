@@ -25,7 +25,7 @@ let timestamp = new Date();
 try {
 	result = buildCommand(shortcut);
 } catch(e) {
-	console.log(`\n[${messages.app.name}]`,`${e.message}\n`);
+	console.log(`\n[${messages.app.name}]`, `${e.message}\n`);
 	process.exit(1);
 }
 
@@ -38,8 +38,8 @@ if (!result.config.config.dry) {
 	});
 
 	child.on('close', (code) => {
-		if(result.config.config.showTime){
-				console.primary(`[${messages.app.name}]`, `Done in: ${(new Date() - timestamp) / 1000}s`);
+		if (result.config.config.showTime) {
+			console.primary(`[${messages.app.name}]`, `Done in: ${(new Date() - timestamp) / 1000}s`);
 		}
 		process.exit(code);
 	});

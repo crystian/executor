@@ -1,6 +1,6 @@
 {
 	"name": "executor",
-	"version": "0.0.12-beta",
+	"version": "0.0.13-beta",
 	"license": "MIT",
 	"description": "A powerful \"short-cutter\" to your console for you and your team!",
 	"scripts": {
@@ -62,9 +62,8 @@
 	"bugs": {
 		"url": "https://github.com/crystian/executor/issues"
 	},
-	"engineStrict" : true,
 	"engines": {
 		"node": ">=8.11.0",
-		"npm" : ">=5.6.0"
+		"npm": ">=5.6.0"
 	}
 }

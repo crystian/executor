@@ -1,5 +1,5 @@
-const { expect } = require('chai');
 const { assert } = require('chai');
+const { messages } = require('../lib/i18n');
 const { buildCommand, buildCommandWithConfig } = require('../lib/command');
 const path = require('path');
 
@@ -10,18 +10,20 @@ describe('buildCommand() throws', function() {
 	// throws
 
 	it('should throw an error by invalid arguments', function() {
+		let re = new RegExp(messages.config.notFound.toTemplate({fileName: 'executor.json'}));
+
 		assert.throw(() => {
 			buildCommand();
-		});
+		}, re);
 		assert.throw(() => {
 			buildCommand('');
-		});
+		}, re);
 		assert.throw(() => {
 			buildCommand([]);
-		});
+		}, re);
 		assert.throw(() => {
 			buildCommand({});
-		});
+		}, re);
 	});
 });
 
@@ -30,37 +32,46 @@ describe('buildCommandWithConfig() throws', function() {
 	// throws
 
 	it('should throw an error by invalid arguments', function() {
+		// without regular expression, it's okey for internal use
 		assert.throw(() => {
 			buildCommandWithConfig();
 		});
 		assert.throw(() => {
 			buildCommandWithConfig('');
 		});
+
+		let re = new RegExp(messages.shortcut.withoutArguments.toTemplate());
+
 		assert.throw(() => {
 			buildCommandWithConfig('', {});
-		});
+		}, re);
 	});
 
 	it('should throw an error by it does not have match: 1 level', function() {
+		let re = new RegExp(messages.shortcut.notFoundFirstShortcut.toTemplate({shortcut: 'short2'}));
+
 		assert.throw(() => {
 			buildCommandWithConfig('short2', { shortcuts: { short1: 'short1s' } });
-		});
+		}, re);
 	});
 
 	it('should throw an error by it does not have match: 0 level', function() {
+		let re = new RegExp(messages.shortcut.withoutArguments.toTemplate());
 		assert.throw(() => {
 			buildCommandWithConfig('', { shortcuts: { short1: 'short1s' } });
-		});
+		}, re);
 	});
 	it('should throw an error by it does not have match: 0 level and should show the valid option', function() {
+		let re = new RegExp('"short1"','g');
 		assert.throw(() => {
 			buildCommandWithConfig('', { shortcuts: { short1: 'short1s' } });
-		}, /"short1"/);
+		}, re);
 	});
 	it('should throw an error by it does not have match: 0 level and should show the valid options', function() {
+		let re = new RegExp('(?=.*"short1")(?=.*"short2")','g');
 		assert.throw(() => {
 			buildCommandWithConfig('', { shortcuts: { short1: 'short1s', short2: 'short2s' } });
-		}, /(?=.*"short1")(?=.*"short2")/);
+		}, re);
 	});
 });
 
