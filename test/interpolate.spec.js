@@ -1,4 +1,5 @@
 const { assert } = require('chai');
+const { messages } = require('../lib/i18n');
 const { interpolateVariables } = require('../lib/interpolate');
 
 describe('interpolateVariables() throws', function() {
@@ -6,56 +7,74 @@ describe('interpolateVariables() throws', function() {
 	// throws
 
 	it('should throw an error by invalid arguments', function() {
+
+		let re = new RegExp(messages.templates.invalidFormat.toTemplate({ key: 'key1' })
+			.replace('(', '\\(')
+			.replace(')','\\)'));
+
 		assert.throw(() => {
 			let templates = { key1: [] };
 			let shortcuts = templates;
 			let config = { templates, shortcuts };
 
 			interpolateVariables(config);
-		});
+		}, re);
+
+
 		assert.throw(() => {
 			let templates = { key1: 1 };
 			let shortcuts = templates;
 			let config = { templates, shortcuts };
 
 			interpolateVariables(config);
-		});
+		}, re);
+
 		assert.throw(() => {
 			let templates = { key1: null };
 			let shortcuts = templates;
 			let config = { templates, shortcuts };
 
 			interpolateVariables(config);
-		});
+		}, re);
+
 		assert.throw(() => {
 			let templates = { key1: {} };
 			let shortcuts = templates;
 			let config = { templates, shortcuts };
 
 			interpolateVariables(config);
-		});
+		}, re);
 	});
 
 	it('should throw an error by key not found', function() {
+
+		let re = new RegExp(messages.templates.notFound.toTemplate({ template: 'value1 ${keyNotFound}' })
+			.replace('$', '\\$')
+			.replace('(', '\\(')
+			.replace(')','\\)'));
+
 		assert.throw(() => {
 			let templates = { key1: 'value1 ${keyNotFound}' };
 			let shortcuts = templates;
 			let config = { templates, shortcuts };
 
 			interpolateVariables(config);
-		});
+		}, re);
 	});
 
 	it('should throw an error by not shortcuts loaded', function() {
+		let re = new RegExp(messages.shortcuts.notFound);
+
 		assert.throw(() => {
 			let templates = { key1: 'value1 ${keyNotFound}' };
 			let shortcuts = null;
 			let config = { templates, shortcuts };
 
 			interpolateVariables(config);
-		});
+		}, re);
 	});
 
+	
 	// does not throw
 
 	it('should not throw an error by correct arguments', function() {

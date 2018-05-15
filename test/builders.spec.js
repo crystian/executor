@@ -1,4 +1,5 @@
 const { assert } = require('chai');
+const { messages } = require('../lib/i18n');
 const { buildConfig, buildShortcutCommand, buildShortcutPossibilities } = require('../lib/builders');
 
 
@@ -63,37 +64,37 @@ describe('buildShortcutCommand() throws', function() {
 	// throws
 
 	it('should throw an error by it does not have match: 1 level', function() {
+		let re = new RegExp(messages.shortcut.notFoundFirstShortcut.toTemplate({ shortcut: 'nonBranchA' }));
 		assert.throw(() => {
 			buildShortcutCommand({ branchA: 'branchAs' }, 'nonBranchA');
-		});
+		}, re);
 	});
 	it('should throw an error by it does not have match: 2 branches, 1 level', function() {
+		let re = new RegExp(messages.shortcut.notFoundFirstShortcut.toTemplate({ shortcut: 'nonBranchB' }));
 		assert.throw(() => {
 			buildShortcutCommand({ branchA: 'branchAs', branchB: 'branchBs' }, 'nonBranchB');
-		});
+		}, re);
 	});
 	it('should throw an error by it does not have match: 2 branches, 2 level', function() {
+		let re = new RegExp(messages.shortcut.notFound.toTemplate({ key: 'branchA', subKey: 'nonBranchAA' }));
 		assert.throw(() => {
 			buildShortcutCommand({ branchA: { branchAA: 'branchAAs' }, branchB: { branchBB: 'branchBBs' } }, 'branchA nonBranchAA');
-		});
+		}, re);
 	});
 	it('should throw an error by it does not have match: 2 branches, 3 level', function() {
+		let re = new RegExp(messages.shortcut.notFound.toTemplate({ key: 'branchAA', subKey: 'nonBranchAAA' }));
 		assert.throw(() => {
 			buildShortcutCommand({
 				branchA: { branchAA: { branchAAA: 'branchAAAs' } },
 				branchB: { branchBB: { branchBBB: 'branchBBBs' } }
 			}, 'branchA branchAA nonBranchAAA');
-		});
+		}, re);
 	});
 	it('should throw an error by it does not have match even if the match is in other level: 2 level', function() {
-		assert.throw(() => {
-			buildShortcutCommand({ branchA: { branchAA: 'branchAAs' } }, 'branchAA');
-		});
-	});
-	it('should throw an error by it does not have match with 2 level, even if it do not send it', function() {
+		let re = new RegExp(messages.shortcut.withoutNextArgument.toTemplate({ key: 'branchA'}));
 		assert.throw(() => {
 			buildShortcutCommand({ branchA: { branchAA: 'branchAAs' } }, 'branchA');
-		});
+		}, re);
 	});
 
 	// does not throw
