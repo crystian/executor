@@ -1,12 +1,6 @@
 {
-	"config": {
-		"dry": false
-	},
-	"environments": [
-		"pwd"
-	],
 	"templates": {
-		"project": "okfe",
+		"project": "myProject",
 		"imageName": {
 			"base": "${project}-base",
 			"dev": "${project}-dev",
@@ -19,37 +13,36 @@
 		"logs": "docker logs",
 		"attach": "docker attach",
 		"config": {
-			"prod": "${run} ${imageName.prod} -it -p 80:80 -p 443:443",
-			"dev": "${run} ${imageName.dev} -it -p 4200:4200 -p 49153:49153 -v /usr/src/server/node_modules -v ${predefined.cwd}:/usr/src/server -v yarn-cache:/home/node/yarn-cache -v npm-cache:/home/node/npm-cache"
+			"prod": "${imageName.prod} -it -p 80:80 -p 443:443",
+			"dev": "${imageName.dev} -it -p 4200:4200 -p 49153:49153 -v /usr/src/server/node_modules -v ${predefined.cwd}:/usr/src/server -v yarn-cache:/home/node/yarn-cache -v npm-cache:/home/node/npm-cache"
 		}
 	},
 	"shortcuts": {
 		"base": {
-			"build": "${build} ${imageName.base} -f Dockerfile-base",
+			"build": "${build} ${imageName.base} . -f Dockerfile-base",
 			"run": "${run} ${imageName.base} -it ${imageName.base}",
 			"exec": "${exec} ${imageName.base}",
-			"enter": "${exec} ${imageName.base} ash",
+			"enter": "${base.exec} ash",
 			"stop": "${stop} ${imageName.base}"
 		},
 		"dev": {
 			"build": "${build} ${imageName.dev} .",
-			"run": "${config.dev} ${imageName.dev}",
+			"run": "${run} ${config.dev} ${imageName.dev}",
 			"start": "${exec} ${imageName.dev} yarn start",
-			"serve": "${config.dev} ${imageName.dev} yarn start",
+			"serve": "${run} ${config.dev} ${imageName.dev} yarn start",
 			"attach": "${attach} ${imageName.dev}",
 			"exec": "${exec} ${imageName.dev}",
-			"enter": "${exec} ${imageName.dev} ash",
+			"enter": "${dev.exec} ash",
 			"stop": "${stop} ${imageName.dev}",
 			"logs": "${logs} ${imageName.dev}"
 		},
 		"prod": {
-			"build": "${build} ${imageName.prod} .",
-			"run": "${config.prod} ${imageName.prod} ash",
-			"start": "${exec} ${imageName.prod} node index",
-			"serve": "${config.prod} ${imageName.prod}",
-			"attach": "${attach} ${imageName.prod}",
+			"build": "cd dist && ${build} ${imageName.prod} .",
+			"run": "${run} ${config.prod} ${imageName.prod} ash",
+			"start": "${exec} -d ${imageName.prod} node index",
+			"serve": "${run} ${config.prod} ${imageName.prod}",
 			"exec": "${exec} ${imageName.prod}",
-			"enter": "${exec} ${imageName.prod}",
+			"enter": "${prod.exec} ash",
 			"stop": "${stop} ${imageName.prod}",
 			"logs": "${logs} ${imageName.prod}"
 		}

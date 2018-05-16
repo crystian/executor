@@ -4,10 +4,11 @@
 	"license": "MIT",
 	"description": "A powerful \"short-cutter\" to your console for you and your team!",
 	"scripts": {
-		"test": "mocha --watch -R nyan",
+		"test": "mocha test/*.spec.js --watch -R nyan",
 		"test-ci": "mocha",
-		"test-min": "mocha --watch -R min",
-		"coverage": "nyc --reporter=html --reporter=text --reporter=json-summary mocha --timeout=3000",
+		"test-min": "mocha test/*.spec.js --watch -R min",
+		"test-docker": "mocha test/docker.js -R min --timeout 1500000",
+		"coverage": "nyc --reporter=html --reporter=text --reporter=json-summary mocha test/*.spec.js --timeout=3000",
 		"coverage-ci": "nyc --reporter=html --reporter=text-lcov mocha | coveralls",
 		"bithound": "bithound check git@github.com:crystian/executor.git"
 	},
@@ -52,6 +53,7 @@
 	"directories": {
 		"lib": "lib",
 		"bin": "bin",
+		"man": "docs",
 		"test": "test"
 	},
 	"repository": {

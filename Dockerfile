@@ -12,7 +12,7 @@ RUN apk update \
 
 # variables
 ENV HOME=/home/node \
-	MAIN_FOLDER=/usr/src/main \
+	MAIN_FOLDER=/usr/src \
 	NPM_CONFIG_PREFIX=$HOME/npm-global \
 	PATH=$PATH:$HOME/npm-global/bin
 
@@ -25,7 +25,11 @@ RUN mkdir $MAIN_FOLDER -p \
 	&& npm install -g yarn@1.6.0 \
 	&& yarn config set cache-folder $HOME/yarn-cache
 
+COPY ./ ./source
+COPY ./test/fixture ./test
 
-COPY ./ ./
-
-RUN npm i -g
+RUN cd source && \
+		npm pack && \
+		mv executor*.tgz e.tgz && \
+		npm i -g e.tgz && \
+		mv /npm-global/bin/index.js /npm-global/bin/e

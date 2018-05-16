@@ -1,5 +1,5 @@
 {
 	"shortcuts": {
-		"hello": "world from new config"
+		"hello": "echo world from new config"
 	}
 }

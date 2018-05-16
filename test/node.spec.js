@@ -26,7 +26,7 @@ describe('getConfigFromCWD() result', function() {
 
 		let r = getConfigFromCWD();
 
-		assert.equal(r.shortcuts.hello, 'world');
+		assert.equal(r.shortcuts.hello, 'echo world');
 	});
 });
 
@@ -98,14 +98,14 @@ describe('getConfig() result', function() {
 
 		let r = getConfig();
 
-		assert.equal(r.shortcuts.hello, 'world from new config');
+		assert.equal(r.shortcuts.hello, 'echo world from new config');
 	});
 	it('should read the configuration file on fixture/06: other configuration file in another folder', function() {
 		process.chdir('test/fixture/06');
 
 		let r = getConfig();
 
-		assert.equal(r.shortcuts.hello, 'world from new config from a folder');
+		assert.equal(r.shortcuts.hello, 'echo world from new config from a folder');
 	});
 });
 
