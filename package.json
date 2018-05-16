@@ -5,11 +5,11 @@
 	"description": "A powerful \"short-cutter\" to your console for you and your team!",
 	"scripts": {
 		"test": "mocha test/*.spec.js --watch -R nyan",
-		"test-ci": "mocha",
+		"test-ci": "mocha test/*.spec.js",
 		"test-min": "mocha test/*.spec.js --watch -R min",
 		"test-docker": "mocha test/docker.js -R min --timeout 1500000",
 		"coverage": "nyc --reporter=html --reporter=text --reporter=json-summary mocha test/*.spec.js --timeout=3000",
-		"coverage-ci": "nyc --reporter=html --reporter=text-lcov mocha | coveralls",
+		"coverage-ci": "nyc --reporter=html --reporter=text-lcov mocha test/*.spec.js | coveralls",
 		"bithound": "bithound check git@github.com:crystian/executor.git"
 	},
 	"devDependencies": {
