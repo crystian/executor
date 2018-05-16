@@ -1,6 +1,10 @@
 const { spawn } = require('child_process');
 const { assert } = require('chai');
 
+/**
+ * I know, it is an ugly file, but... works!
+ */
+
 describe('running on docker container', function() {
 	let cwd = process.cwd();
 	let spawnOption = {
@@ -10,7 +14,7 @@ describe('running on docker container', function() {
 	};
 
 	function dockerBuild(done) {
-		return dockerRun(done);
+		// return dockerRun(done);
 		spawn('docker', ['build', '-t', 'executor', '.'], spawnOption)
 		.on('exit', (code) => {
 
