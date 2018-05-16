@@ -7,7 +7,7 @@
 		"test": "mocha test/*.spec.js --watch -R nyan",
 		"test-ci": "mocha test/*.spec.js",
 		"test-min": "mocha test/*.spec.js --watch -R min",
-		"test-docker": "mocha test/docker.js -R min --timeout 1500000",
+		"test-docker": "mocha test/docker.js -R min --timeout 150000",
 		"coverage": "nyc --reporter=html --reporter=text --reporter=json-summary mocha test/*.spec.js --timeout=3000",
 		"coverage-ci": "nyc --reporter=html --reporter=text-lcov mocha test/*.spec.js | coveralls",
 		"bithound": "bithound check git@github.com:crystian/executor.git"
@@ -15,7 +15,7 @@
 	"devDependencies": {
 		"chai": "4.1.2",
 		"mocha": "5.1.1",
-		"nyc": "11.7.3"
+		"nyc": "11.8.0"
 	},
 	"nyc": {
 		"include": [
