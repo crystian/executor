@@ -1,0 +1,13 @@
+{
+	"scripts": {
+		"script1": "echo script1!"
+	},
+	"executor": {
+		"configFile": "newConfig.json",
+		"runScripts": true,
+		"useScripts": true,
+		"shortcuts": {
+			"short1": "${script1} from package.json"
+		}
+	}
+}
