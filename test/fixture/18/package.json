@@ -1,0 +1,13 @@
+{
+	"scripts": {
+		"script1": "echo script1!"
+	},
+	"executor": {
+		"templates": {
+
+		},
+		"shortcuts": {
+			"a": "a"
+		}
+	}
+}

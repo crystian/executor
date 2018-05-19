@@ -87,5 +87,15 @@ describe('getConfigFromCWD() result', function() {
 			getConfig();
 		}, notFound);
 	});
+
+	it('18', function() {
+		// process.chdir('test/fixture/18');
+		//
+		// 	getConfig();
+
+
+		// assert.throw(() => {
+		// }, notFound);
+	});
 });
 
