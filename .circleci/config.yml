@@ -38,11 +38,6 @@ jobs:
           name: test
           command: yarn test-ci
 
-      # run tests on docker!
-      - run:
-          name: test on docker
-          command: yarn test-docker
-
       # run coverage report
       - run:
           name: coverage
