@@ -6,6 +6,7 @@
 	"scripts": {
 		"test": "mocha test/*.spec.js -R nyan",
 		"watch": "npm test --watch",
+		"lint": "eslint -c config/.eslintrc.json \"lib/**/*.js\" \"test/**/*.js\" --fix",
 		"test-ci": "mocha test/*.spec.js -R min",
 		"test-docker": "mocha test/docker.js -R min --timeout 150000",
 		"coverage": "nyc --reporter=html --reporter=text npm run test-ci --timeout=3000",
@@ -17,6 +18,7 @@
 	},
 	"devDependencies": {
 		"chai": "4.1.2",
+		"eslint": "4.19.1",
 		"husky": "1.0.0-rc.6",
 		"mocha": "5.2.0",
 		"nyc": "11.8.0",
