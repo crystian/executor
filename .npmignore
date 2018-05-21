@@ -1,7 +1,6 @@
 # like gitignore, copied and pasted
 /node_modules
 /.idea
-/mochawesome-report
 /coverage
 /.nyc_output
 package-lock.json
@@ -13,3 +12,8 @@ yarn-error.log
 /test
 /wallaby.js
 /.gitignore
+/docs
+/lib
+/.editorconfig
+/yarn.lock
+

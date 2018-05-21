@@ -1,6 +1,6 @@
 {
-	"name": "executor",
-	"version": "0.0.13-beta",
+	"name": "executor-dev",
+	"version": "0.0.24-beta",
 	"license": "MIT",
 	"description": "A powerful \"short-cutter\" to your console for you and your team!",
 	"scripts": {
@@ -8,13 +8,13 @@
 		"test-ci": "mocha test/*.spec.js",
 		"test-min": "mocha test/*.spec.js --watch -R min",
 		"test-docker": "mocha test/docker.js -R min --timeout 150000",
-		"coverage": "nyc --reporter=html --reporter=text --reporter=json-summary mocha test/*.spec.js --timeout=3000",
-		"coverage-ci": "nyc --reporter=html --reporter=text-lcov mocha test/*.spec.js | coveralls",
+		"coverage": "nyc --reporter=html --reporter=text --reporter=json-summary npm run test-ci --timeout=3000",
+		"coverage-ci": "nyc --reporter=html --reporter=text-lcov npm run test-ci | coveralls",
 		"bithound": "bithound check git@github.com:crystian/executor.git"
 	},
 	"devDependencies": {
 		"chai": "4.1.2",
-		"mocha": "5.1.1",
+		"mocha": "5.2.0",
 		"nyc": "11.8.0"
 	},
 	"nyc": {
