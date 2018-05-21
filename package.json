@@ -1,22 +1,38 @@
 {
-	"name": "executor",
-	"version": "0.0.13-beta",
+	"name": "executor-dev",
+	"version": "0.0.33",
 	"license": "MIT",
 	"description": "A powerful \"short-cutter\" to your console for you and your team!",
 	"scripts": {
-		"test": "mocha test/*.spec.js --watch -R nyan",
-		"test-ci": "mocha test/*.spec.js",
-		"test-min": "mocha test/*.spec.js --watch -R min",
+		"test": "mocha test/*.spec.js -R nyan",
+		"watch": "npm test --watch",
+		"lint": "eslint -c config/.eslintrc.json \"lib/**/*.js\" \"test/**/*.js\" --fix",
+		"test-ci": "mocha test/*.spec.js -R min",
 		"test-docker": "mocha test/docker.js -R min --timeout 150000",
-		"coverage": "nyc --reporter=html --reporter=text --reporter=json-summary mocha test/*.spec.js --timeout=3000",
-		"coverage-ci": "nyc --reporter=html --reporter=text-lcov mocha test/*.spec.js | coveralls",
-		"bithound": "bithound check git@github.com:crystian/executor.git"
+		"coverage": "nyc --reporter=html --reporter=text npm run test-ci --timeout=3000",
+		"coverage-ci": "nyc --reporter=text-lcov npm run test-ci | coveralls",
+		"bithound": "bithound check git@github.com:crystian/executor.git",
+		"test-full": "npm run lint && npm run coverage && npm run test-docker",
+		"preversion": "npm run test-full",
+		"prepublishOnly": "npm version patch && pkg-ok"
 	},
 	"devDependencies": {
 		"chai": "4.1.2",
-		"mocha": "5.1.1",
-		"nyc": "11.8.0"
+		"eslint": "4.19.1",
+		"husky": "1.0.0-rc.6",
+		"mocha": "5.2.0",
+		"nyc": "11.8.0",
+		"pkg-ok": "2.2.0"
 	},
+	"files": [
+		"bin",
+		"docs",
+		"lib",
+		"package.json",
+		"LICENSE",
+		"README.md",
+		"CHANGELOG.md"
+	],
 	"nyc": {
 		"include": [
 			"lib/**/*.js"
@@ -33,9 +49,15 @@
 		"cache": true,
 		"all": true
 	},
-	"main": "./bin/index.js",
+	"main": "./bin/e.js",
 	"bin": {
-		"e": "./bin/index.js"
+		"e": "./bin/e.js"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run lint && npm run test-ci",
+			"pre-push": "npm run test-full"
+		}
 	},
 	"keywords": [
 		"executor",
@@ -49,7 +71,6 @@
 	"authors": [
 		"Crystian 'pusher' Bietti <crystian@gmail.com> (https://www.linkedin.com/in/crystian)"
 	],
-	"preferGlobal": true,
 	"directories": {
 		"lib": "lib",
 		"bin": "bin",

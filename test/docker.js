@@ -15,37 +15,37 @@ describe('running on docker container', function() {
 
 	function dockerBuild(done) {
 		// return dockerRun(done);
-		spawn('docker', ['build', '-t', 'executor', '.'], spawnOption)
-		.on('exit', (code) => {
+		spawn('docker', 'build -f config/Dockerfile -t executor .'.split(' '), spawnOption)
+			.on('exit', (code) => {
 
-			if (code === 0) {
-				dockerRun(done);
-			} else {
-				throw new Error('Error on BUILD image on docker, check the stack please');
-			}
-		});
+				if (code === 0) {
+					dockerRun(done);
+				} else {
+					throw new Error('Error on BUILD image on docker, check the stack please');
+				}
+			});
 	}
 
 	function dockerRun(done) {
 		spawn('docker', 'run --init -d --rm -i --name executor executor'.split(' '), spawnOption)
-		.on('exit', (code) => {
-			if (code === 0) {
-				done();
-			} else {
-				throw new Error('Error on RUN image on docker, check the stack please');
-			}
-		});
+			.on('exit', (code) => {
+				if (code === 0) {
+					done();
+				} else {
+					throw new Error('Error on RUN image on docker, check the stack please');
+				}
+			});
 	}
 
 	function dockerStop(done) {
 		spawn('docker', 'stop executor'.split(' '), spawnOption)
-		.on('exit', (code) => {
-			if (code === 0) {
-				done();
-			} else {
-				throw new Error('Error on STOP image on docker, check the stack please');
-			}
-		});
+			.on('exit', (code) => {
+				if (code === 0) {
+					done();
+				} else {
+					throw new Error('Error on STOP image on docker, check the stack please');
+				}
+			});
 	}
 
 	before(done => {
@@ -61,9 +61,9 @@ describe('running on docker container', function() {
 
 	function runIt(command, cwd, done) {
 		spawn('docker', `exec executor ash -c "cd ${cwd} && /npm-global/bin/e ${command}"`.split(' '), spawnOption)
-		.on('exit', (code) => {
-			done(code);
-		});
+			.on('exit', (code) => {
+				done(code);
+			});
 	}
 
 	it('should throw an error by file not found: executor.json', function(done) {
