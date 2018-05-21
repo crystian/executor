@@ -21,6 +21,13 @@
 		"nyc": "11.8.0",
 		"pkg-ok": "2.2.0"
 	},
+	"files": [
+		"bin",
+		"docs",
+		"package.json",
+		"LICENSE",
+		"README.md"
+	],
 	"nyc": {
 		"include": [
 			"lib/**/*.js"
