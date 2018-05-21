@@ -74,7 +74,7 @@ describe('interpolateVariables() throws', function() {
 		}, re);
 	});
 
-	
+
 	// does not throw
 
 	it('should not throw an error by correct arguments', function() {
@@ -82,8 +82,6 @@ describe('interpolateVariables() throws', function() {
 			let templates = { key1: 'value1', key2: 'value2' };
 			let shortcuts = templates;
 			let config = { templates, shortcuts };
-
-			let r = interpolateVariables(config);
 
 			interpolateVariables(config);
 		});

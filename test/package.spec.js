@@ -1,10 +1,7 @@
 const { assert } = require('chai');
 const { messages } = require('../lib/i18n');
-const { getAbsoluteCWD, getContentJsonFile, getConfigFileName, getConfig, getConfigFromCWD } = require('../lib/node');
-const { setColor } = require('../lib/utils');
-const path = require('path');
+const { getConfig } = require('../lib/node');
 
-let isNotAString = new RegExp(messages.config.isNotAString);
 let notFound = new RegExp(messages.config.notFound.toTemplate({ fileName: 'executor.json' }));
 
 describe('getConfigFromCWD() result', function() {

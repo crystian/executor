@@ -12,7 +12,7 @@
 		"coverage": "nyc --reporter=html --reporter=text npm run test-ci --timeout=3000",
 		"coverage-ci": "nyc --reporter=text-lcov npm run test-ci | coveralls",
 		"bithound": "bithound check git@github.com:crystian/executor.git",
-		"test-full": "npm run coverage && npm run test-docker",
+		"test-full": "npm run lint && npm run coverage && npm run test-docker",
 		"preversion": "npm run test-full",
 		"prepublishOnly": "npm version patch && pkg-ok"
 	},
@@ -55,8 +55,8 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "npm run test-ci",
-			"pre-push": "npm run test-ci"
+			"pre-commit": "npm run lint && npm run test-ci",
+			"pre-push": "npm run test-full"
 		}
 	},
 	"keywords": [

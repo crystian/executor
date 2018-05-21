@@ -1,26 +1,19 @@
 {
 	"env": {
 		"node": true,
-		"es6": true,
+		"commonjs": true,
 		"mocha": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "script"
 	},
 	"extends": "eslint:recommended",
 	"rules": {
-		"indent": [
-			"error",
-			"tab"
-		],
-		"linebreak-style": [
-			"error",
-			"unix"
-		],
-		"quotes": [
-			"error",
-			"single"
-		],
-		"semi": [
-			"error",
-			"always"
-		]
+		"indent": ["error", "tab"],
+		"linebreak-style": ["error", "unix"],
+		"quotes": ["error", "single"],
+		"semi": ["error", "always"],
+		"no-console": "off"
 	}
 }
