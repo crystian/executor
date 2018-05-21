@@ -11,7 +11,7 @@
 		"coverage": "nyc --reporter=html --reporter=text --reporter=json-summary npm run test-ci --timeout=3000",
 		"coverage-ci": "nyc --reporter=html --reporter=text-lcov npm run test-ci | coveralls",
 		"bithound": "bithound check git@github.com:crystian/executor.git",
-		"prepublishOnly": "npm run test-ci && npm run test-docker && npm run coverage && pkg-ok"
+		"prepublishOnly": "npm run test-ci && npm run test-docker && npm run coverage && npm version patch --force && pkg-ok"
 	},
 	"devDependencies": {
 		"chai": "4.1.2",
