@@ -1,18 +1,18 @@
 {
 	"name": "executor-dev",
-	"version": "0.0.29",
+	"version": "0.0.30",
 	"license": "MIT",
 	"description": "A powerful \"short-cutter\" to your console for you and your team!",
 	"scripts": {
-		"test": "mocha test/*.spec.js --watch -R nyan",
+		"test": "mocha test/*.spec.js -R nyan",
+		"watch": "npm test --watch",
 		"test-ci": "mocha test/*.spec.js -R min",
-		"test-min": "npm run test-ci --watch",
 		"test-docker": "mocha test/docker.js -R min --timeout 150000",
-		"coverage": "nyc --reporter=html --reporter=text --reporter=json-summary npm run test-ci --timeout=3000",
-		"coverage-ci": "nyc --reporter=html --reporter=text-lcov npm run test-ci | coveralls",
+		"coverage": "nyc --reporter=html --reporter=text npm run test-ci --timeout=3000",
+		"coverage-ci": "nyc --reporter=text-lcov npm run test-ci | coveralls",
 		"bithound": "bithound check git@github.com:crystian/executor.git",
-		"test-full": "npm run test-ci && npm run test-docker && npm run coverage",
-		"version": "npm run test-full",
+		"test-full": "npm run coverage && npm run test-docker",
+		"preversion": "npm run test-full",
 		"prepublishOnly": "npm version patch --force && pkg-ok"
 	},
 	"devDependencies": {
