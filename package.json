@@ -17,9 +17,9 @@
 	},
 	"devDependencies": {
 		"chai": "4.1.2",
+		"husky": "1.0.0-rc.6",
 		"mocha": "5.2.0",
 		"nyc": "11.8.0",
-		"husky": "1.0.0-rc.6",
 		"pkg-ok": "2.2.0"
 	},
 	"files": [
@@ -28,7 +28,8 @@
 		"lib",
 		"package.json",
 		"LICENSE",
-		"README.md"
+		"README.md",
+		"CHANGELOG.md"
 	],
 	"nyc": {
 		"include": [

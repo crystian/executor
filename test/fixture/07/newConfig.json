@@ -1,6 +1,6 @@
 {
 	"templates": {
-		"project": "myProject",
+		"project": "myproject",
 		"imageName": {
 			"base": "${project}-base",
 			"dev": "${project}-dev",

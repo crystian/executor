@@ -37,10 +37,23 @@ if (!result.config.config.dry) {
 		stdio: 'inherit'
 	});
 
-	child.on('close', (code) => {
+	child.on('exit', function (code, signal) {
 		if (result.config.config.showTime) {
 			console.primary(`[${messages.app.name}]`, `Done in: ${(new Date() - timestamp) / 1000}s`);
 		}
-		process.exit(code);
+
+		process.on('exit', function () {
+			if (signal) {
+				process.kill(process.pid, signal);
+			} else {
+				process.exit(code);
+			}
+		});
 	});
+
+	process.on('SIGINT', function () {
+		child.kill('SIGINT');
+		child.kill('SIGTERM');
+	});
+
 }
