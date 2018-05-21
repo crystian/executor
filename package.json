@@ -13,18 +13,13 @@
 		"bithound": "bithound check git@github.com:crystian/executor.git",
 		"test-full": "npm run coverage && npm run test-docker",
 		"preversion": "npm run test-full",
-		"prepublishOnly": "npm version patch --force && pkg-ok"
+		"prepublishOnly": "npm version patch && pkg-ok"
 	},
 	"devDependencies": {
 		"chai": "4.1.2",
 		"mocha": "5.2.0",
 		"nyc": "11.8.0",
 		"pkg-ok": "2.2.0"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "npm run test-ci"
-		}
 	},
 	"nyc": {
 		"include": [
@@ -76,8 +71,5 @@
 	"engines": {
 		"node": ">=8.11.0",
 		"npm": ">=5.6.0"
-	},
-	"dependencies": {
-		"update-notifier": "2.5.0"
 	}
 }
