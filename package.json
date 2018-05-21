@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "mocha test/*.spec.js -R nyan",
 		"watch": "npm test --watch",
-		"lint": "eslint -c config/.eslintrc.json \"lib/**/*.js\" \"test/**/*.js\" --fix",
+		"lint": "eslint \"lib/**/*.js\" \"test/**/*.js\" --fix",
 		"test-ci": "mocha test/*.spec.js -R min",
 		"test-docker": "mocha test/docker.js -R min --timeout 150000",
 		"coverage": "nyc --reporter=html --reporter=text npm run test-ci --timeout=3000",
