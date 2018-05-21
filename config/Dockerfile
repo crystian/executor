@@ -18,7 +18,7 @@ ENV HOME=/home/node \
 
 WORKDIR $MAIN_FOLDER
 
-# main folder and cache and yarn
+# main folder and cache
 RUN mkdir $MAIN_FOLDER -p \
 	&& npm c set cache $HOME/npm-cache -g
 
@@ -29,4 +29,4 @@ RUN cd source && \
 		npm pack && \
 		mv executor*.tgz e.tgz && \
 		npm i -g e.tgz && \
-		mv /npm-global/bin/index.js /npm-global/bin/e
+		mv /npm-global/bin/e.js /npm-global/bin/e

@@ -1,21 +1,28 @@
 {
 	"name": "executor-dev",
-	"version": "0.0.24-beta",
+	"version": "0.0.27",
 	"license": "MIT",
 	"description": "A powerful \"short-cutter\" to your console for you and your team!",
 	"scripts": {
 		"test": "mocha test/*.spec.js --watch -R nyan",
-		"test-ci": "mocha test/*.spec.js",
-		"test-min": "mocha test/*.spec.js --watch -R min",
+		"test-ci": "mocha test/*.spec.js -R min",
+		"test-min": "npm run test-ci --watch",
 		"test-docker": "mocha test/docker.js -R min --timeout 150000",
 		"coverage": "nyc --reporter=html --reporter=text --reporter=json-summary npm run test-ci --timeout=3000",
 		"coverage-ci": "nyc --reporter=html --reporter=text-lcov npm run test-ci | coveralls",
-		"bithound": "bithound check git@github.com:crystian/executor.git"
+		"bithound": "bithound check git@github.com:crystian/executor.git",
+		"prepublishOnly": "npm run test-ci && npm run test-docker && npm run coverage && pkg-ok"
 	},
 	"devDependencies": {
 		"chai": "4.1.2",
 		"mocha": "5.2.0",
-		"nyc": "11.8.0"
+		"nyc": "11.8.0",
+		"pkg-ok": "2.2.0"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run test-ci"
+		}
 	},
 	"nyc": {
 		"include": [
@@ -33,9 +40,9 @@
 		"cache": true,
 		"all": true
 	},
-	"main": "./bin/index.js",
+	"main": "./bin/e.js",
 	"bin": {
-		"e": "./bin/index.js"
+		"e": "./bin/e.js"
 	},
 	"keywords": [
 		"executor",
@@ -67,5 +74,8 @@
 	"engines": {
 		"node": ">=8.11.0",
 		"npm": ">=5.6.0"
+	},
+	"dependencies": {
+		"update-notifier": "2.5.0"
 	}
 }

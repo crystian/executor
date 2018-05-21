@@ -12,8 +12,6 @@ yarn-error.log
 /test
 /wallaby.js
 /.gitignore
-/docs
-/lib
 /.editorconfig
 /yarn.lock
-
+/config

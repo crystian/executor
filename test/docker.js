@@ -15,7 +15,7 @@ describe('running on docker container', function() {
 
 	function dockerBuild(done) {
 		// return dockerRun(done);
-		spawn('docker', ['build', '-t', 'executor', '.'], spawnOption)
+		spawn('docker', 'build -f config/Dockerfile -t executor .'.split(' '), spawnOption)
 		.on('exit', (code) => {
 
 			if (code === 0) {
