@@ -1,6 +1,6 @@
 // this configuration is a nice plugin for your ide
 // https://wallabyjs.com
-module.exports = function(wallaby) {
+module.exports = function() {
 	return {
 		env: {
 			type: 'node'
