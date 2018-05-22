@@ -26,7 +26,7 @@ jobs:
 
       - run:
           name: dependencies for CI
-          command: yarn add bithound coveralls mocha-lcov-reporter
+          command: yarn add codacy-coverage
 
       - save_cache:
           paths:

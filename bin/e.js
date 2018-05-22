@@ -17,7 +17,7 @@ process.title = messages.app.name;
 let argv = process.argv,
 	result;
 
-argv = argv.slice(2);   // executable and this file will be removed
+argv = argv.slice(2); // executable and this file will be removed
 let shortcut = argv.join(' ');
 
 let timestamp = new Date();
@@ -37,12 +37,12 @@ if (!result.config.config.dry) {
 		stdio: 'inherit'
 	});
 
-	child.on('exit', function (code, signal) {
+	child.on('exit', function(code, signal) {
 		if (result.config.config.showTime) {
 			console.primary(`[${messages.app.name}]`, `Done in: ${(new Date() - timestamp) / 1000}s`);
 		}
 
-		process.on('exit', function () {
+		process.on('exit', function() {
 			if (signal) {
 				process.kill(process.pid, signal);
 			} else {
@@ -51,7 +51,7 @@ if (!result.config.config.dry) {
 		});
 	});
 
-	process.on('SIGINT', function () {
+	process.on('SIGINT', function() {
 		child.kill('SIGINT');
 		child.kill('SIGTERM');
 	});
