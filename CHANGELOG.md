@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## 1.0.0
+## 0.0.13 (05/22/18)
 
-* support package.json as a main source 
+* prepared to restructure to engine
+* support package.json as a main source
+* change of infrastructure of CI
+* eslint
+* lots of improves on CI 
 
