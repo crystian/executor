@@ -2,9 +2,9 @@
 ### **_A powerful "short-cutter" to your console for you and your team!_**
 
 [![npm](https://img.shields.io/npm/v/executor.svg?style=flat-square)](https://www.npmjs.com/package/executor) 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d3f65a1bc7604109843a0b9bda912c3b)](https://www.codacy.com/app/crystian/executor?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=crystian/executor&amp;utm_campaign=Badge_Grade)
 [![CircleCI](https://circleci.com/gh/crystian/executor/tree/master.svg?style=shield)](https://circleci.com/gh/crystian/executor/tree/master)
-[![Coveralls github](https://img.shields.io/coveralls/github/crystian/executor.svg?style=flat-square)](https://coveralls.io/github/crystian/executor)
+[![Codacy grade](https://img.shields.io/codacy/grade/d3f65a1bc7604109843a0b9bda912c3b.svg?style=flat-square)](https://www.codacy.com/app/crystian/executor?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=crystian/executor&amp;utm_campaign=Badge_Grade)
+[![Codacy coverage](https://img.shields.io/codacy/coverage/d3f65a1bc7604109843a0b9bda912c3b.svg?style=flat-square)](https://www.codacy.com/app/crystian/executor?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=crystian/executor&amp;utm_campaign=Badge_Coverage)
 [![npm](https://img.shields.io/npm/dm/executor.svg?style=flat-square)](https://www.npmjs.com/package/executor)
 [![HitCount](http://hits.dwyl.com/crystian/executor.svg)](http://hits.dwyl.com/crystian/executor)
 
