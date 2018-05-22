@@ -1,13 +1,15 @@
 # executor
 ### **_A powerful "short-cutter" to your console for you and your team!_**
 
-[![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/crystian/executor/master/LICENSE)
 [![npm](https://img.shields.io/npm/v/executor.svg?style=flat-square)](https://www.npmjs.com/package/executor) 
-[![CircleCI](https://circleci.com/gh/crystian/executor/tree/master.svg?style=shield)](https://circleci.com/gh/crystian/executor/tree/master) 
-[![Coverage Status](https://coveralls.io/repos/github/crystian/executor/badge.svg)](https://coveralls.io/github/crystian/executor)
-[![bitHound Overall Score](https://www.bithound.io/github/crystian/executor/badges/score.svg)](https://www.bithound.io/github/crystian/executor)
-[![bitHound Dependencies](https://www.bithound.io/github/crystian/executor/badges/dependencies.svg)](https://www.bithound.io/github/crystian/executor/master/dependencies/npm)
-[![bitHound Dev Dependencies](https://www.bithound.io/github/crystian/executor/badges/devDependencies.svg)](https://www.bithound.io/github/crystian/executor/master/dependencies/npm)
+[![CircleCI](https://img.shields.io/circleci/project/github/crystian/executor.svg?style=flat-square)](https://circleci.com/gh/crystian/executor/tree/master) 
+[![Coveralls github](https://img.shields.io/coveralls/github/crystian/executor.svg?style=flat-square)](https://coveralls.io/github/crystian/executor)
+[![npm](https://img.shields.io/npm/dm/executor.svg?style=flat-square)](https://www.npmjs.com/package/executor)
+[![HitCount](http://hits.dwyl.com/crystian/executor.svg)](http://hits.dwyl.com/crystian/executor)
+
+[![license](https://img.shields.io/npm/l/executor.svg?style=flat-square)](https://raw.githubusercontent.com/crystian/executor/master/LICENSE)
+[![David](https://img.shields.io/david/crystian/executor.svg?style=flat-square)](https://github.com/crystian/executor/blob/master/package.json)
+[![Gitter](https://img.shields.io/gitter/room/crystian/executor.svg?style=flat-square)](https://gitter.im/crystian/executor/??utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [English version (under construction)](README.md)
 
