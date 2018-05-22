@@ -87,7 +87,7 @@ describe('validateAndBuildEnvironments() throws', function() {
 	// throws
 	let re = new RegExp(messages.environments.invalidFormat
 		.replace('(', '\\(')
-		.replace(')','\\)'));
+		.replace(')', '\\)'));
 
 	it('should throw an error by invalid arguments', function() {
 		assert.throw(() => {
@@ -179,9 +179,9 @@ describe('validateTemplates() throws', function() {
 
 	it('should throw an error by invalid arguments: 1 level', function() {
 		let re = new RegExp(messages.templates.invalidData);
-		let re2 = new RegExp(messages.templates.invalidFormat.toTemplate({key: 'key'})
+		let re2 = new RegExp(messages.templates.invalidFormat.toTemplate({ key: 'key' })
 			.replace('(', '\\(')
-			.replace(')','\\)'));
+			.replace(')', '\\)'));
 
 		assert.throw(() => {
 			validateTemplates([]);
@@ -195,9 +195,9 @@ describe('validateTemplates() throws', function() {
 	});
 
 	it('should throw an error by invalid arguments: 2 level', function() {
-		let re = new RegExp(messages.templates.invalidFormat.toTemplate({key: 'branchAA'})
+		let re = new RegExp(messages.templates.invalidFormat.toTemplate({ key: 'branchAA' })
 			.replace('(', '\\(')
-			.replace(')','\\)'));
+			.replace(')', '\\)'));
 
 		assert.throw(() => {
 			validateTemplates({ branchA: { branchAA: [] } });

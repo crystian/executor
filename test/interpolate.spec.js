@@ -10,7 +10,7 @@ describe('interpolateVariables() throws', function() {
 
 		let re = new RegExp(messages.templates.invalidFormat.toTemplate({ key: 'key1' })
 			.replace('(', '\\(')
-			.replace(')','\\)'));
+			.replace(')', '\\)'));
 
 		assert.throw(() => {
 			let templates = { key1: [] };
@@ -51,7 +51,7 @@ describe('interpolateVariables() throws', function() {
 		let re = new RegExp(messages.templates.notFound.toTemplate({ template: 'value1 ${keyNotFound}' })
 			.replace('$', '\\$')
 			.replace('(', '\\(')
-			.replace(')','\\)'));
+			.replace(')', '\\)'));
 
 		assert.throw(() => {
 			let templates = { key1: 'value1 ${keyNotFound}' };

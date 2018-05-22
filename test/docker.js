@@ -23,6 +23,7 @@ describe('running on docker container', function() {
 				} else {
 					throw new Error('Error on BUILD image on docker, check the stack please');
 				}
+
 			});
 	}
 
@@ -34,6 +35,7 @@ describe('running on docker container', function() {
 				} else {
 					throw new Error('Error on RUN image on docker, check the stack please');
 				}
+
 			});
 	}
 
@@ -45,6 +47,7 @@ describe('running on docker container', function() {
 				} else {
 					throw new Error('Error on STOP image on docker, check the stack please');
 				}
+
 			});
 	}
 

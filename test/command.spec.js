@@ -10,7 +10,7 @@ describe('buildCommand() throws', function() {
 	// throws
 
 	it('should throw an error by invalid arguments', function() {
-		let re = new RegExp(messages.config.notFound.toTemplate({fileName: 'executor.json'}));
+		let re = new RegExp(messages.config.notFound.toTemplate({ fileName: 'executor.json' }));
 
 		assert.throw(() => {
 			buildCommand();
@@ -48,7 +48,7 @@ describe('buildCommandWithConfig() throws', function() {
 	});
 
 	it('should throw an error by it does not have match: 1 level', function() {
-		let re = new RegExp(messages.shortcut.notFoundFirstShortcut.toTemplate({shortcut: 'short2'}));
+		let re = new RegExp(messages.shortcut.notFoundFirstShortcut.toTemplate({ shortcut: 'short2' }));
 
 		assert.throw(() => {
 			buildCommandWithConfig('short2', { shortcuts: { short1: 'short1s' } });
@@ -62,13 +62,13 @@ describe('buildCommandWithConfig() throws', function() {
 		}, re);
 	});
 	it('should throw an error by it does not have match: 0 level and should show the valid option', function() {
-		let re = new RegExp('"short1"','g');
+		let re = new RegExp('"short1"', 'g');
 		assert.throw(() => {
 			buildCommandWithConfig('', { shortcuts: { short1: 'short1s' } });
 		}, re);
 	});
 	it('should throw an error by it does not have match: 0 level and should show the valid options', function() {
-		let re = new RegExp('(?=.*"short1")(?=.*"short2")','g');
+		let re = new RegExp('(?=.*"short1")(?=.*"short2")', 'g');
 		assert.throw(() => {
 			buildCommandWithConfig('', { shortcuts: { short1: 'short1s', short2: 'short2s' } });
 		}, re);

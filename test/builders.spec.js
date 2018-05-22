@@ -91,7 +91,7 @@ describe('buildShortcutCommand() throws', function() {
 		}, re);
 	});
 	it('should throw an error by it does not have match even if the match is in other level: 2 level', function() {
-		let re = new RegExp(messages.shortcut.withoutNextArgument.toTemplate({ key: 'branchA'}));
+		let re = new RegExp(messages.shortcut.withoutNextArgument.toTemplate({ key: 'branchA' }));
 		assert.throw(() => {
 			buildShortcutCommand({ branchA: { branchAA: 'branchAAs' } }, 'branchA');
 		}, re);

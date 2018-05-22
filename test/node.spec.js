@@ -16,8 +16,6 @@ describe('getConfigFromCWD() throws', function() {
 });
 describe('getConfigFromCWD() result', function() {
 	let cwd = process.cwd();
-	beforeEach('', () => {
-	});
 	afterEach('', () => {
 		process.chdir(cwd);
 	});
@@ -41,8 +39,6 @@ describe('getAbsoluteCWD() result', function() {
 
 describe('getConfig() throws', function() {
 	let cwd = process.cwd();
-	beforeEach('', () => {
-	});
 	afterEach('', () => {
 		process.chdir(cwd);
 	});
@@ -80,8 +76,6 @@ describe('getConfig() throws', function() {
 
 describe('getConfig() result', function() {
 	let cwd = process.cwd();
-	beforeEach('', () => {
-	});
 	afterEach('', () => {
 		process.chdir(cwd);
 	});
@@ -166,7 +160,6 @@ describe('getConfigFileName() results: via argument', function() {
 		assert.equal(r, 'folder1/newConfig.json');
 	});
 });
-
 
 
 describe('getContentJsonFile() throws', function() {

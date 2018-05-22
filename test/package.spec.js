@@ -6,8 +6,6 @@ let notFound = new RegExp(messages.config.notFound.toTemplate({ fileName: 'execu
 
 describe('getConfigFromCWD() result', function() {
 	let cwd = process.cwd();
-	beforeEach('', () => {
-	});
 	afterEach('', () => {
 		process.chdir(cwd);
 	});
