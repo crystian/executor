@@ -1,4 +1,5 @@
 {
+	"extends": "eslint:recommended",
 	"env": {
 		"node": true,
 		"commonjs": true,
@@ -8,7 +9,6 @@
 		"ecmaVersion": 6,
 		"sourceType": "script"
 	},
-	"extends": "eslint:recommended",
 	"rules": {
 		"indent": ["error", "tab"],
 		"linebreak-style": ["error", "unix"],
