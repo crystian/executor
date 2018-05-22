@@ -1,6 +1,6 @@
 {
-	"name": "executor-dev",
-	"version": "0.0.33",
+	"name": "executor",
+	"version": "0.0.13-beta",
 	"license": "MIT",
 	"description": "A powerful \"short-cutter\" to your console for you and your team!",
 	"scripts": {
