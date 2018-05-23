@@ -7,11 +7,13 @@ module.exports = function() {
 		},
 		testFramework: 'mocha',
 		files: [
-			'lib/**/*.js'
+			'lib/**/*.js',
+			'test/**/*.json',
 		],
 		tests: [
-			'test/*.spec.js',
-			'!test/node.spec.js' // because there are relative paths and the context is different
+			'test/**/*.spec.js'
 		]
+		// setup: function(wallaby) {},
+		// debug: false
 	};
 };
