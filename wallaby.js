@@ -9,9 +9,10 @@ module.exports = function() {
 		files: [
 			'lib/**/*.js',
 			'test/**/*.json',
+			'!lib/**/*.spec.js'
 		],
 		tests: [
-			'test/**/*.spec.js'
+			'lib/**/*.spec.js'
 		]
 		// setup: function(wallaby) {},
 		// debug: false
