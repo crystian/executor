@@ -22,6 +22,7 @@
 		"husky": "1.0.0-rc.6",
 		"mocha": "5.2.0",
 		"nyc": "11.8.0",
+		"eslint-plugin-security": "1.4.0",
 		"pkg-ok": "2.2.0"
 	},
 	"files": [

@@ -304,14 +304,6 @@ describe('mergeDeep()', function() {
 		assert.isNotOk(r.key2);
 	});
 
-	it('should merge two deeper objects 4', () => {
-		let r = mergeDeep({ key1: { key11: 'key11s' } }, { key1: { key22: 'key22s' } });
-
-		assert.isObject(r);
-		assert.equal(r.key1.key11, 'key11s');
-		assert.equal(r.key1.key22, 'key22s');
-	});
-
 	it('should overwrite deeper values 1', () => {
 		let r = mergeDeep({ key1: { key11: 'key11s' } }, { key1: { key11: 'key22s' } });
 

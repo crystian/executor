@@ -1,5 +1,11 @@
 {
-	"extends": "eslint:recommended",
+	"extends": [
+		"eslint:recommended",
+		"plugin:security/recommended"
+	],
+	"plugins": [
+		"security"
+	],
 	"env": {
 		"node": true,
 		"commonjs": true,
