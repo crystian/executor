@@ -1,6 +1,0 @@
-{
-	"name": "the complex sample!",
-	"executor": {
-		"configFile": "newConfig.json"
-	}
-}
