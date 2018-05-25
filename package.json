@@ -4,10 +4,10 @@
 	"license": "MIT",
 	"description": "A powerful \"short-cutter\" to your console for you and your team!",
 	"scripts": {
-		"test": "mocha lib/**.spec.js -R nyan",
+		"test": "mocha lib/**/*.spec.js -R nyan",
 		"watch": "npm test --watch",
 		"lint": "eslint \"bin/e.js\" \"lib/**/*.js\" --fix",
-		"test-ci": "mocha lib/**.spec.js -R min",
+		"test-ci": "mocha lib/**/*.spec.js -R min",
 		"test-docker": "echo removeme",
 		"test-docker-temp": "mocha test/docker.js -R min --timeout 150000",
 		"coverage": "nyc --reporter=html --reporter=text npm run test-ci --timeout=3000",
@@ -22,7 +22,6 @@
 		"husky": "1.0.0-rc.6",
 		"mocha": "5.2.0",
 		"nyc": "11.8.0",
-		"eslint-plugin-security": "1.4.0",
 		"pkg-ok": "2.2.0"
 	},
 	"files": [
