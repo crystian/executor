@@ -29,6 +29,10 @@
 		"no-multi-spaces": "error",
 		"no-useless-return": "error",
 		"no-var": "error",
-		"no-console": "off"
+		"no-console": "off",
+		"no-throw-literal": "error"
+	},
+	"globals":{
+		"ExecutorError": true
 	}
 }

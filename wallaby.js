@@ -3,7 +3,8 @@
 module.exports = function() {
 	return {
 		env: {
-			type: 'node'
+			type: 'node',
+			runner: 'node'
 		},
 		testFramework: 'mocha',
 		files: [
@@ -13,8 +14,10 @@ module.exports = function() {
 		],
 		tests: [
 			'lib/**/*.spec.js'
-		]
-		// setup: function(wallaby) {},
-		// debug: false
+		],
+		setup: function() {
+			require('./lib/engine/extends');
+		},
+		debug: false
 	};
 };
