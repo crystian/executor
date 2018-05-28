@@ -10,7 +10,7 @@
 
 const { spawn } = require('child_process');
 const { messages } = require('../lib/i18n');
-const { buildCommand } = require('../lib/command');
+const { buildCommand } = require('../lib/builders');
 
 process.title = messages.app.name;
 
@@ -26,11 +26,11 @@ try {
 	// main an only entry point to the tool!
 	result = buildCommand(shortcut);
 } catch(e) {
-	console.log(`\n[${messages.app.name}]`, `${e.message}\n`);
+	console.log(`\n${e.message}\n`);
 	process.exit(1);
 }
 
-if (!result.config.config.dry) {
+if (!result.config.dry) {
 	let command = result.command.split(' ');
 	const child = spawn(command.shift(), command, {
 		timeout: 1000 * 60 * 5,
@@ -39,7 +39,7 @@ if (!result.config.config.dry) {
 	});
 
 	child.on('exit', function(code, signal) {
-		if (result.config.config.showTime) {
+		if (result.config.showTime) {
 			console.primary(`[${messages.app.name}]`, `Done in: ${(new Date() - timestamp) / 1000}s`);
 		}
 

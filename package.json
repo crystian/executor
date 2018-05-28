@@ -1,6 +1,6 @@
 {
 	"name": "executor",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"license": "MIT",
 	"description": "A powerful \"short-cutter\" to your console for you and your team!",
 	"scripts": {
@@ -8,8 +8,7 @@
 		"watch": "npm test --watch",
 		"lint": "eslint \"bin/e.js\" \"lib/**/*.js\" --fix",
 		"test-ci": "mocha test/**/*.spec.js -R min",
-		"test-docker": "echo removeme",
-		"test-docker-temp": "mocha test/docker.js -R min --timeout 150000",
+		"test-docker": "mocha test/docker.js -R min --timeout 150000",
 		"coverage": "nyc --reporter=html --reporter=text npm run test-ci --timeout=3000",
 		"coverage-ci": "nyc --reporter=text-lcov npm run test-ci | codacy-coverage",
 		"test-full": "npm run lint && npm run coverage && npm run test-docker",
