@@ -1,6 +1,6 @@
 const { assert, expect } = require('chai');
-const { messages } = require('../lib/engine/i18n');
-const { buildCommand, buildCommandWithConfig } = require('../lib/engine/builders');
+const { messages } = require('../lib/i18n');
+const { buildCommand, buildCommandWithConfig } = require('../lib/builders');
 const path = require('path');
 
 // environment!

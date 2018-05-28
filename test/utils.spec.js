@@ -1,6 +1,6 @@
 const { assert, expect } = require('chai');
-const { messages } = require('../lib/engine/i18n');
-const { getContentFile, getContentFileJson, isString, isObject, isObjectEmpty, isTestRunning, mergeDeep } = require('../lib/engine/utils');
+const { messages } = require('../lib/i18n');
+const { getContentFile, getContentFileJson, isString, isObject, isObjectEmpty, isTestRunning, mergeDeep } = require('../lib/utils');
 
 
 describe('getContentFile()', function() {

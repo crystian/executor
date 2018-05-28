@@ -1,6 +1,6 @@
 const { assert, expect } = require('chai');
-const { messages } = require('../lib/engine/i18n');
-const { validateEnvironments, validateConfig, validateTemplates, validateShortcuts, validateShortcut, validateConfigFileField } = require('../lib/engine/validators');
+const { messages } = require('../lib/i18n');
+const { validateEnvironments, validateConfig, validateTemplates, validateShortcuts, validateShortcut, validateConfigFileField } = require('../lib/validators');
 
 
 describe('validateShortcut()', function() {

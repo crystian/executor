@@ -1,6 +1,6 @@
 const { assert, expect } = require('chai');
-const { messages } = require('../lib/engine/i18n');
-const { interpolateConfigVariables, interpolateVariablesRecursive } = require('../lib/engine/interpolate');
+const { messages } = require('../lib/i18n');
+const { interpolateConfigVariables, interpolateVariablesRecursive } = require('../lib/interpolate');
 
 describe('interpolateConfigVariables() throws', function() {
 

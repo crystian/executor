@@ -15,7 +15,7 @@ module.exports = function() {
 			'test/**/*.spec.js'
 		],
 		setup: function() {
-			require('./lib/engine/extends');
+			require('./lib/extends');
 		},
 		debug: false
 	};

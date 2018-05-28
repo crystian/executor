@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const { setColor } = require('../lib/engine/extends');
+const { setColor } = require('../lib/extends');
 
 describe('toTemplate()', function() {
 

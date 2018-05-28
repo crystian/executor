@@ -1,6 +1,6 @@
 const { assert, expect } = require('chai');
-const { messages } = require('../lib/engine/i18n');
-const { buildShortcutsAvailable, buildConfig, buildEnvironments, buildShortcutCommand, resolveShowCommandOnConsole, buildInterpolateEnvironmentVars } = require('../lib/engine/builders');
+const { messages } = require('../lib/i18n');
+const { buildShortcutsAvailable, buildConfig, buildEnvironments, buildShortcutCommand, resolveShowCommandOnConsole, buildInterpolateEnvironmentVars } = require('../lib/builders');
 
 
 describe('buildShortcutsAvailable() results', function() {

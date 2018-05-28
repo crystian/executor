@@ -1,6 +1,6 @@
 const { assert, expect } = require('chai');
-const { messages } = require('../lib/engine/i18n');
-const { getConfigFromPackageJson, getConfigFromPackageJsonConfigFile, getConfigFromExecutorFile, getConfigFromJson, getConfigFromSources, getConfigMergedWithDefault } = require('../lib/engine/config');
+const { messages } = require('../lib/i18n');
+const { getConfigFromPackageJson, getConfigFromPackageJsonConfigFile, getConfigFromExecutorFile, getConfigFromJson, getConfigFromSources, getConfigMergedWithDefault } = require('../lib/config');
 
 describe('getConfigFromPackageJson()', function() {
 	let cwd = process.cwd();
