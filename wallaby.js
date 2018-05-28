@@ -9,11 +9,10 @@ module.exports = function() {
 		testFramework: 'mocha',
 		files: [
 			'lib/**/*.js',
-			'test/**/*.json',
-			'!lib/**/*.spec.js'
+			'test/**/*.json'
 		],
 		tests: [
-			'lib/**/*.spec.js'
+			'test/**/*.spec.js'
 		],
 		setup: function() {
 			require('./lib/engine/extends');

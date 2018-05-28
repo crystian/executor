@@ -1,6 +1,6 @@
 // const { assert } = require('chai');
-// const { messages } = require('./i18n');
-// const { buildCommand, buildCommandWithConfig } = require('./builders');
+// const { messages } = require('../lib/engine/i18n');
+// const { buildCommand, buildCommandWithConfig } = require('../lib/engine/builders');
 // const path = require('path');
 
 
