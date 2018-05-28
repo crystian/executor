@@ -280,10 +280,8 @@ describe('resolveShowCommandOnConsole() show results to user', function() {
 	it('should show result: dry: true, showCommand: true', function() {
 		let r = resolveShowCommandOnConsole({
 			shortcuts: { short1: 'short1s' },
-			config: {
-				showCommand: true,
-				dry: true
-			}
+			showCommand: true,
+			dry: true
 		}, 'short1');
 		assert.isOk(r.showedCommand);
 		assert.isOk(r.dry);
@@ -291,10 +289,8 @@ describe('resolveShowCommandOnConsole() show results to user', function() {
 	it('should show result: dry: true, showCommand: false', function() {
 		let r = resolveShowCommandOnConsole({
 			shortcuts: { short1: 'short1s' },
-			config: {
-				showCommand: false,
-				dry: true
-			}
+			showCommand: false,
+			dry: true
 		}, 'short1');
 		assert.isOk(r.showedCommand);
 		assert.isOk(r.dry);
@@ -302,10 +298,8 @@ describe('resolveShowCommandOnConsole() show results to user', function() {
 	it('should show result: dry: false, showCommand: true', function() {
 		let r = resolveShowCommandOnConsole({
 			shortcuts: { short1: 'short1s' },
-			config: {
-				showCommand: true,
-				dry: false
-			}
+			showCommand: true,
+			dry: false
 		}, 'short1');
 		assert.isOk(r.showedCommand);
 		assert.isNotOk(r.dry);
