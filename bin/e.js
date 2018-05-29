@@ -8,6 +8,7 @@
  * With love by Pusher and RTFM! :)
  */
 
+
 const { spawn } = require('child_process');
 const { messages } = require('../lib/i18n');
 const { buildCommand } = require('../lib/command');
@@ -21,7 +22,7 @@ argv = argv.slice(2); // executable and this file will be removed
 let shortcut = argv.join(' ');
 
 let timestamp = new Date();
-
+console.log('[executor] Command "e" deprecated, will be "x" on next version, stay tuned!');
 try {
 	result = buildCommand(shortcut);
 } catch(e) {
