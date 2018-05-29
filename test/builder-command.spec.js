@@ -9,11 +9,16 @@ const path = require('path');
 // a little end to end, I know. For that I wrote some random tests
 
 describe('buildCommand() throws', function() {
+	let code404 = messages.errors.config.notFound.code;
+	let cwd = process.cwd();
+	afterEach('', () => {
+		process.chdir(cwd);
+	});
 
 	// throws
 
-	it('should throw an error by invalid arguments', function() {
-		let code1 = messages.errors.shortcut.withoutArguments.code;
+	it('should throw an error by not config', function() {
+		let code1 = messages.errors.config.notFound.code;
 
 		expect(() => {
 
@@ -21,7 +26,36 @@ describe('buildCommand() throws', function() {
 
 		}).to.throw(ExecutorError).that.has.property('code', code1);
 	});
+
+	it('should throw an error by configuration not found, empty folder', function() {
+		process.chdir('test/docker/00');
+
+		expect(() => {
+			buildCommand();
+		}).to.throw(ExecutorError).that.has.property('code', code404);
+	});
+
+	it('should throw an error by configuration not found, package.json without config', function() {
+		process.chdir('test/docker/01');
+
+		expect(() => {
+			buildCommand();
+		}).to.throw(ExecutorError).that.has.property('code', code404);
+
+		expect(() => {
+			buildCommand('a');
+		}).to.throw(ExecutorError).that.has.property('code', code404);
+	});
+
+	it('should throw an error by configuration not found, package.json without config', function() {
+		process.chdir('test/docker/02');
+
+		expect(() => {
+			buildCommand();
+		}).to.throw(ExecutorError).that.has.property('code', messages.errors.config.notConfigurationOnFile.code);
+	});
 });
+
 
 describe('buildCommandWithConfig()', function() {
 

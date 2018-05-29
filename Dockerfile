@@ -23,10 +23,10 @@ RUN mkdir $MAIN_FOLDER -p \
 	&& npm c set cache $HOME/npm-cache -g
 
 COPY ./ ./source
-COPY ./test/fixture ./test
+COPY ./test/docker ./test
 
 RUN cd source && \
 		npm pack && \
-		mv executor*.tgz e.tgz && \
-		npm i -g e.tgz && \
-		mv /npm-global/bin/e.js /npm-global/bin/e
+		mv executor*.tgz x.tgz && \
+		npm i -g x.tgz && \
+		mv /npm-global/bin/x.js /npm-global/bin/x

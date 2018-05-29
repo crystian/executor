@@ -139,6 +139,15 @@ describe('validateConfig() throws', function() {
 
 		}).to.throw(ExecutorError).that.has.property('code', code);
 	});
+	it('should throw an error by an empty object', function() {
+		let code = messages.errors.config.notFound.code;
+
+		expect(() => {
+
+			validateConfig({});
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+	});
 
 	it('should not throw an error by ', function() {
 		assert.doesNotThrow(() => {
@@ -157,11 +166,6 @@ describe('validateConfig() throws', function() {
 	it('should not throw an error by do not send arguments', function() {
 		assert.doesNotThrow(() => {
 			validateConfig();
-		});
-	});
-	it('should not throw an error by an empty object', function() {
-		assert.doesNotThrow(() => {
-			validateConfig({});
 		});
 	});
 });

@@ -78,7 +78,7 @@ describe('getConfigFromPackageJsonConfigFile()', function() {
 
 			getConfigFromPackageJsonConfigFile({ executor: { configFile: 'falseConfig.json' } });
 
-		}).to.throw(ExecutorError).that.has.property('code', messages.errors.config.notFound.code);
+		}).to.throw(ExecutorError).that.has.property('code', messages.errors.config.internalNotFound.code);
 	});
 
 	// does not throws

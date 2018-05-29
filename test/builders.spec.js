@@ -88,7 +88,8 @@ describe('buildConfig()', function() {
 				template1: 'template1s',
 				template2: 'template2b',
 				template3: 'template3s'
-			}
+			},
+			executorEmptyFlag: false
 		});
 	});
 
@@ -121,7 +122,8 @@ describe('buildConfig()', function() {
 				template1: 'template1b',
 				template2: 'template2b',
 				template3: 'template3s'
-			}
+			},
+			executorEmptyFlag: false
 		});
 	});
 

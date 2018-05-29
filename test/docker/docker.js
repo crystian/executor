@@ -70,8 +70,8 @@ describe('running on docker container', function() {
 	}
 
 	it('should throw an error by file not found: executor.json', function(done) {
-		runIt('', 'test/01', (code) => {
-			assert.equal(1, code);
+		runIt('', 'test/00', (code) => {
+			assert.equal(127, code);
 			done();
 		});
 	});

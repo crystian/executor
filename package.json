@@ -1,14 +1,14 @@
 {
 	"name": "executor",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"license": "MIT",
 	"description": "A powerful \"short-cutter\" to your console for you and your team!",
 	"scripts": {
 		"test": "mocha test/**/*.spec.js -R nyan",
 		"watch": "npm test --watch",
-		"lint": "eslint \"bin/e.js\" \"lib/**/*.js\" --fix",
+		"lint": "eslint \"bin/x.js\" \"lib/**/*.js\" --fix",
 		"test-ci": "mocha test/**/*.spec.js -R min",
-		"test-docker": "mocha test/docker.js -R min --timeout 150000",
+		"test-docker": "mocha test/docker/docker.js -R min --timeout 150000",
 		"coverage": "nyc --reporter=html --reporter=text npm run test-ci --timeout=3000",
 		"coverage-ci": "nyc --reporter=text-lcov npm run test-ci | codacy-coverage",
 		"test-full": "npm run lint && npm run coverage && npm run test-docker",
@@ -36,8 +36,7 @@
 		"include": [
 			"lib/**/*.js"
 		],
-		"exclude": [
-		],
+		"exclude": [],
 		"sourceMap": false,
 		"instrument": true,
 		"per-file": false,
@@ -50,9 +49,9 @@
 		"cache": true,
 		"all": true
 	},
-	"main": "./bin/e.js",
+	"main": "./bin/x.js",
 	"bin": {
-		"e": "./bin/e.js"
+		"x": "./bin/x.js"
 	},
 	"husky": {
 		"hooks": {
@@ -67,7 +66,8 @@
 		"terminal",
 		"console",
 		"easy",
-		"runner"
+		"runner",
+		"x"
 	],
 	"authors": [
 		"Crystian 'pusher' Bietti <crystian@gmail.com> (https://www.linkedin.com/in/crystian)"
