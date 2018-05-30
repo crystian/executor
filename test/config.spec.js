@@ -199,7 +199,9 @@ describe('getConfigFromSources()', function() {
 		assert.deepEqual(r, {
 			packageJson: null,
 			configFile: null,
-			executorFile: null
+			executorFile: null,
+			executorFileName: 'executor.json',
+			configFileName: null
 		});
 	});
 
@@ -211,7 +213,9 @@ describe('getConfigFromSources()', function() {
 		assert.deepEqual(r, {
 			packageJson: packageCommon2,
 			configFile: null,
-			executorFile: null
+			executorFile: null,
+			executorFileName: 'executor.json',
+			configFileName: null
 		});
 	});
 	it('should get the config via package and executor.json', function() {
@@ -227,7 +231,9 @@ describe('getConfigFromSources()', function() {
 					template2: 'template2b',
 					template3: 'template3s'
 				}
-			}
+			},
+			executorFileName: 'executor.json',
+			configFileName: null
 		});
 	});
 	it('should get the config via package and configFile without executor.json', function() {
@@ -246,7 +252,9 @@ describe('getConfigFromSources()', function() {
 				}
 			},
 			configFile: configCommon2,
-			executorFile: executorCommon2
+			executorFile: executorCommon2,
+			executorFileName: 'executor.json',
+			configFileName: 'newConfig.json'
 		});
 	});
 
@@ -266,7 +274,9 @@ describe('getConfigFromSources()', function() {
 					}
 				}
 			},
+			executorFileName: 'executor.json',
 			configFile: configCommon2,
+			configFileName: 'sub/sub/newConfig.json',
 			executorFile: executorCommon2
 		});
 	});
@@ -286,7 +296,9 @@ describe('getConfigFromSources()', function() {
 					}
 				}
 			},
+			executorFileName: 'executor.json',
 			configFile: configCommon2,
+			configFileName: '../../newConfig.json',
 			executorFile: executorCommon2
 		});
 	});

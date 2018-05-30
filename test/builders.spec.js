@@ -106,7 +106,8 @@ describe('buildConfig()', function() {
 				template1: 'template1s', //yes! without executor file!
 				template2: 'template2c',
 				template3: 'template3s'
-			}
+			},
+			executorEmptyFlag: false
 		});
 	});
 
