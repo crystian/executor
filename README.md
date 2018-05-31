@@ -1,4 +1,4 @@
-# executor
+# eXecutor
 ### **_A powerful "short-cutter" to your console to you and your team!_**
 
 [![npm](https://img.shields.io/npm/v/executor.svg?style=flat-square)](https://www.npmjs.com/package/executor) 
@@ -35,7 +35,6 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 * Errores de tipeos en comandos largos, son problemas del pasado!
 * Pare de sufrir! Basta de mil scripts similares en tu `package.json`!  
 (`build`, `build-ci`, `build-prod`, `build-prod-ci`, `build-qa`, `build-qa-ci`, `build-ci-cache`, etc...)
-* Modificaste `scripts` del `package.json` y tenes que "rebuilder" tu imagen de docker... nunca mas!
 * **Sin dependencias de otros módulos de node!**
 
 
@@ -44,22 +43,44 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 ---
 ## Documentation
 
+### Spoiler
+
+##### Antes
+```
+"scripts": {
+  "build": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-dev myProject-dev ng build",
+  "build-prod": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-dev myProject-dev ng build --prod",
+  "server": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-dev myProject-dev ng serve"
+}
+```
+##### Executor
+```
+"templates": {
+  "docker-common": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-dev myProject-dev", 
+}
+"shortcuts": {
+  "build": "${docker-common} ng build",
+  "build-prod": "${docker-common} ng build --prod",
+  "server": "${docker-common} ng serve"
+}
+```
+
 ### Table of content
 
-* [Extended version](#extended-version)
-* [Concepts](#concepts)
-* [Typical scenario](#typical-scenario)
-* [Installation](#installation)
-* [Configuration](#configuration)
-* [Bonus track](#bonus-track)
-* [Bonus track](#bonus-track)      
-* [contributing](#contributing)
+* [Intro](#intro) (WIP)
+* [Concepts](#concepts) (WIP)
+* [Installation](#installation) (WIP)
+* [Configuration](#configuration) (WIP)
+* [Bonus track](#bonus-track) (WIP)
+* [contributing](#contributing) (WIP)
 * [Changelog](CHANGELOG.md)
 * [Coming soon](#coming-soon)
 
 
 And remember: RTFM! :)
- 
+
+---
+
 # Coming soon
 
 * Feature: Utilización de **global**!
