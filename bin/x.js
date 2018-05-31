@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * This is "the executor" a.k.a: "e"
+ * This is "the executor" a.k.a: "x"
  *
  * Please, read the README.md, about this project and how to configure it, and surprise with the magic!
  *

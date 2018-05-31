@@ -10,6 +10,7 @@
 		"test-ci": "mocha test/**/*.spec.js -R min",
 		"test-docker": "mocha test/docker/docker.js -R min --timeout 150000",
 		"coverage": "nyc --reporter=html --reporter=text npm run test-ci --timeout=3000",
+		"postcoverage": "shx rm -rf .nyc_output",
 		"coverage-ci": "nyc --reporter=text-lcov npm run test-ci | codacy-coverage",
 		"test-full": "npm run lint && npm run coverage && npm run test-docker",
 		"preversion": "npm run test-full",
@@ -18,10 +19,11 @@
 	"devDependencies": {
 		"chai": "4.1.2",
 		"eslint": "4.19.1",
-		"husky": "1.0.0-rc.6",
+		"husky": "1.0.0-rc.8",
 		"mocha": "5.2.0",
 		"nyc": "11.8.0",
-		"pkg-ok": "2.2.0"
+		"pkg-ok": "2.2.0",
+		"shx": "0.2.2"
 	},
 	"files": [
 		"bin",

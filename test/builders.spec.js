@@ -331,4 +331,10 @@ describe('buildInterpolateEnvironmentVars() with environment results', function(
 
 		assert.deepEqual(r, { key1: 'works1!' });
 	});
+
+	it('should build with environment variable', function() {
+		let r = buildInterpolateEnvironmentVars([{ key1: 'NOT_VALID_VAR' }]);
+
+		assert.isNotOk(r.key1);
+	});
 });

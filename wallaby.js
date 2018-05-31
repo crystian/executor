@@ -9,8 +9,10 @@ module.exports = function() {
 		testFramework: 'mocha',
 		files: [
 			'lib/**/*.js',
-			'test/**/*.json'
+			'test/**/*.json',
+			'test/**/.gitkeep',
 		],
+		params: { 'npm_package_version': 'works!' },
 		tests: [
 			'test/**/*.spec.js'
 		],

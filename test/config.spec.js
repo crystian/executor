@@ -311,7 +311,6 @@ describe('getConfigMergedWithDefault()', function() {
 		let r = getConfigMergedWithDefault({ templates: { template1: 'template1s' } });
 
 		assert.equal(r.templates.template1, 'template1s');
-		assert.isOk(r.shortcuts.hello);
 	});
 
 	it('should merge config with default (overwrite)', function() {
