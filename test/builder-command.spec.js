@@ -58,7 +58,7 @@ describe('buildCommand() throws', function () {
 
 		let r = buildCommand('shortcuts1');
 
-		assert.equal(r.command, 'shortcut1s and template1s');
+		assert.equal(r.command, 'echo shortcut1s and template1s');
 	});
 
 	it('should not throw an error, from newExecutor.json', function () {
@@ -66,7 +66,7 @@ describe('buildCommand() throws', function () {
 
 		let r = buildCommand('shortcuts1');
 
-		assert.equal(r.command, 'shortcut1s and template1s');
+		assert.equal(r.command, 'echo shortcut1s and template1s');
 	});
 
 	it('should not throw an error, from executor.json and package.json', function () {
@@ -74,7 +74,7 @@ describe('buildCommand() throws', function () {
 
 		let r = buildCommand('shortcuts1');
 
-		assert.equal(r.command, 'shortcut1s and template1s');
+		assert.equal(r.command, 'echo shortcut1s and template1s');
 	});
 
 	it('should not throw an error, from newExecutor.json and package.json', function () {
@@ -82,7 +82,7 @@ describe('buildCommand() throws', function () {
 
 		let r = buildCommand('shortcuts1');
 
-		assert.equal(r.command, 'shortcut1s and template1s');
+		assert.equal(r.command, 'echo shortcut1s and template1s');
 	});
 
 	it('should not throw an error, from executor.json and package.json inverted', function () {
@@ -90,7 +90,7 @@ describe('buildCommand() throws', function () {
 
 		let r = buildCommand('shortcuts1');
 
-		assert.equal(r.command, 'shortcut1s and template1s');
+		assert.equal(r.command, 'echo shortcut1s and template1s');
 	});
 
 	it('should not throw an error, from executor.json and package.json inverted', function () {
@@ -98,7 +98,7 @@ describe('buildCommand() throws', function () {
 
 		let r = buildCommand('shortcuts1');
 
-		assert.equal(r.command, 'shortcut1s and template1s');
+		assert.equal(r.command, 'echo shortcut1s and template1s');
 	});
 
 	// throws
@@ -193,6 +193,14 @@ describe('buildCommand() throws', function () {
 		expect(() => {
 			buildCommand();
 		}).to.throw(ExecutorError).that.has.property('code', messages.errors.config.internalNotFound.code);
+	});
+
+	it('should throw an error by invalid shortcut', function () {
+		process.chdir('test/docker/11');
+
+		expect(() => {
+			buildCommand('shortcutsInvalid');
+		}).to.throw(ExecutorError).that.has.property('code', messages.errors.shortcut.notFoundFirstShortcut.code);
 	});
 });
 

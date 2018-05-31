@@ -2,7 +2,7 @@
 	"executor": {
 		"configFile": "newExecutor.json",
 		"shortcuts": {
-			"shortcuts1": "shortcut1s and ${template1}"
+			"shortcuts1": "echo shortcut1s and ${template1}"
 		}
 	}
 }

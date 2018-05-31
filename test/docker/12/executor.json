@@ -3,6 +3,6 @@
 		"template1": "template1s"
 	},
 	"shortcuts": {
-		"shortcuts1": "shortcut1s and ${template1}"
+		"shortcuts1": "echo shortcut1s and ${template1}"
 	}
 }
