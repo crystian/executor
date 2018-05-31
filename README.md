@@ -147,7 +147,7 @@ Como ya te habrás dado cuenta el comando es `e` más los shortcuts configurados
 Ejemplo: `e shortcut1`
 
 ### Notes
-Este comando (`e`) es un CLI que se ejecuta en el contexto donde es ejecutado, o sea, que lee los archivos del directorio actual donde se ejecute, por ende si no encuentra el archivo de configuración dará un error como el anterior.
+Este comando (`x`) es un CLI que se ejecuta en el contexto donde es ejecutado, o sea, que lee los archivos del directorio actual donde se ejecute, por ende si no encuentra el archivo de configuración dará un error como el anterior.
 
 # Configuration
 

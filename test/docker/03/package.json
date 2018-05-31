@@ -1,0 +1,7 @@
+{
+	"executor": {
+		"shortcuts": {
+			"short1": "echo hola"
+		}
+	}
+}

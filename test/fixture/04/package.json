@@ -1,5 +1,8 @@
 {
 	"executor": {
-		"configFile": 1
+		"templates": {
+			"template1": "template1s",
+			"template2": "template2s"
+		}
 	}
 }

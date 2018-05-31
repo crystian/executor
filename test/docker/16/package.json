@@ -1,0 +1,7 @@
+{
+	"executor": {
+		"templates":{
+			"template1": "template1s"
+		}
+	}
+}

@@ -1,29 +1,49 @@
-const { assert } = require('chai');
+const { assert, expect } = require('chai');
 const { messages } = require('../lib/i18n');
-const { validateAndBuildEnvironments, validateConfig, validateTemplates, validateShortcuts, validateShortcut } = require('../lib/validators');
+const { validateEnvironments, validateConfig, validateTemplates, validateShortcuts, validateShortcut, validateConfigFileField } = require('../lib/validators');
 
 
-describe('validateShortcut() throws', function() {
+describe('validateShortcut()', function() {
+	let code = messages.errors.shortcut.withoutArguments.code;
+
 	// throws
 
 	it('should throw an error by empty arguments', function() {
-		let re = new RegExp(messages.shortcut.withoutArguments);
-
-		assert.throw(() => {
+		function f() {
 			validateShortcut();
-		}, re);
+		}
+
+		expect(f).to.throw(ExecutorError).has.property('code', code);
+		expect(f).to.throw(ExecutorError).has.property('message').not.include('${shortcuts}');
+
+	});
+	it('should throw an error by empty arguments and show shortcuts', function() {
+		function f() {
+			validateShortcut('', 'shortcuts1');
+		}
+
+		expect(f).to.throw(ExecutorError).that.has.property('code', code);
+		expect(f).to.throw(ExecutorError).that.has.property('message').include('shortcuts1');
 	});
 	it('should throw an error by invalid arguments', function() {
-		let re = new RegExp(messages.shortcut.withoutArguments);
-		assert.throw(() => {
+		expect(() => {
+
 			validateShortcut({});
-		}, re);
-		assert.throw(() => {
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+
+		expect(() => {
+
 			validateShortcut('');
-		}, re);
-		assert.throw(() => {
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+
+		expect(() => {
+
 			validateShortcut([]);
-		}, re);
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+
 	});
 
 	// does not throw
@@ -51,20 +71,94 @@ describe('validateConfig() throws', function() {
 	// throws
 
 	it('should throw an error by invalid arguments', function() {
-		let re = new RegExp(messages.config.invalidFormat);
+		let code = messages.errors.config.invalidFormat.code;
 
-		assert.throw(() => {
+		expect(() => {
+
 			validateConfig([]);
-		}, re);
-		assert.throw(() => {
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+
+		expect(() => {
+
 			validateConfig(1);
-		}, re);
-		assert.throw(() => {
+
+		}).to.throw(ExecutorError)
+			.that.has.property('code', code);
+
+		expect(() => {
+
 			validateConfig(null);
-		}, re);
-		assert.throw(() => {
+
+		}).to.throw(ExecutorError)
+			.that.has.property('code', code);
+
+		expect(() => {
+
 			validateConfig('');
-		}, re);
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+	});
+
+	it('should throw an error by sent unknown field', function() {
+		let code = messages.errors.config.isNotAKnownField.code;
+
+		expect(() => {
+
+			validateConfig({ unknown: 'unknown' });
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+	});
+
+	it('should throw an error by sent a reserved field name on templates', function() {
+		let code = messages.errors.config.isAReservedField.code;
+
+		expect(() => {
+
+			validateConfig({ templates: { environments: '' } });
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+	});
+
+	it('should throw an error by sent a reserved field name on shortcuts', function() {
+		let code = messages.errors.config.isAReservedField.code;
+
+		expect(() => {
+
+			validateConfig({ shortcuts: { environments: '' } });
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+	});
+
+	it('should throw an error by sent a reserved field name on shortcuts without add mention templates, it\'s okey', function() {
+		let code = messages.errors.config.isAReservedField.code;
+
+		expect(() => {
+
+			validateConfig({ shortcuts: { environments: '' }, templates: { predefined: '' } });
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+	});
+	it('should throw an error by an empty object', function() {
+		let code = messages.errors.config.notFound.code;
+
+		expect(() => {
+
+			validateConfig({});
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+	});
+
+	it('should not throw an error by ', function() {
+		assert.doesNotThrow(() => {
+			validateConfig({ templates: { template1: 'template1s' } });
+		});
+	});
+
+	it('should not throw an error by sent known field', function() {
+		assert.doesNotThrow(() => {
+			validateConfig({ templates: '' });
+		});
 	});
 
 	// does not throw
@@ -74,140 +168,54 @@ describe('validateConfig() throws', function() {
 			validateConfig();
 		});
 	});
-	it('should not throw an error by an empty object', function() {
-		assert.doesNotThrow(() => {
-			validateConfig({});
-		});
-	});
-});
-
-
-describe('validateAndBuildEnvironments() throws', function() {
-
-	// throws
-	let re = new RegExp(messages.environments.invalidFormat
-		.replace('(', '\\(')
-		.replace(')', '\\)'));
-
-	it('should throw an error by invalid arguments', function() {
-		assert.throw(() => {
-			validateAndBuildEnvironments({});
-		}, re);
-		assert.throw(() => {
-			validateAndBuildEnvironments(1);
-		}, re);
-		assert.throw(() => {
-			validateAndBuildEnvironments([1]);
-		}, re);
-	});
-
-	it('should throw an error by send an empty object', function() {
-		assert.throw(() => {
-			validateAndBuildEnvironments([{ key1: {} }]);
-		}, re);
-	});
-
-	// does not throw
-
-	it('should not throw an error by do not send arguments', function() {
-		assert.doesNotThrow(() => {
-			validateAndBuildEnvironments();
-		});
-	});
-	it('should not throw an error by send empty string', function() {
-		assert.doesNotThrow(() => {
-			validateAndBuildEnvironments('');
-		});
-	});
-	it('should not throw an error by send a null', function() {
-		assert.doesNotThrow(() => {
-			validateAndBuildEnvironments(null);
-		});
-		assert.doesNotThrow(() => {
-			validateAndBuildEnvironments([null]);
-		});
-	});
-	it('should not throw an error by send an empty array', function() {
-		assert.doesNotThrow(() => {
-			validateAndBuildEnvironments([]);
-		});
-	});
-	it('should not throw an error by correct arguments: string', function() {
-		assert.doesNotThrow(() => {
-			validateAndBuildEnvironments(['env1']);
-		});
-	});
-	it('should not throw an error by correct arguments: object', function() {
-		assert.doesNotThrow(() => {
-			validateAndBuildEnvironments([{ key1: 'value1' }]);
-		});
-	});
-	it('should not throw an error by correct arguments: object and string', function() {
-		assert.doesNotThrow(() => {
-			validateAndBuildEnvironments([{ key1: 'value1' }, 'key2']);
-		});
-	});
-});
-
-describe('validateAndBuildEnvironments() results', function() {
-	it('should resolve the object', function() {
-		let r = validateAndBuildEnvironments([{ key1: 'value1' }]);
-		assert.deepEqual(r, [{ key1: 'value1' }]);
-	});
-	it('should resolve the string', function() {
-		let r = validateAndBuildEnvironments(['key1']);
-		assert.deepEqual(r, [{ key1: 'key1' }]);
-	});
-	it('should resolve the object x2', function() {
-		let r = validateAndBuildEnvironments(['key1', 'key2']);
-		assert.deepEqual(r, [{ key1: 'key1' }, { key2: 'key2' }]);
-	});
-	it('should resolve the object and string', function() {
-		let r = validateAndBuildEnvironments([{ key1: 'value1' }, 'key2']);
-		assert.deepEqual(r, [{ key1: 'value1' }, { key2: 'key2' }]);
-	});
-	it('should resolve the string and object', function() {
-		let r = validateAndBuildEnvironments(['key1', { key2: 'value2' }]);
-		assert.deepEqual(r, [{ key1: 'key1' }, { key2: 'value2' }]);
-	});
 });
 
 
 describe('validateTemplates() throws', function() {
+	let code1 = messages.errors.templates.invalidData.code;
+	let code2 = messages.errors.templates.invalidFormat.code;
 
 	// throws
 
 	it('should throw an error by invalid arguments: 1 level', function() {
-		let re = new RegExp(messages.templates.invalidData);
-		let re2 = new RegExp(messages.templates.invalidFormat.toTemplate({ key: 'key' })
-			.replace('(', '\\(')
-			.replace(')', '\\)'));
 
-		assert.throw(() => {
+		expect(() => {
+
 			validateTemplates([]);
-		}, re);
-		assert.throw(() => {
+
+		}).to.throw(ExecutorError).that.has.property('code', code1);
+
+		expect(() => {
+
 			validateTemplates({ key: 1 });
-		}, re2);
-		assert.throw(() => {
+
+		}).to.throw(ExecutorError).that.has.property('code', code2);
+
+		expect(() => {
+
 			validateTemplates({ key: null });
-		}, re2);
+
+		}).to.throw(ExecutorError).that.has.property('code', code2);
 	});
 
 	it('should throw an error by invalid arguments: 2 level', function() {
-		let re = new RegExp(messages.templates.invalidFormat.toTemplate({ key: 'branchAA' })
-			.replace('(', '\\(')
-			.replace(')', '\\)'));
+		expect(() => {
 
-		assert.throw(() => {
 			validateTemplates({ branchA: { branchAA: [] } });
-		}, re);
-		assert.throw(() => {
+
+		}).to.throw(ExecutorError).has.property('code', code2);
+
+		expect(() => {
+
 			validateTemplates({ branchA: { branchAA: 1 } });
-		}, re);
-		assert.throw(() => {
+
+		}).to.throw(ExecutorError).that.has.property('code', code2);
+
+		expect(() => {
+
 			validateTemplates({ branchA: { branchAA: null } });
-		}, re);
+
+		}).to.throw(ExecutorError).that.has.property('code', code2);
 	});
 
 	// does not throw
@@ -262,67 +270,93 @@ describe('validateTemplates() throws', function() {
 describe('validateShortcuts() throws', function() {
 
 	// throws
-	let re = new RegExp(messages.shortcuts.notFound);
-	let re2 = new RegExp(messages.shortcuts.shouldBeAnObject);
+
+	let code1 = messages.errors.shortcuts.notFound.code;
+	let code2 = messages.errors.shortcuts.shouldBeAnObject.code;
 
 	it('should throw an error by empty arguments', function() {
-		assert.throw(() => {
+		expect(() => {
+
 			validateShortcuts();
-		}, re);
+
+		}).to.throw(ExecutorError).that.has.property('code', code1);
+	});
+	it('should throw an error by send an empty object', function() {
+		expect(() => {
+
+			validateShortcuts({});
+
+		}).to.throw(ExecutorError).that.has.property('code', code1);
 	});
 
 	it('should throw an error by invalid arguments', function() {
-		assert.throw(() => {
+		expect(() => {
+
 			validateShortcuts('nonObject');
-		}, re);
-		assert.throw(() => {
+
+		}).to.throw(ExecutorError).that.has.property('code', code1);
+
+		expect(() => {
+
 			validateShortcuts([]);
-		}, re);
-	});
-	it('should throw an error by send an empty object', function() {
-		assert.throw(() => {
-			validateShortcuts({});
-		}, re);
+
+		}).to.throw(ExecutorError).that.has.property('code', code1);
 	});
 	it('should throw an error by send an empty object: 1 level', function() {
-		assert.throw(() => {
+		expect(() => {
+
 			validateShortcuts({ branchA: {} });
-		}, re2);
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code2);
 	});
 	it('should throw an error by send an empty object: 2 level', function() {
-		assert.throw(() => {
+		expect(() => {
+
 			validateShortcuts({ branchA: { branchAA: {} } });
-		}, re2);
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code2);
 	});
 	it('should throw an error by send an empty object: 3 level', function() {
-		assert.throw(() => {
+		expect(() => {
+
 			validateShortcuts({ branchA: { branchAA: { branchAAA: {} } } });
-		}, re2);
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code2);
 	});
 	it('should throw an error by send an empty object on some branch: 1 level', function() {
-		assert.throw(() => {
+		expect(() => {
+
 			validateShortcuts({ branchA: { branchAA: { branchAAA: 'string' } }, branchB: {} });
-		}, re2);
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code2);
 	});
 	it('should throw an error by invalid arguments: 1 level', function() {
-		assert.throw(() => {
+		expect(() => {
+
 			validateShortcuts({ branchA: [] });
-		}, re2);
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code2);
 	});
 	it('should throw an error by invalid arguments: 2 level', function() {
-		assert.throw(() => {
+		expect(() => {
+
 			validateShortcuts({ branchA: { branchAA: [] } });
-		}, re2);
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code2);
 	});
 	it('should throw an error by invalid arguments: 3 level', function() {
-		assert.throw(() => {
+		expect(() => {
+
 			validateShortcuts({ branchA: { branchAA: { branchAAA: [] } } });
-		}, re2);
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code2);
 	});
 	it('should throw an error by invalid arguments on some branch: 1 level', function() {
-		assert.throw(() => {
+		expect(() => {
+
 			validateShortcuts({ branchA: { branchAA: { branchAAA: 'string' } }, branchB: [] });
-		}, re2);
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code2);
 	});
 
 	// does not throw:
@@ -353,4 +387,132 @@ describe('validateShortcuts() throws', function() {
 		});
 	});
 
+});
+
+
+describe('validateEnvironments() throws', function() {
+
+	// throws
+
+	let code = messages.errors.environments.invalidFormat.code;
+
+	it('should throw an error by invalid arguments', function() {
+		expect(() => {
+
+			validateEnvironments({});
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code);
+
+		expect(() => {
+
+			validateEnvironments(1);
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code);
+
+		expect(() => {
+
+			validateEnvironments([1]);
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code);
+	});
+
+	it('should throw an error by send an empty object', function() {
+		expect(() => {
+
+			validateEnvironments([{ key1: {} }]);
+
+		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code);
+	});
+
+	// does not throw
+
+	it('should not throw an error by do not send arguments', function() {
+		assert.doesNotThrow(() => {
+			validateEnvironments();
+		});
+	});
+	it('should not throw an error by send empty string', function() {
+		assert.doesNotThrow(() => {
+			validateEnvironments('');
+		});
+	});
+	it('should not throw an error by send a null', function() {
+		assert.doesNotThrow(() => {
+			validateEnvironments(null);
+		});
+		assert.doesNotThrow(() => {
+			validateEnvironments([null]);
+		});
+	});
+	it('should not throw an error by send an empty array', function() {
+		assert.doesNotThrow(() => {
+			validateEnvironments([]);
+		});
+	});
+	it('should not throw an error by correct arguments: string', function() {
+		assert.doesNotThrow(() => {
+			validateEnvironments(['env1']);
+		});
+	});
+	it('should not throw an error by correct arguments: object', function() {
+		assert.doesNotThrow(() => {
+			validateEnvironments([{ key1: 'value1' }]);
+		});
+	});
+	it('should not throw an error by correct arguments: object and string', function() {
+		assert.doesNotThrow(() => {
+			validateEnvironments([{ key1: 'value1' }, 'key2']);
+		});
+	});
+
+});
+
+
+describe('validateConfigFileField() throws', function() {
+	let code = messages.errors.config.isNotAString.code;
+
+	// throws
+	it('should throw an error by invalid arguments', function() {
+		expect(() => {
+
+			validateConfigFileField({ executor: { configFile: {} } });
+
+		}).to.throw(ExecutorError).has.property('code', code);
+
+		expect(() => {
+
+			validateConfigFileField({ executor: { configFile: [] } });
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+
+		expect(() => {
+
+			validateConfigFileField({ executor: { configFile: 1 } });
+
+		}).to.throw(ExecutorError).that.has.property('code', code);
+
+	});
+
+	// does not throw
+
+	it('should return false by empty package.json', function() {
+		let r = validateConfigFileField();
+		assert.isNotOk(r);
+	});
+	it('should return false by object empty on package.json', function() {
+		let r = validateConfigFileField({});
+		assert.isNotOk(r);
+	});
+	it('should return false by empty executor field', function() {
+		let r = validateConfigFileField({ executor: {} });
+		assert.isNotOk(r);
+	});
+	it('should return false by executor field filled with ""', function() {
+		let r = validateConfigFileField({ executor: { configFile: '' } });
+		assert.isNotOk(r);
+	});
+	it('should return true by executor field filled', function() {
+		let r = validateConfigFileField({ executor: { configFile: 'something' } });
+		assert.isOk(r);
+	});
 });

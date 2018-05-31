@@ -1,5 +1,6 @@
 # CHANGELOG
 
+e ohmyzsh y zprezto
 ## 0.0.13 (05/22/18)
 
 * prepared to restructure to engine
