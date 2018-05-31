@@ -1,126 +1,220 @@
-const { assert } = require('chai');
+const { assert, expect } = require('chai');
 const { messages } = require('../lib/i18n');
-const { buildConfig, buildShortcutCommand, buildShortcutPossibilities } = require('../lib/builders');
+const { buildShortcutsAvailable, buildConfig, buildEnvironments, buildShortcutCommand, resolveShowCommandOnConsole, buildInterpolateEnvironmentVars } = require('../lib/builders');
 
 
-describe('buildConfig() results', function() {
-
-	it('should merge with an empty object', function() {
-		let r = buildConfig({ key1: 'value1' }, {});
-
-		assert.hasAllKeys(r, ['key1']);
-		assert.equal(r.key1, 'value1');
+describe('buildShortcutsAvailable() results', function() {
+	it('should return a string without shortcuts', () => {
+		let r = buildShortcutsAvailable();
+		assert.equal(r, '');
 	});
-	it('should merge from an empty object x2', function() {
-		let r = buildConfig({}, { key2: 'value2' });
-
-		assert.hasAllKeys(r, ['key2']);
-		assert.equal(r.key2, 'value2');
+	it('should return a string without shortcuts', () => {
+		let r = buildShortcutsAvailable({});
+		assert.equal(r, '');
 	});
-	it('should merge both objects without collide', function() {
-		let r = buildConfig({ key1: 'value1' }, { key2: 'value2' });
-
-		assert.hasAllKeys(r, ['key1', 'key2']);
-		assert.equal(r.key1, 'value1');
-		assert.equal(r.key2, 'value2');
+	it('should return a string without shortcuts', () => {
+		let r = buildShortcutsAvailable(1);
+		assert.equal(r, '');
 	});
-	it('should merge both objects overwriting the first one', function() {
-		let r = buildConfig({ key1: 'value1' }, { key1: 'value2' });
-
-		assert.hasAllKeys(r, ['key1']);
-		assert.equal(r.key1, 'value2');
+	it('should return a string without shortcuts', () => {
+		let r = buildShortcutsAvailable([]);
+		assert.equal(r, '');
 	});
-	it('should merge deep object with an empty object', function() {
-		let r = buildConfig({ key1: { subKey1: 'subvalue1' } }, {});
 
-		assert.hasAllKeys(r, ['key1']);
-		assert.deepNestedPropertyVal(r, 'key1.subKey1', 'subvalue1');
+	it('should return a string with a shortcuts', () => {
+		let r = buildShortcutsAvailable({ key1: 'key1' });
+		assert.include(r, '"key1"');
 	});
-	it('should merge deep object with different objects', function() {
-		let r = buildConfig({ key1: { subKey1: 'subvalue1' } }, { key2: { subKey2: 'subvalue2' } });
-
-		assert.hasAllKeys(r, ['key1', 'key2']);
-		assert.deepNestedPropertyVal(r, 'key1.subKey1', 'subvalue1');
-		assert.deepNestedPropertyVal(r, 'key2.subKey2', 'subvalue2');
-	});
-	it('should merge deep object overwritten a property', function() {
-		let r = buildConfig({ key1: { subKey1: 'subvalue1' } }, { key1: { subKey1: 'subvalue2' } });
-
-		assert.hasAllKeys(r, ['key1']);
-		assert.deepNestedPropertyVal(r, 'key1.subKey1', 'subvalue2');
-	});
-	it('should merge deep object adding a new property', function() {
-		let r = buildConfig({ key1: { subKey1: 'subvalue1' } }, { key1: { subKey2: 'subvalue2' } });
-
-		assert.hasAllKeys(r, ['key1']);
-		assert.deepNestedPropertyVal(r, 'key1.subKey1', 'subvalue1');
-		assert.deepNestedPropertyVal(r, 'key1.subKey2', 'subvalue2');
+	it('should return a string with two shortcuts', () => {
+		let r = buildShortcutsAvailable({ key1: 'key1', key2: 'key2' });
+		assert.include(r, '"key1"');
+		assert.include(r, '"key2"');
 	});
 });
 
 
-describe('buildShortcutCommand() throws', function() {
+describe('buildConfig()', function() {
+	let packageCommon1 = {
+		executor: {
+			templates: {
+				template1: 'template1s',
+				template2: 'template2s'
+			}
+		}
+	};
+	let executorCommon1 = {
+		templates: {
+			template1: 'template1b',
+			template2: 'template2b',
+			template3: 'template3s'
+		}
+	};
+	let configCommon1 = {
+		templates: {
+			template2: 'template2c',
+			template3: 'template3s'
+		}
+	};
+
+	it('should get the config via package only', function() {
+
+		let r = buildConfig({
+			packageJson: packageCommon1
+
+		});
+
+		assert.deepEqual(r, {
+			templates: {
+				template1: 'template1s',
+				template2: 'template2s'
+			}
+		});
+	});
+
+	it('should get the config via package and executor.json', function() {
+
+		let r = buildConfig({
+			packageJson: packageCommon1,
+			executorFile: {
+				templates: {
+					template2: 'template2b',
+					template3: 'template3s'
+				}
+			}
+		});
+
+		assert.deepEqual(r, {
+			templates: {
+				template1: 'template1s',
+				template2: 'template2b',
+				template3: 'template3s'
+			},
+			executorEmptyFlag: false
+		});
+	});
+
+	it('should get the config via package and configFile without executor.json', function() {
+
+		let r = buildConfig({
+			packageJson: packageCommon1,
+			configFile: configCommon1,
+			executorFile: executorCommon1
+		});
+
+		assert.deepEqual(r, {
+			templates: {
+				template1: 'template1s', //yes! without executor file!
+				template2: 'template2c',
+				template3: 'template3s'
+			},
+			executorEmptyFlag: false
+		});
+	});
+
+	it('should get the config by executor.json only', function() {
+		let r = buildConfig({
+			packageJson: null,
+			configFile: configCommon1,
+			executorFile: executorCommon1
+		});
+
+		assert.deepEqual(r, {
+			templates: {
+				template1: 'template1b',
+				template2: 'template2b',
+				template3: 'template3s'
+			},
+			executorEmptyFlag: false
+		});
+	});
+
+	it('should get empty by does not exist package and executor.json', function() {
+		let r = buildConfig({
+			packageJson: null,
+			configFile: configCommon1,
+			executorFile: null
+		});
+
+		assert.empty(r);
+	});
+});
+
+
+describe('validateAndBuildEnvironments() results', function() {
+	it('should resolve the object', function() {
+		let r = buildEnvironments([{ key1: 'value1' }]);
+		assert.deepEqual(r, [{ key1: 'value1' }]);
+	});
+	it('should resolve the string', function() {
+		let r = buildEnvironments(['key1']);
+		assert.deepEqual(r, [{ key1: 'key1' }]);
+	});
+	it('should resolve the object x2', function() {
+		let r = buildEnvironments(['key1', 'key2']);
+		assert.deepEqual(r, [{ key1: 'key1' }, { key2: 'key2' }]);
+	});
+	it('should resolve the object and string', function() {
+		let r = buildEnvironments([{ key1: 'value1' }, 'key2']);
+		assert.deepEqual(r, [{ key1: 'value1' }, { key2: 'key2' }]);
+	});
+	it('should resolve the string and object', function() {
+		let r = buildEnvironments(['key1', { key2: 'value2' }]);
+		assert.deepEqual(r, [{ key1: 'key1' }, { key2: 'value2' }]);
+	});
+	it('should resolve empty arguments', function() {
+		let r = buildEnvironments();
+		assert.empty(r);
+	});
+});
+
+
+describe('buildShortcutCommand()', function() {
+	let code1 = messages.errors.shortcut.notFoundFirstShortcut.code;
+	let code2 = messages.errors.shortcut.notFound.code;
+	let code3 = messages.errors.shortcut.withoutNextArgument.code;
 
 	// throws
 
 	it('should throw an error by it does not have match: 1 level', function() {
-		let re = new RegExp(messages.shortcut.notFoundFirstShortcut.toTemplate({ shortcut: 'nonBranchA' }));
-		assert.throw(() => {
+
+		expect(() => {
+
 			buildShortcutCommand({ branchA: 'branchAs' }, 'nonBranchA');
-		}, re);
+
+		}).to.throw(ExecutorError).that.has.property('code', code1);
+
 	});
 	it('should throw an error by it does not have match: 2 branches, 1 level', function() {
-		let re = new RegExp(messages.shortcut.notFoundFirstShortcut.toTemplate({ shortcut: 'nonBranchB' }));
-		assert.throw(() => {
+		expect(() => {
+
 			buildShortcutCommand({ branchA: 'branchAs', branchB: 'branchBs' }, 'nonBranchB');
-		}, re);
+
+		}).to.throw(ExecutorError).that.has.property('code', code1);
 	});
 	it('should throw an error by it does not have match: 2 branches, 2 level', function() {
-		let re = new RegExp(messages.shortcut.notFound.toTemplate({ key: 'branchA', subKey: 'nonBranchAA' }));
-		assert.throw(() => {
+		expect(() => {
+
 			buildShortcutCommand({ branchA: { branchAA: 'branchAAs' }, branchB: { branchBB: 'branchBBs' } }, 'branchA nonBranchAA');
-		}, re);
+
+		}).to.throw(ExecutorError).that.has.property('code', code2);
 	});
 	it('should throw an error by it does not have match: 2 branches, 3 level', function() {
-		let re = new RegExp(messages.shortcut.notFound.toTemplate({ key: 'branchAA', subKey: 'nonBranchAAA' }));
-		assert.throw(() => {
+		expect(() => {
+
 			buildShortcutCommand({
 				branchA: { branchAA: { branchAAA: 'branchAAAs' } },
 				branchB: { branchBB: { branchBBB: 'branchBBBs' } }
 			}, 'branchA branchAA nonBranchAAA');
-		}, re);
+
+		}).to.throw(ExecutorError).that.has.property('code', code2);
 	});
 	it('should throw an error by it does not have match even if the match is in other level: 2 level', function() {
-		let re = new RegExp(messages.shortcut.withoutNextArgument.toTemplate({ key: 'branchA' }));
-		assert.throw(() => {
+		expect(() => {
+
 			buildShortcutCommand({ branchA: { branchAA: 'branchAAs' } }, 'branchA');
-		}, re);
-	});
 
-	// does not throw
-
-	it('should not throw an error by correct arguments: 1 level', function() {
-		assert.doesNotThrow(() => {
-			buildShortcutCommand({ branchA: 'branchAs' }, 'branchA');
-		});
+		}).to.throw(ExecutorError).that.has.property('code', code3);
 	});
-	it('should not throw an error by correct arguments: 2 branches, 1 level', function() {
-		assert.doesNotThrow(() => {
-			buildShortcutCommand({ branchA: 'branchAs', branchB: 'branchBs' }, 'branchB');
-		});
-	});
-	it('should not throw an error by correct arguments: 2 branches, 1 & 2 level', function() {
-		assert.doesNotThrow(() => {
-			buildShortcutCommand({ branchA: { branchAA: 'branchAAs' }, branchB: 'branchBs' }, 'branchA branchAA');
-		});
-	});
-	it('should not throw an error by correct arguments: 2 branches, 1 & 3 level', function() {
-		assert.doesNotThrow(() => {
-			buildShortcutCommand({ branchA: { branchAA: { branchAAA: 'branchAAAs' } }, branchB: 'branchBs' }, 'branchA branchAA branchAAA');
-		});
-	});
-
-
 });
 
 
@@ -185,31 +279,62 @@ describe('buildShortcutCommand() results', function() {
 });
 
 
-describe('buildShortcutPosibilities() results', function() {
-	it('should return a string without possibilities', () => {
-		let r = buildShortcutPossibilities();
-		assert.equal(r, '');
+describe('resolveShowCommandOnConsole() show results to user', function() {
+	it('should show result: dry: true, showCommand: true', function() {
+		let r = resolveShowCommandOnConsole({
+			shortcuts: { short1: 'short1s' },
+			showCommand: true,
+			dry: true
+		}, 'short1');
+		assert.isOk(r.showedCommand);
+		assert.isOk(r.dry);
 	});
-	it('should return a string without possibilities', () => {
-		let r = buildShortcutPossibilities({});
-		assert.equal(r, '');
+	it('should show result: dry: true, showCommand: false', function() {
+		let r = resolveShowCommandOnConsole({
+			shortcuts: { short1: 'short1s' },
+			showCommand: false,
+			dry: true
+		}, 'short1');
+		assert.isOk(r.showedCommand);
+		assert.isOk(r.dry);
 	});
-	it('should return a string without possibilities', () => {
-		let r = buildShortcutPossibilities(1);
-		assert.equal(r, '');
+	it('should show result: dry: false, showCommand: true', function() {
+		let r = resolveShowCommandOnConsole({
+			shortcuts: { short1: 'short1s' },
+			showCommand: true,
+			dry: false
+		}, 'short1');
+		assert.isOk(r.showedCommand);
+		assert.isNotOk(r.dry);
 	});
-	it('should return a string without possibilities', () => {
-		let r = buildShortcutPossibilities([]);
-		assert.equal(r, '');
+	it('should not show result: dry: false, showCommand: false', function() {
+		let r = resolveShowCommandOnConsole({
+			shortcuts: { short1: 'short1s' },
+			config: {
+				showCommand: false,
+				dry: false
+			}
+		}, 'short1');
+		assert.isNotOk(r.showedCommand);
+		assert.isNotOk(r.dry);
+	});
+});
+
+
+describe('buildInterpolateEnvironmentVars() with environment results', function() {
+	before(function() {
+		process.env['EXECUTOR-TEST1'] = 'works1!';
 	});
 
-	it('should return a string with a possibility', () => {
-		let r = buildShortcutPossibilities({ key1: 'key1' });
-		assert.include(r, '"key1"');
+	it('should build with environment variable', function() {
+		let r = buildInterpolateEnvironmentVars([{ key1: 'EXECUTOR-TEST1' }]);
+
+		assert.deepEqual(r, { key1: 'works1!' });
 	});
-	it('should return a string with two possibility', () => {
-		let r = buildShortcutPossibilities({ key1: 'key1', key2: 'key2' });
-		assert.include(r, '"key1"');
-		assert.include(r, '"key2"');
+
+	it('should build with environment variable', function() {
+		let r = buildInterpolateEnvironmentVars([{ key1: 'NOT_VALID_VAR' }]);
+
+		assert.isNotOk(r.key1);
 	});
 });

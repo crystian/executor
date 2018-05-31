@@ -1,3 +1,7 @@
+# For more information about the properties used in
+# this file, please see the EditorConfig documentation:
+# http://editorconfig.org/
+
 root = true
 
 [*]
@@ -7,6 +11,7 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 end_of_line = lf
 insert_final_newline = true
+tab_width=2
 
 [*.md]
 max_line_length = off

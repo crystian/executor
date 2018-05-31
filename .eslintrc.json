@@ -1,4 +1,9 @@
 {
+	"extends": [
+		"eslint:recommended"
+	],
+	"plugins": [
+	],
 	"env": {
 		"node": true,
 		"commonjs": true,
@@ -8,7 +13,6 @@
 		"ecmaVersion": 6,
 		"sourceType": "script"
 	},
-	"extends": "eslint:recommended",
 	"rules": {
 		"indent": ["error", "tab"],
 		"linebreak-style": ["error", "unix"],
@@ -25,6 +29,10 @@
 		"no-multi-spaces": "error",
 		"no-useless-return": "error",
 		"no-var": "error",
-		"no-console": "off"
+		"no-console": "off",
+		"no-throw-literal": "error"
+	},
+	"globals":{
+		"ExecutorError": true
 	}
 }

@@ -1,0 +1,8 @@
+{
+	"templates":{
+		"template1": "template1s"
+	},
+	"shortcuts": {
+		"shortcuts1": "echo shortcut1s and ${template1}"
+	}
+}
