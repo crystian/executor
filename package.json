@@ -2,7 +2,7 @@
 	"name": "executor",
 	"version": "0.1.0",
 	"license": "MIT",
-	"description": "A powerful \"short-cutter\" to your console for you and your team!",
+	"description": "A powerful \"short-cutter\" to your console to you and your team!",
 	"scripts": {
 		"test": "mocha test/**/*.spec.js -R nyan",
 		"watch": "npm test --watch",
