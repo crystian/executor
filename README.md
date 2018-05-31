@@ -52,31 +52,13 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [Bonus track](#bonus-track)
+* [Bonus track](#bonus-track)      
+* [contributing](#contributing)
 * [Changelog](CHANGELOG.md)
 * [Coming soon](#coming-soon)
 
 
 And remember: RTFM! :)
-
----
-
-# contributing
-
-Si queres colaborar con este proyecto, podes hacerlo con feedback, reporte de issues o desarrollo de features, pull requests **son bienvenidos!**
-
-Luego de bajar el repo, instalar "devDependecies" las unicas que tienen son de unit test :)
-
-`npm install` or `yarn`
-
-`yarn test`: Ejecuta los test con un hermoso "nyan cat"
-
-![](docs/img/nyancat.jpg) 
-
-`yarn coverage`: Debe ser el 100%, minimo aceptado: 98%.
-
-![](docs/img/coverage.jpg)
-
----
  
 # Coming soon
 
