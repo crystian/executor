@@ -48,15 +48,15 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 ##### Antes
 ```
 "scripts": {
-  "build": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-dev myProject-dev ng build",
-  "build-prod": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-dev myProject-dev ng build --prod",
-  "server": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-dev myProject-dev ng serve"
+  "build": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject-dev ng build",
+  "build-prod": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject-dev ng build --prod",
+  "server": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject-dev ng serve"
 }
 ```
 ##### Executor
 ```
 "templates": {
-  "docker-common": "docker run --rm -it -p 4200:4200 -p 49153:49153 -v /choclo:... --name myProject-dev myProject-dev", 
+  "docker-common": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject-dev", 
 }
 "shortcuts": {
   "build": "${docker-common} ng build",

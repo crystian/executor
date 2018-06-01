@@ -69,6 +69,12 @@
 		"console",
 		"easy",
 		"runner",
+		"package.json",
+		"package-json",
+		"npm",
+		"script",
+		"tool",
+		"nodejs",
 		"x"
 	],
 	"authors": [
