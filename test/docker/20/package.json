@@ -1,0 +1,13 @@
+{
+	"scripts": {
+		"script1": "echo yes, it is a script from package.json"
+	},
+	"executor":{
+		"templates":{
+			"template1": "template1s"
+		},
+		"shortcuts": {
+			"shortcuts1": "${pkg.scripts.script1} and ${template1} works"
+		}
+	}
+}

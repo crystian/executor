@@ -6,6 +6,7 @@
 * `environments` change, you can use directly with `env`
 * `environments` does not support key value format, just a string
 * if you are using `predefine` values, rename to `def`
+* `hello` was improved
  
 
 ## 0.1.1 (05/31/18)
@@ -18,6 +19,7 @@
 * integration with CI (circle and codacy) were improved.
 * linter and others beautiful practices.
 * fixed collide with ohmyzsh and zprezto (letter 'e'). 
+
 
 ## 0.0.13 (05/22/18)
 

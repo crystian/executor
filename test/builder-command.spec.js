@@ -101,12 +101,20 @@ describe('buildCommand() throws', function () {
 		assert.equal(r.command, 'echo shortcut1s and template1s');
 	});
 
-	xit('should not throw an error, from executor.json and package.json inverted', function () {
+	it('should resolve version of package.json', function () {
 		process.chdir('test/docker/19');
 
 		let r = buildCommand('shortcuts1');
 
 		assert.equal(r.command, 'echo shortcut1s and template1s 0.0.0');
+	});
+
+	it('should resolve scripts of package.json', function () {
+		process.chdir('test/docker/20');
+
+		let r = buildCommand('shortcuts1');
+
+		assert.equal(r.command, 'echo yes, it is a script from package.json and template1s works');
 	});
 
 	// throws
