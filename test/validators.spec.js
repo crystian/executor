@@ -110,32 +110,23 @@ describe('validateConfig() throws', function() {
 		}).to.throw(ExecutorError).that.has.property('code', code);
 	});
 
-	it('should throw an error by sent a reserved field name on templates', function() {
-		let code = messages.errors.config.isAReservedField.code;
-
-		expect(() => {
-
-			validateConfig({ templates: { environments: '' } });
-
-		}).to.throw(ExecutorError).that.has.property('code', code);
-	});
-
-	it('should throw an error by sent a reserved field name on shortcuts', function() {
-		let code = messages.errors.config.isAReservedField.code;
-
-		expect(() => {
-
-			validateConfig({ shortcuts: { environments: '' } });
-
-		}).to.throw(ExecutorError).that.has.property('code', code);
-	});
-
 	it('should throw an error by sent a reserved field name on shortcuts without add mention templates, it\'s okey', function() {
 		let code = messages.errors.config.isAReservedField.code;
 
 		expect(() => {
+			validateConfig({ shortcuts: { env: '' } });
+		}).to.throw(ExecutorError).that.has.property('code', code);
 
-			validateConfig({ shortcuts: { environments: '' }, templates: { predefined: '' } });
+		expect(() => {
+			validateConfig({ templates: { env: '' } });
+		}).to.throw(ExecutorError).that.has.property('code', code);
+
+		expect(() => {
+			validateConfig({ templates: { def: '' } });
+		}).to.throw(ExecutorError).that.has.property('code', code);
+
+		expect(() => {
+			validateConfig({ templates: { pkg: '' } });
 
 		}).to.throw(ExecutorError).that.has.property('code', code);
 	});
@@ -384,84 +375,6 @@ describe('validateShortcuts() throws', function() {
 	it('should not throw an error by correct arguments: key-value pairs x2: 2 & 3 level', function() {
 		assert.doesNotThrow(() => {
 			validateShortcuts({ branchB: { branchB: 'branchB' }, branchA: { branchAA: { branchAAA: 'isAString' } } });
-		});
-	});
-
-});
-
-
-describe('validateEnvironments() throws', function() {
-
-	// throws
-
-	let code = messages.errors.environments.invalidFormat.code;
-
-	it('should throw an error by invalid arguments', function() {
-		expect(() => {
-
-			validateEnvironments({});
-
-		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code);
-
-		expect(() => {
-
-			validateEnvironments(1);
-
-		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code);
-
-		expect(() => {
-
-			validateEnvironments([1]);
-
-		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code);
-	});
-
-	it('should throw an error by send an empty object', function() {
-		expect(() => {
-
-			validateEnvironments([{ key1: {} }]);
-
-		}).to.throw(ExecutorError).that.has.property('code').that.is.equal(code);
-	});
-
-	// does not throw
-
-	it('should not throw an error by do not send arguments', function() {
-		assert.doesNotThrow(() => {
-			validateEnvironments();
-		});
-	});
-	it('should not throw an error by send empty string', function() {
-		assert.doesNotThrow(() => {
-			validateEnvironments('');
-		});
-	});
-	it('should not throw an error by send a null', function() {
-		assert.doesNotThrow(() => {
-			validateEnvironments(null);
-		});
-		assert.doesNotThrow(() => {
-			validateEnvironments([null]);
-		});
-	});
-	it('should not throw an error by send an empty array', function() {
-		assert.doesNotThrow(() => {
-			validateEnvironments([]);
-		});
-	});
-	it('should not throw an error by correct arguments: string', function() {
-		assert.doesNotThrow(() => {
-			validateEnvironments(['env1']);
-		});
-	});
-	it('should not throw an error by correct arguments: object', function() {
-		assert.doesNotThrow(() => {
-			validateEnvironments([{ key1: 'value1' }]);
-		});
-	});
-	it('should not throw an error by correct arguments: object and string', function() {
-		assert.doesNotThrow(() => {
-			validateEnvironments([{ key1: 'value1' }, 'key2']);
 		});
 	});
 

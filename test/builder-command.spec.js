@@ -101,6 +101,14 @@ describe('buildCommand() throws', function () {
 		assert.equal(r.command, 'echo shortcut1s and template1s');
 	});
 
+	xit('should not throw an error, from executor.json and package.json inverted', function () {
+		process.chdir('test/docker/19');
+
+		let r = buildCommand('shortcuts1');
+
+		assert.equal(r.command, 'echo shortcut1s and template1s 0.0.0');
+	});
+
 	// throws
 
 	it('should throw an error by not config', function () {
@@ -307,24 +315,47 @@ describe('buildCommandWithConfig()', function () {
 		let cwd = path.resolve(process.cwd());
 		assert.equal(r.command, `branchAs ${cwd} and ${cwd}`);
 	});
-	it('should interpolate environment variable: cwd', function () {
-		process.env['EXECUTOR-TEST2'] = 'works2!';
+	it('should interpolate environment variable', function () {
 		process.env['EXECUTORTEST3'] = 'works3!';
 
 		let r = buildCommandWithConfig('short1', {
-			environments: [
-				'EXECUTORTEST3',
-				{otherVarWithKey: 'EXECUTOR-TEST2'}
-			],
 			templates: {
-				branchA: 'branchAs ${environments.EXECUTORTEST3} and ${environments.otherVarWithKey}'
+				branchA: 'branchAs ${env.EXECUTORTEST3}'
 			},
 			shortcuts: {
-				short1: '${branchA} and ${predefined.cwd}'
+				short1: '${branchA}s'
 			}
 		});
 
-		let cwd = path.resolve(process.cwd());
-		assert.equal(r.command, `branchAs works3! and works2! and ${cwd}`);
+		assert.equal(r.command, 'branchAs works3!s');
+	});
+	it('should interpolate environment variable', function () {
+		process.env['EXECUTORTEST3'] = 'works3!';
+
+		let r = buildCommandWithConfig('short1', {
+			templates: {
+				branchA: 'branchAs ${env.EXECUTORTEST3}'
+			},
+			shortcuts: {
+				short1: '${branchA}s'
+			}
+		});
+
+		assert.equal(r.command, 'branchAs works3!s');
+	});
+	it('should throw an error by interpolate environment variable not found', function () {
+
+		expect(() => {
+
+			buildCommandWithConfig('short1', {
+				templates: {
+					branchA: 'branchAs ${env.NOT_FOUND}'
+				},
+				shortcuts: {
+					short1: '${branchA}s'
+				}
+			});
+
+		}).to.throw(ExecutorError).that.has.property('code', messages.errors.templates.notFound.code);
 	});
 });

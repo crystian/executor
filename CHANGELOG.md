@@ -1,6 +1,12 @@
 # CHANGELOG
 
-## 0.1.0 (05/31/18)
+## 0.1.2 (02/06/18)
+* Breaking change: `environments` rename to `env`
+* `environments` change, you can use directly with `env`
+* `environments` does not support key value format, just a string 
+ 
+
+## 0.1.1 (05/31/18)
 
 * changed the command to 'x'.
 * full restructure. 
