@@ -167,7 +167,7 @@ describe('interpolateVariablesRecursive()', function() {
 	});
 
 	it('should interpolate variables: 1 variable (4 levels): 4 level', function() {
-		let target = { short1: {short11: {short111: {short1111: '${branchA.branchAA.branchAAA.branchAAAA} found'}}} };
+		let target = { short1: { short11: { short111: { short1111: '${branchA.branchAA.branchAAA.branchAAAA} found' } } } };
 		let source = { branchA: { branchAA: { branchAAA: { branchAAAA: 'four As' } } } };
 
 		interpolateVariablesRecursive(target, source, true);
