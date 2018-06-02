@@ -1,11 +1,11 @@
-const { spawn } = require('child_process');
-const { assert } = require('chai');
+const {spawn} = require('child_process');
+const {assert} = require('chai');
 
 /**
  * I know, it is an ugly file, but... works!
  */
 
-describe('running on docker container', function() {
+describe('running on docker container', function () {
 	let cwd = process.cwd();
 	let spawnOption = {
 		timeout: 1000 * 60 * 5,
@@ -74,7 +74,7 @@ describe('running on docker container', function() {
 
 	// does not throws
 
-	it('should not throw an error by hello', function(done) {
+	it('should not throw an error by hello', function (done) {
 		runIt('hello', 'test/00', (code) => {
 			assert.equal(0, code);
 			done();
@@ -131,6 +131,18 @@ describe('running on docker container', function() {
 	});
 	it('should not throw an error, from executor.json and package.json inverted', function (done) {
 		runIt('shortcuts1', 'test/17', (code) => {
+			assert.equal(0, code);
+			done();
+		});
+	});
+	it('should resolve version of package.json', function (done) {
+		runIt('shortcuts1', 'test/19', (code) => {
+			assert.equal(0, code);
+			done();
+		});
+	});
+	it('should not throw an error, from executor.json and package.json inverted', function (done) {
+		runIt('shortcuts1', 'test/20', (code) => {
 			assert.equal(0, code);
 			done();
 		});

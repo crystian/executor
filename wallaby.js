@@ -8,6 +8,7 @@ module.exports = function() {
 		},
 		testFramework: 'mocha',
 		files: [
+			'package.json',
 			'lib/**/*.js',
 			'test/**/*.json',
 			'test/**/.gitkeep'

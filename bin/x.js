@@ -19,9 +19,9 @@ let argv = process.argv,
 	result;
 
 argv = argv.slice(2); // executable and this file will be removed
-let shortcut = argv.join(' ');
+const shortcut = argv.join(' ');
 
-let timestamp = new Date();
+const timestamp = new Date();
 
 try {
 	// main an only entry point to the tool!
@@ -32,7 +32,7 @@ try {
 }
 
 if (!result.config.dry) {
-	let command = result.command.split(' ');
+	const command = result.command.split(' ');
 	const child = spawn(command.shift(), command, {
 		timeout: 1000 * 60 * 5,
 		shell: true,

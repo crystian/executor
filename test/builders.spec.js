@@ -140,34 +140,6 @@ describe('buildConfig()', function() {
 });
 
 
-describe('validateAndBuildEnvironments() results', function() {
-	it('should resolve the object', function() {
-		let r = buildEnvironments([{ key1: 'value1' }]);
-		assert.deepEqual(r, [{ key1: 'value1' }]);
-	});
-	it('should resolve the string', function() {
-		let r = buildEnvironments(['key1']);
-		assert.deepEqual(r, [{ key1: 'key1' }]);
-	});
-	it('should resolve the object x2', function() {
-		let r = buildEnvironments(['key1', 'key2']);
-		assert.deepEqual(r, [{ key1: 'key1' }, { key2: 'key2' }]);
-	});
-	it('should resolve the object and string', function() {
-		let r = buildEnvironments([{ key1: 'value1' }, 'key2']);
-		assert.deepEqual(r, [{ key1: 'value1' }, { key2: 'key2' }]);
-	});
-	it('should resolve the string and object', function() {
-		let r = buildEnvironments(['key1', { key2: 'value2' }]);
-		assert.deepEqual(r, [{ key1: 'key1' }, { key2: 'value2' }]);
-	});
-	it('should resolve empty arguments', function() {
-		let r = buildEnvironments();
-		assert.empty(r);
-	});
-});
-
-
 describe('buildShortcutCommand()', function() {
 	let code1 = messages.errors.shortcut.notFoundFirstShortcut.code;
 	let code2 = messages.errors.shortcut.notFound.code;
@@ -317,24 +289,5 @@ describe('resolveShowCommandOnConsole() show results to user', function() {
 		}, 'short1');
 		assert.isNotOk(r.showedCommand);
 		assert.isNotOk(r.dry);
-	});
-});
-
-
-describe('buildInterpolateEnvironmentVars() with environment results', function() {
-	before(function() {
-		process.env['EXECUTOR-TEST1'] = 'works1!';
-	});
-
-	it('should build with environment variable', function() {
-		let r = buildInterpolateEnvironmentVars([{ key1: 'EXECUTOR-TEST1' }]);
-
-		assert.deepEqual(r, { key1: 'works1!' });
-	});
-
-	it('should build with environment variable', function() {
-		let r = buildInterpolateEnvironmentVars([{ key1: 'NOT_VALID_VAR' }]);
-
-		assert.isNotOk(r.key1);
 	});
 });
