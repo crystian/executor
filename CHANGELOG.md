@@ -2,8 +2,10 @@
 
 ## 0.1.2 (02/06/18)
 * Breaking change: `environments` rename to `env`
+* Breaking change: `predefined` rename to `def`  
 * `environments` change, you can use directly with `env`
-* `environments` does not support key value format, just a string 
+* `environments` does not support key value format, just a string
+* if you are using `predefine` values, rename to `def`
  
 
 ## 0.1.1 (05/31/18)

@@ -306,10 +306,10 @@ describe('buildCommandWithConfig()', function () {
 	it('should interpolate predefine value: cwd', function () {
 		let r = buildCommandWithConfig('short1', {
 			templates: {
-				branchA: 'branchAs ${predefined.cwd}'
+				branchA: 'branchAs ${def.cwd}'
 			},
 			shortcuts: {
-				short1: '${branchA} and ${predefined.cwd}'
+				short1: '${branchA} and ${def.cwd}'
 			}
 		});
 		let cwd = path.resolve(process.cwd());
