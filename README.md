@@ -27,7 +27,6 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 ### Features
 
 * Multiplataforma: Único código, funciona en todas las plataformas. Powered by [nodejs](https://nodejs.org)
-* Multi-configuracion, con múltiples niveles de anidamiento.
 * Templates para su facil reutilizacion.
 * No importa el tipo de proyecto, si escribis comandos esta herramienta te puede ser útil.
 * Utilización de variables predefinidas, ambiente, package.json, template y de otros 'shortcuts' (atajos).
@@ -48,15 +47,15 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 ##### Antes
 ```
 "scripts": {
-  "build": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject-dev ng build",
-  "build-prod":"docker run --rm -it -p 4200:4200 -v /choclo:. --name myProject-dev myProject-dev ng build --prod",
-  "server": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject-dev ng serve"
+  "build": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject ng build",
+  "build-prod": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject ng build --prod",
+  "server": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject ng serve"
 }
 ```
 ##### Executor
 ```
 "templates": {
-  "docker-common": "docker run --rm -it -p 4200:4200 -v /choclo:... --name ${pkg.name}-dev ${pkg.name}-dev", 
+  "docker-common": "docker run --rm -it -p 4200:4200 -v /choclo:... --name ${pkg.name}-dev ${pkg.name}", 
 }
 "shortcuts": {
   "build": "${docker-common} ng build",
@@ -79,6 +78,23 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 
 And remember: RTFM! :)
 
+## Installation
+
+[Mas info sobre la instalacion.](#installation)
+
+```
+npm i -g --engine-strict executor
+```
+
+Test de correcta instalacion y funcionamiento:
+
+```
+x hello
+```
+
+Deberia mostrar un mensaje con la version instalada.
+
+
 ---
 
 # Coming soon
@@ -86,6 +102,7 @@ And remember: RTFM! :)
 * Documentacion
 * Doc: Video de 5' demostrando funcionalidad
 * Doc: Ingles
+* Playground: Tool visual para armar configuraciones.
 * Feature: Utilización de **global**!
 
 ---
