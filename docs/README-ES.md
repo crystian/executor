@@ -66,23 +66,25 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 
 ### Table of content
 
-- [intro](https://github.com/crystian/executor/wiki/Home)
-- [Why?](https://github.com/crystian/executor/wiki/1-why#why)
-- [Installation](https://github.com/crystian/executor/wiki/2-installation#installation)
-- [Configuration](https://github.com/crystian/executor/wiki/3-configuration#configuration)
-  * [sources](https://github.com/crystian/executor/wiki/3-configuration#sources)
-  * [configuration](https://github.com/crystian/executor/wiki/3-configuration#configuration-1)
-    + [options](https://github.com/crystian/executor/wiki/3-configuration#options)
-    + [data](https://github.com/crystian/executor/wiki/3-configuration#data)
-      - [predefined (def)](https://github.com/crystian/executor/wiki/3-configuration#predefined-def)
-      - [environments (env)](https://github.com/crystian/executor/wiki/3-configuration#environments-env)
-      - [package.json (pkg)](https://github.com/crystian/executor/wiki/3-configuration#packagejson-pkg)
-      - [templates](https://github.com/crystian/executor/wiki/3-configuration#templates)
-      - [shortcuts](https://github.com/crystian/executor/wiki/3-configuration#shortcuts)
-- [Bonus track](https://github.com/crystian/executor/wiki/4-bonus)
-- [contributing](https://github.com/crystian/executor/wiki/5-contributing)
-- [Changelog](CHANGELOG.md)
-- [Coming soon](#coming-soon)
+* [Intro](https://github.com/crystian/executor/wiki/Home-es)
+* [Why?](https://github.com/crystian/executor/wiki/1-why-es#why)
+* [Installation](https://github.com/crystian/executor/wiki/2-installation-es#installation)
+* [Configuration](https://github.com/crystian/executor/wiki/3-configuration-es#configuration)
+  * [sources](https://github.com/crystian/executor/wiki/3-configuration-es#sources)
+  * [configuration](https://github.com/crystian/executor/wiki/3-configuration-es#configuration-1)
+    * [options](https://github.com/crystian/executor/wiki/3-configuration-es#options)
+    * [data](https://github.com/crystian/executor/wiki/3-configuration-es#data)
+      * [predefined (def)](https://github.com/crystian/executor/wiki/3-configuration-es#predefined-def)
+      * [environments (env)](https://github.com/crystian/executor/wiki/3-configuration-es#environments-env)
+      * [package.json (pkg)](https://github.com/crystian/executor/wiki/3-configuration-es#packagejson-pkg)
+      * [templates](https://github.com/crystian/executor/wiki/3-configuration-es#templates)
+      * [shortcuts](https://github.com/crystian/executor/wiki/3-configuration-es#shortcuts)
+* [Bonus track](https://github.com/crystian/executor/wiki/4-bonus-es)
+* [contributing](https://github.com/crystian/executor/wiki/5-contributing-es)
+
+
+* [Changelog](CHANGELOG.md)
+* [Coming soon](#coming-soon)
 
 
 And remember: RTFM! :)
