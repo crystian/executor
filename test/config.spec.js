@@ -166,24 +166,30 @@ describe('getConfigFromJson()', function() {
 describe('getConfigFromSources()', function() {
 	let cwd = process.cwd();
 	let packageCommon2 = {
-		executor: {
-			templates: {
-				template1: 'template1s',
-				template2: 'template2s'
+		content: {
+			executor: {
+				templates: {
+					template1: 'template1s',
+					template2: 'template2s'
+				}
 			}
 		}
 	};
 	let executorCommon2 = {
-		templates: {
-			template1: 'template1b',
-			template2: 'template2b',
-			template3: 'template3s'
+		content: {
+			templates: {
+				template1: 'template1b',
+				template2: 'template2b',
+				template3: 'template3s'
+			}
 		}
 	};
 	let configCommon2 = {
-		templates: {
-			template2: 'template2c',
-			template3: 'template3s'
+		content: {
+			templates: {
+				template2: 'template2c',
+				template3: 'template3s'
+			}
 		}
 	};
 
@@ -197,11 +203,9 @@ describe('getConfigFromSources()', function() {
 		let r = getConfigFromSources();
 
 		assert.deepEqual(r, {
-			packageJson: null,
-			configFile: null,
-			executorFile: null,
-			executorFileName: 'executor.json',
-			configFileName: null
+			packageFile: { content: null, fileName: 'package.json' },
+			configFile: { content: null, fileName: null },
+			executorFile: { content: null, fileName: 'executor.json' }
 		});
 	});
 
@@ -211,11 +215,9 @@ describe('getConfigFromSources()', function() {
 		let r = getConfigFromSources();
 
 		assert.deepEqual(r, {
-			packageJson: packageCommon2,
-			configFile: null,
-			executorFile: null,
-			executorFileName: 'executor.json',
-			configFileName: null
+			packageFile: { content: packageCommon2.content, fileName: 'package.json' },
+			configFile: { content: null, fileName: null },
+			executorFile: { content: null, fileName: 'executor.json' }
 		});
 	});
 	it('should get the config via package and executor.json', function() {
@@ -224,16 +226,16 @@ describe('getConfigFromSources()', function() {
 		let r = getConfigFromSources();
 
 		assert.deepEqual(r, {
-			packageJson: packageCommon2,
-			configFile: null,
+			packageFile: { content: packageCommon2.content, fileName: 'package.json' },
+			configFile: { content: null, fileName: null },
 			executorFile: {
-				templates: {
-					template2: 'template2b',
-					template3: 'template3s'
-				}
-			},
-			executorFileName: 'executor.json',
-			configFileName: null
+				content: {
+					templates: {
+						template2: 'template2b',
+						template3: 'template3s'
+					}
+				}, fileName: 'executor.json'
+			}
 		});
 	});
 	it('should get the config via package and configFile without executor.json', function() {
@@ -242,19 +244,20 @@ describe('getConfigFromSources()', function() {
 		let r = getConfigFromSources();
 
 		assert.deepEqual(r, {
-			packageJson: {
-				executor: {
-					configFile: 'newConfig.json',
-					templates: {
-						template1: 'template1s',
-						template2: 'template2s'
+			packageFile: {
+				fileName: 'package.json',
+				content: {
+					executor: {
+						configFile: 'newConfig.json',
+						templates: {
+							template1: 'template1s',
+							template2: 'template2s'
+						}
 					}
 				}
 			},
-			configFile: configCommon2,
-			executorFile: executorCommon2,
-			executorFileName: 'executor.json',
-			configFileName: 'newConfig.json'
+			configFile: { fileName: 'newConfig.json', content: configCommon2.content },
+			executorFile: { fileName: 'executor.json', content: executorCommon2.content }
 		});
 	});
 
@@ -265,19 +268,20 @@ describe('getConfigFromSources()', function() {
 		let r = getConfigFromSources();
 
 		assert.deepEqual(r, {
-			packageJson: {
-				executor: {
-					configFile: 'sub/sub/newConfig.json',
-					templates: {
-						template1: 'template1s',
-						template2: 'template2s'
+			packageFile: {
+				fileName: 'package.json',
+				content: {
+					executor: {
+						configFile: 'sub/sub/newConfig.json',
+						templates: {
+							template1: 'template1s',
+							template2: 'template2s'
+						}
 					}
 				}
 			},
-			executorFileName: 'executor.json',
-			configFile: configCommon2,
-			configFileName: 'sub/sub/newConfig.json',
-			executorFile: executorCommon2
+			configFile: { fileName: 'sub/sub/newConfig.json', content: configCommon2.content },
+			executorFile: { fileName: 'executor.json', content: executorCommon2.content }
 		});
 	});
 
@@ -287,19 +291,20 @@ describe('getConfigFromSources()', function() {
 		let r = getConfigFromSources();
 
 		assert.deepEqual(r, {
-			packageJson: {
-				executor: {
-					configFile: '../../newConfig.json',
-					templates: {
-						template1: 'template1s',
-						template2: 'template2s'
+			packageFile: {
+				fileName: 'package.json',
+				content: {
+					executor: {
+						configFile: '../../newConfig.json',
+						templates: {
+							template1: 'template1s',
+							template2: 'template2s'
+						}
 					}
 				}
 			},
-			executorFileName: 'executor.json',
-			configFile: configCommon2,
-			configFileName: '../../newConfig.json',
-			executorFile: executorCommon2
+			configFile: { fileName: '../../newConfig.json', content: configCommon2.content },
+			executorFile: { fileName: 'executor.json', content: executorCommon2.content }
 		});
 	});
 });

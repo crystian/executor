@@ -35,31 +35,37 @@ describe('buildShortcutsAvailable() results', function() {
 
 describe('buildConfig()', function() {
 	let packageCommon1 = {
-		executor: {
-			templates: {
-				template1: 'template1s',
-				template2: 'template2s'
+		content: {
+			executor: {
+				templates: {
+					template1: 'template1s',
+					template2: 'template2s'
+				}
 			}
 		}
 	};
 	let executorCommon1 = {
-		templates: {
-			template1: 'template1b',
-			template2: 'template2b',
-			template3: 'template3s'
+		content: {
+			templates: {
+				template1: 'template1b',
+				template2: 'template2b',
+				template3: 'template3s'
+			}
 		}
 	};
 	let configCommon1 = {
-		templates: {
-			template2: 'template2c',
-			template3: 'template3s'
+		content: {
+			templates: {
+				template2: 'template2c',
+				template3: 'template3s'
+			}
 		}
 	};
 
 	it('should get the config via package only', function() {
 
 		let r = buildConfig({
-			packageJson: packageCommon1
+			packageFile: packageCommon1
 
 		});
 
@@ -74,11 +80,13 @@ describe('buildConfig()', function() {
 	it('should get the config via package and executor.json', function() {
 
 		let r = buildConfig({
-			packageJson: packageCommon1,
+			packageFile: packageCommon1,
 			executorFile: {
-				templates: {
-					template2: 'template2b',
-					template3: 'template3s'
+				content: {
+					templates: {
+						template2: 'template2b',
+						template3: 'template3s'
+					}
 				}
 			}
 		});
@@ -96,7 +104,7 @@ describe('buildConfig()', function() {
 	it('should get the config via package and configFile without executor.json', function() {
 
 		let r = buildConfig({
-			packageJson: packageCommon1,
+			packageFile: packageCommon1,
 			configFile: configCommon1,
 			executorFile: executorCommon1
 		});
