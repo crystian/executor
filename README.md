@@ -1,5 +1,5 @@
 # eXecutor
-### **_A powerful "short-cutter" to your console to you and your team!_**
+### **_Una poderosa herramienta de atajos para ti como para tu equipo!_**
 
 [![npm](https://img.shields.io/npm/v/executor.svg?style=flat-square)](https://www.npmjs.com/package/executor) 
 [![CircleCI](https://circleci.com/gh/crystian/executor/tree/master.svg?style=shield)](https://circleci.com/gh/crystian/executor/tree/master)
@@ -12,7 +12,7 @@
 [![David](https://img.shields.io/david/crystian/executor.svg?style=flat-square)](https://github.com/crystian/executor/blob/master/package.json)
 [![Gitter](https://img.shields.io/gitter/room/crystian/executor.svg?style=flat-square)](https://gitter.im/crystian/executor/??utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[English version (under construction)](README.md)
+[ english (under construction) ] [ [spanish](docs/README-ES.md) ]
 
 ---
 
@@ -26,13 +26,13 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
   
 ### Features
 
-* Multiplataforma: Único código, funciona en todas las plataformas. Powered by [nodejs](https://nodejs.org)
-* Templates para su facil reutilizacion.
-* No importa el tipo de proyecto, si escribis comandos esta herramienta te puede ser útil.
+* Multi-plataforma: Único código, funciona en todas las plataformas. Powered by [nodejs](https://nodejs.org)
+* Templates para su fácil reutilización.
+* No importa el tipo de proyecto, si escribís comandos esta herramienta te puede ser útil.
 * Utilización de variables predefinidas, ambiente, package.json, template y de otros 'shortcuts' (atajos).
 * Devs y DevOps pueden ser amigos con esta tool, ya que comparten sus comandos.
 * Errores de tipeos en comandos largos, son problemas del pasado!
-* Pare de sufrir! Basta de cientos de scripts similares en tu `package.json`!  
+* Pare de sufrir! Basta de cientos de `scripts` similares en tu `package.json`!  
 (`build`, `build-ci`, `build-prod`, `build-prod-ci`, `build-qa`, `build-qa-ci`, `build-ci-cache`, etc...)
 * **Sin dependencias de otros módulos de node!**
 
@@ -66,40 +66,46 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 
 ### Table of content
 
-* [Intro](#intro) (WIP)
-* [Concepts](#concepts) (WIP)
-* [Installation](#installation) (WIP)
-* [Configuration](#configuration) (WIP)
-* [Bonus track](#bonus-track) (WIP)
-* [contributing](#contributing) (WIP)
-* [Changelog](CHANGELOG.md)
-* [Coming soon](#coming-soon)
+- [intro](https://github.com/crystian/executor/wiki/Home)
+- [Why?](https://github.com/crystian/executor/wiki/1-why#why)
+- [Installation](https://github.com/crystian/executor/wiki/2-installation#installation)
+- [Configuration](https://github.com/crystian/executor/wiki/3-configuration#configuration)
+  * [sources](https://github.com/crystian/executor/wiki/3-configuration#sources)
+  * [configuration](https://github.com/crystian/executor/wiki/3-configuration#configuration-1)
+    + [options](https://github.com/crystian/executor/wiki/3-configuration#options)
+    + [data](https://github.com/crystian/executor/wiki/3-configuration#data)
+      - [predefined (def)](https://github.com/crystian/executor/wiki/3-configuration#predefined-def)
+      - [environments (env)](https://github.com/crystian/executor/wiki/3-configuration#environments-env)
+      - [package.json (pkg)](https://github.com/crystian/executor/wiki/3-configuration#packagejson-pkg)
+      - [templates](https://github.com/crystian/executor/wiki/3-configuration#templates)
+      - [shortcuts](https://github.com/crystian/executor/wiki/3-configuration#shortcuts)
+- [Bonus track](https://github.com/crystian/executor/wiki/4-bonus)
+- [contributing](https://github.com/crystian/executor/wiki/5-contributing)
+- [Changelog](CHANGELOG.md)
+- [Coming soon](#coming-soon)
 
 
 And remember: RTFM! :)
 
 ## Installation
 
-[Mas info sobre la instalacion.](#installation)
-
 ```
 npm i -g --engine-strict executor
 ```
 
-Test de correcta instalacion y funcionamiento:
+Test de correcta instalación y funcionamiento:
 
 ```
 x hello
 ```
 
-Deberia mostrar un mensaje con la version instalada.
-
+Debería mostrar un mensaje con la versión instalada.
 
 ---
 
 # Coming soon
 
-* Documentacion
+* Documentación
 * Doc: Video de 5' demostrando funcionalidad
 * Doc: Ingles
 * Playground: Tool visual para armar configuraciones.
@@ -107,4 +113,4 @@ Deberia mostrar un mensaje con la version instalada.
 
 ---
 
-MIT © 2018 [Crystian](https://github.com/crystian), hecho con amor para vos <3!
+MIT © 2018 [Crystian](https://github.com/crystian), hecho con amor para vos <3! y espero que te sea tan útil como lo es para mi.
