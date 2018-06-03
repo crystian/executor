@@ -30,10 +30,10 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 * Multi-configuracion, con múltiples niveles de anidamiento.
 * Templates para su facil reutilizacion.
 * No importa el tipo de proyecto, si escribis comandos esta herramienta te puede ser útil.
-* Utilización de variables predefinidas, ambiente, template y de otros 'shortcuts' (atajos).
+* Utilización de variables predefinidas, ambiente, package.json, template y de otros 'shortcuts' (atajos).
 * Devs y DevOps pueden ser amigos con esta tool, ya que comparten sus comandos.
 * Errores de tipeos en comandos largos, son problemas del pasado!
-* Pare de sufrir! Basta de mil scripts similares en tu `package.json`!  
+* Pare de sufrir! Basta de cientos de scripts similares en tu `package.json`!  
 (`build`, `build-ci`, `build-prod`, `build-prod-ci`, `build-qa`, `build-qa-ci`, `build-ci-cache`, etc...)
 * **Sin dependencias de otros módulos de node!**
 
@@ -49,14 +49,14 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 ```
 "scripts": {
   "build": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject-dev ng build",
-  "build-prod": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject-dev ng build --prod",
+  "build-prod":"docker run --rm -it -p 4200:4200 -v /choclo:. --name myProject-dev myProject-dev ng build --prod",
   "server": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject-dev ng serve"
 }
 ```
 ##### Executor
 ```
 "templates": {
-  "docker-common": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject-dev", 
+  "docker-common": "docker run --rm -it -p 4200:4200 -v /choclo:... --name ${pkg.name}-dev myProject-dev", 
 }
 "shortcuts": {
   "build": "${docker-common} ng build",
@@ -83,8 +83,10 @@ And remember: RTFM! :)
 
 # Coming soon
 
-* Feature: Utilización de **global**!
+* Documentacion
 * Doc: Video de 5' demostrando funcionalidad
+* Doc: Ingles
+* Feature: Utilización de **global**!
 
 ---
 
