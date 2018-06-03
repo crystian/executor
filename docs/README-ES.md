@@ -107,7 +107,6 @@ Debería mostrar un mensaje con la versión instalada.
 
 # Coming soon
 
-* Documentación
 * Doc: Video de 5' demostrando funcionalidad
 * Doc: Ingles
 * Playground: Tool visual para armar configuraciones.
