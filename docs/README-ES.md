@@ -82,6 +82,7 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 * [Bonus track](https://github.com/crystian/executor/wiki/4-bonus-es)
 * [contributing](https://github.com/crystian/executor/wiki/5-contributing-es)
 
+---
 
 * [Changelog](CHANGELOG.md)
 * [Coming soon](#coming-soon)

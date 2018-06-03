@@ -1,5 +1,5 @@
 # eXecutor
-### **_Una poderosa herramienta de atajos para ti como para tu equipo!_**
+### **_A powerful "short-cutter" to your console to you and your team!!_**
 
 [![npm](https://img.shields.io/npm/v/executor.svg?style=flat-square)](https://www.npmjs.com/package/executor) 
 [![CircleCI](https://circleci.com/gh/crystian/executor/tree/master.svg?style=shield)](https://circleci.com/gh/crystian/executor/tree/master)
@@ -18,24 +18,24 @@
 
 ## TL;DR
 
-Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura de comandos con atajos totalmente personalizados, con la finalidad de compartirlo con un proyecto, tanto para que lo usen personas como máquinas, manteniéndose unificado y en un único lugar. #agile #needForSpeed. 
+This tool allows you to save a lot of time writing commands with totally custom shortcuts, that you can share on the project with your "human" team or machines, with a unique code on the same place. #agile #needForSpeed. 
  
-> Como `scripts` de `package.json` pero con _esteroides_.
+> Like `scripts` of `package.json` but with _steroids_.
 
-**Notes:** La idea **no** es dejar de usar la consola, es la de optimizarla.
+**Notes:** The idea is not to leave to use the console; it's for optimising it!
   
 ### Features
 
-* Multi-plataforma: Único código, funciona en todas las plataformas. Powered by [nodejs](https://nodejs.org)
-* Templates para su fácil reutilización.
-* No importa el tipo de proyecto, si escribís comandos esta herramienta te puede ser útil.
-* Utilización de variables predefinidas, ambiente, package.json, template y de otros 'shortcuts' (atajos).
-* Devs y DevOps pueden ser amigos con esta tool, ya que comparten sus comandos.
-* Errores de tipeos en comandos largos, son problemas del pasado!
-* Pare de sufrir! Basta de cientos de `scripts` similares en tu `package.json`!  
+* Multi-platform: An only code that works on all platforms. Powered by [nodejs](https://nodejs.org)
+* Templates to easy to reused
+* Does not matter what kind of project is, if you write commands this tool can be helpful for you
+* There are five source types of variables: Predefined, environment, package.json, templates and shortcuts.
+* Devs and DevOps can be friends with it because they can share their scripts.
+* Typo on long command lines are past problems!
+* Stop with one thousand of similar scripts on your `package.json`!  
 (`build`, `build-ci`, `build-prod`, `build-prod-ci`, `build-qa`, `build-qa-ci`, `build-ci-cache`, etc...)
-* **Sin dependencias de otros módulos de node!**
-
+* The `scripts` on the `package.json` was modified and have to `rebuild` your docker image, never more!
+* **Without dependencies from other modules!**
 
 ![](docs/img/jake.gif)
 
@@ -44,7 +44,7 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 
 ### Spoiler
 
-##### Antes
+##### Before
 ```
 "scripts": {
   "build": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject ng build",
@@ -82,6 +82,7 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 * [Bonus track](https://github.com/crystian/executor/wiki/4-bonus)
 * [contributing](https://github.com/crystian/executor/wiki/5-contributing)
 
+---
 
 * [Changelog](CHANGELOG.md)
 * [Coming soon](#coming-soon)
@@ -95,24 +96,23 @@ And remember: RTFM! :)
 npm i -g --engine-strict executor
 ```
 
-Test de correcta instalación y funcionamiento:
+Test for check the installation:
 
 ```
 x hello
 ```
 
-Debería mostrar un mensaje con la versión instalada.
+Should show a message with installed version number.
 
 ---
 
 # Coming soon
 
-* Documentación
-* Doc: Video de 5' demostrando funcionalidad
-* Doc: Ingles
-* Playground: Tool visual para armar configuraciones.
-* Feature: Utilización de **global**!
+* Documentation in english
+* Doc: Video of 5' as demo
+* Playground: Tool
+* Feature: **global**!
 
 ---
 
-MIT © 2018 [Crystian](https://github.com/crystian), hecho con amor para vos <3! y espero que te sea tan útil como lo es para mi.
+MIT © 2018 [Crystian](https://github.com/crystian), made with love for you <3!
