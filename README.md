@@ -56,7 +56,7 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 ##### Executor
 ```
 "templates": {
-  "docker-common": "docker run --rm -it -p 4200:4200 -v /choclo:... --name ${pkg.name}-dev myProject-dev", 
+  "docker-common": "docker run --rm -it -p 4200:4200 -v /choclo:... --name ${pkg.name}-dev ${pkg.name}-dev", 
 }
 "shortcuts": {
   "build": "${docker-common} ng build",
