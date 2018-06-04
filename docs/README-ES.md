@@ -1,5 +1,5 @@
 # eXecutor
-### **_Una poderosa herramienta de atajos para ti como para tu equipo!_**
+### **_Una poderosa herramienta de atajos para vos como para tu equipo!_**
 
 [![npm](https://img.shields.io/npm/v/executor.svg?style=flat-square)](https://www.npmjs.com/package/executor) 
 [![CircleCI](https://circleci.com/gh/crystian/executor/tree/master.svg?style=shield)](https://circleci.com/gh/crystian/executor/tree/master)
@@ -12,7 +12,7 @@
 [![David](https://img.shields.io/david/crystian/executor.svg?style=flat-square)](https://github.com/crystian/executor/blob/master/package.json)
 [![Gitter](https://img.shields.io/gitter/room/crystian/executor.svg?style=flat-square)](https://gitter.im/crystian/executor/??utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[ [english (under construction)](../README.md) ] [ spanish ]
+[ [english](../README.md) ] [ spanish ]
 
 ---
 
@@ -55,8 +55,8 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 ##### Executor
 ```
 "templates": {
-  "docker-common": "docker run --rm -it -p 4200:4200 -v /choclo:... --name ${pkg.name}-dev ${pkg.name}", 
-}
+  "docker-common": "docker run --rm -it -p 4200:4200 -v /choclo:... --name ${pkg.name}-dev ${pkg.name}" 
+},
 "shortcuts": {
   "build": "${docker-common} ng build",
   "build-prod": "${docker-common} ng build --prod",
@@ -103,6 +103,8 @@ x hello
 ```
 
 Debería mostrar un mensaje con la versión instalada.
+
+[Mas info sobre la instalacion](https://github.com/crystian/executor/wiki/2-installation-es#installation)
 
 ---
 

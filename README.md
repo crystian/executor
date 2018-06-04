@@ -12,7 +12,7 @@
 [![David](https://img.shields.io/david/crystian/executor.svg?style=flat-square)](https://github.com/crystian/executor/blob/master/package.json)
 [![Gitter](https://img.shields.io/gitter/room/crystian/executor.svg?style=flat-square)](https://gitter.im/crystian/executor/??utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[ english (under construction) ] [ [spanish](docs/README-ES.md) ]
+[ english ] [ [spanish](docs/README-ES.md) ]
 
 ---
 
@@ -45,6 +45,8 @@ This tool allows you to save a lot of time writing commands with totally custom 
 ### Spoiler
 
 ##### Before
+On `package.json`
+
 ```
 "scripts": {
   "build": "docker run --rm -it -p 4200:4200 -v /choclo:... --name myProject-dev myProject ng build",
@@ -55,8 +57,8 @@ This tool allows you to save a lot of time writing commands with totally custom 
 ##### Executor
 ```
 "templates": {
-  "docker-common": "docker run --rm -it -p 4200:4200 -v /choclo:... --name ${pkg.name}-dev ${pkg.name}", 
-}
+  "docker-common": "docker run --rm -it -p 4200:4200 -v /choclo:... --name ${pkg.name}-dev ${pkg.name}" 
+},
 "shortcuts": {
   "build": "${docker-common} ng build",
   "build-prod": "${docker-common} ng build --prod",
@@ -93,7 +95,7 @@ And remember: RTFM! :)
 ## Installation
 
 ```
-npm i -g --engine-strict executor
+npm i -g executor
 ```
 
 Test for check the installation:
@@ -103,6 +105,8 @@ x hello
 ```
 
 Should show a message with installed version number.
+
+[More info about installation.](https://github.com/crystian/executor/wiki/2-installation#installation)
 
 ---
 
