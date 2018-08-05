@@ -12,7 +12,7 @@
 [![David](https://img.shields.io/david/crystian/executor.svg?style=flat-square)](https://github.com/crystian/executor/blob/master/package.json)
 [![Gitter](https://img.shields.io/gitter/room/crystian/executor.svg?style=flat-square)](https://gitter.im/crystian/executor/??utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[ [english](../README.md) ] [ spanish ]
+[ english ![../README.md](../docs/img/en.png) ] [ spanish ![](../docs/img/sp.png) ]
 
 ---
 
@@ -43,6 +43,7 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 ## Documentation
 
 ### Spoiler
+En `package.json`
 
 ##### Antes
 ```
@@ -67,33 +68,31 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 ### Table of content
 
 * [Intro](https://github.com/crystian/executor/wiki/Home-es)
-* [Why?](https://github.com/crystian/executor/wiki/1-why-es#why)
-* [Installation](https://github.com/crystian/executor/wiki/2-installation-es#installation)
-* [Configuration](https://github.com/crystian/executor/wiki/3-configuration-es#configuration)
-  * [sources](https://github.com/crystian/executor/wiki/3-configuration-es#sources)
-  * [configuration](https://github.com/crystian/executor/wiki/3-configuration-es#configuration-1)
-    * [options](https://github.com/crystian/executor/wiki/3-configuration-es#options)
-    * [data](https://github.com/crystian/executor/wiki/3-configuration-es#data)
-      * [predefined (def)](https://github.com/crystian/executor/wiki/3-configuration-es#predefined-def)
-      * [environments (env)](https://github.com/crystian/executor/wiki/3-configuration-es#environments-env)
+* [por que?](https://github.com/crystian/executor/wiki/1-why-es#why)
+* [Instalacion](https://github.com/crystian/executor/wiki/2-installation-es#installation)
+* [Configuracion](https://github.com/crystian/executor/wiki/3-configuration-es#configuration)
+  * [Fuentes](https://github.com/crystian/executor/wiki/3-configuration-es#sources)
+  * [Configuracion](https://github.com/crystian/executor/wiki/3-configuration-es#configuration-1)
+    * [opciones](https://github.com/crystian/executor/wiki/3-configuration-es#options)
+    * [datos](https://github.com/crystian/executor/wiki/3-configuration-es#data)
+      * [predefinidos (def)](https://github.com/crystian/executor/wiki/3-configuration-es#predefined-def)
+      * [ambiente (env)](https://github.com/crystian/executor/wiki/3-configuration-es#environments-env)
       * [package.json (pkg)](https://github.com/crystian/executor/wiki/3-configuration-es#packagejson-pkg)
       * [templates](https://github.com/crystian/executor/wiki/3-configuration-es#templates)
-      * [shortcuts](https://github.com/crystian/executor/wiki/3-configuration-es#shortcuts)
+      * [atajos](https://github.com/crystian/executor/wiki/3-configuration-es#shortcuts)
 * [Bonus track](https://github.com/crystian/executor/wiki/4-bonus-es)
-* [contributing](https://github.com/crystian/executor/wiki/5-contributing-es)
+* [contribucion](https://github.com/crystian/executor/wiki/5-contributing-es)
 
 ---
 
 * [Changelog](CHANGELOG.md)
-* [Coming soon](#coming-soon)
 
-
-And remember: RTFM! :)
+Y recorda! RTFM! :)
 
 ## Installation
 
 ```
-npm i -g --engine-strict executor
+npm i -g executor
 ```
 
 Test de correcta instalación y funcionamiento:
@@ -105,15 +104,6 @@ x hello
 Debería mostrar un mensaje con la versión instalada.
 
 [Mas info sobre la instalacion](https://github.com/crystian/executor/wiki/2-installation-es#installation)
-
----
-
-# Coming soon
-
-* Doc: Video de 5' demostrando funcionalidad
-* Doc: Ingles
-* Playground: Tool visual para armar configuraciones.
-* Feature: Utilización de **global**!
 
 ---
 

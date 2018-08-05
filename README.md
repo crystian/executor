@@ -12,7 +12,7 @@
 [![David](https://img.shields.io/david/crystian/executor.svg?style=flat-square)](https://github.com/crystian/executor/blob/master/package.json)
 [![Gitter](https://img.shields.io/gitter/room/crystian/executor.svg?style=flat-square)](https://gitter.im/crystian/executor/??utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[ english ] [ [spanish](docs/README-ES.md) ]
+[ english ![](docs/img/en.png) ] [ [spanish ![](docs/img/sp.png) ](docs/README-ES.md) ]
 
 ---
 
@@ -87,8 +87,6 @@ On `package.json`
 ---
 
 * [Changelog](CHANGELOG.md)
-* [Coming soon](#coming-soon)
-
 
 And remember: RTFM! :)
 
@@ -107,15 +105,6 @@ x hello
 Should show a message with installed version number.
 
 [More info about installation.](https://github.com/crystian/executor/wiki/2-installation#installation)
-
----
-
-# Coming soon
-
-* Documentation in english
-* Doc: Video of 5' as demo
-* Playground: Tool
-* Feature: **global**!
 
 ---
 
