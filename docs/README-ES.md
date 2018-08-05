@@ -37,7 +37,7 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 * **Sin dependencias de otros módulos de node!**
 
 
-![](docs/img/jake.gif)
+![](../docs/img/jake.gif)
 
 ---
 ## Documentation
