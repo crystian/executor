@@ -68,7 +68,7 @@ En `package.json`
 ### Table of content
 
 * [Intro](https://github.com/crystian/executor/wiki/Home-es)
-* [por que?](https://github.com/crystian/executor/wiki/1-why-es#why)
+* [Por que?](https://github.com/crystian/executor/wiki/1-why-es#why)
 * [Instalacion](https://github.com/crystian/executor/wiki/2-installation-es#installation)
 * [Configuracion](https://github.com/crystian/executor/wiki/3-configuration-es#configuration)
   * [Fuentes](https://github.com/crystian/executor/wiki/3-configuration-es#sources)
