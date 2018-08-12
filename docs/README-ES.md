@@ -12,7 +12,7 @@
 [![David](https://img.shields.io/david/crystian/executor.svg?style=flat-square)](https://github.com/crystian/executor/blob/master/package.json)
 [![Gitter](https://img.shields.io/gitter/room/crystian/executor.svg?style=flat-square)](https://gitter.im/crystian/executor/??utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[ english ![../README.md](../docs/img/en.png) ] [ spanish ![](../docs/img/sp.png) ]
+[ [ english ![](../docs/img/en.png) ](../README.md) [ spanish ![](../docs/img/sp.png) ]
 
 ---
 
@@ -37,7 +37,7 @@ Este herramienta te va a permitir ahorrar gran cantidad de tiempo de escritura d
 * **Sin dependencias de otros módulos de node!**
 
 
-![](docs/img/jake.gif)
+![](../docs/img/jake.gif)
 
 ---
 ## Documentation
@@ -68,7 +68,7 @@ En `package.json`
 ### Table of content
 
 * [Intro](https://github.com/crystian/executor/wiki/Home-es)
-* [por que?](https://github.com/crystian/executor/wiki/1-why-es#why)
+* [Por que?](https://github.com/crystian/executor/wiki/1-why-es#why)
 * [Instalacion](https://github.com/crystian/executor/wiki/2-installation-es#installation)
 * [Configuracion](https://github.com/crystian/executor/wiki/3-configuration-es#configuration)
   * [Fuentes](https://github.com/crystian/executor/wiki/3-configuration-es#sources)

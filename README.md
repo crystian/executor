@@ -22,19 +22,19 @@ This tool allows you to save a lot of time writing commands with totally custom 
  
 > Like `scripts` of `package.json` but with _steroids_.
 
-**Notes:** The idea is not to leave to use the console; it's for optimising it!
+**Notes:** The idea is not to drop the console; it's for optimising it!
   
 ### Features
 
 * Multi-platform: An only code that works on all platforms. Powered by [nodejs](https://nodejs.org)
-* Templates to easy to reused
-* Does not matter what kind of project is, if you write commands this tool can be helpful for you
+* Templates for easy reuse
+* It does not matter what kind of project is, if you write commands this tool can be helpful for you
 * There are five source types of variables: Predefined, environment, package.json, templates and shortcuts.
 * Devs and DevOps can be friends with it because they can share their scripts.
 * Typo on long command lines are past problems!
-* Stop with one thousand of similar scripts on your `package.json`!  
+* Do away with one thousand of similar scripts on your `package.json`!  
 (`build`, `build-ci`, `build-prod`, `build-prod-ci`, `build-qa`, `build-qa-ci`, `build-ci-cache`, etc...)
-* The `scripts` on the `package.json` was modified and have to `rebuild` your docker image, never more!
+* The `scripts` on the `package.json` were modified and have to `rebuild` your docker image, never again!
 * **Without dependencies from other modules!**
 
 ![](docs/img/jake.gif)
@@ -96,13 +96,13 @@ And remember: RTFM! :)
 npm i -g executor
 ```
 
-Test for check the installation:
+Test to check the installation:
 
 ```
 x hello
 ```
 
-Should show a message with installed version number.
+It should show a message with installed version number.
 
 [More info about installation.](https://github.com/crystian/executor/wiki/2-installation#installation)
 
