@@ -324,4 +324,11 @@ describe('getConfigMergedWithDefault()', function() {
 
 		assert.equal(r.templates.hello, 'works');
 	});
+
+	it('should merge config with default (overwrite)', function() {
+
+		let r = getConfigMergedWithDefault({ description: 'works'});
+
+		assert.equal(r.description, 'works');
+	});
 });

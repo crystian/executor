@@ -5,7 +5,7 @@
 	"description": "A powerful \"short-cutter\" to your console to you and your team!",
 	"scripts": {
 		"test": "mocha test/**/*.spec.js -R nyan",
-		"watch": "npm test --watch",
+		"watch": "npm test -- --watch",
 		"lint": "eslint \"bin/x.js\" \"lib/**/*.js\" --fix",
 		"test-ci": "mocha test/**/*.spec.js -R min",
 		"test-docker": "mocha test/docker/docker.js -R min --timeout 150000",
